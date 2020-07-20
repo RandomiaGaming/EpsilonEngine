@@ -1,6 +1,6 @@
 using System;
 
-namespace RG_Engine
+namespace Epsilon_Engine
 {
     public class RG_Component
     {

@@ -19,6 +19,7 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <TargetFrameworkProfile />
     <IsWebBootstrapper>false</IsWebBootstrapper>
+    <StartupObject>RG_Engine.Program</StartupObject>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -33,7 +34,6 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <StartupObject>Epsilon_Engine.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup>
@@ -44,8 +44,121 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <IntermediateOutputPath>C:\Users\RANDOM~1\AppData\Local\Temp\vsA124.tmp\x86\Debug\</IntermediateOutputPath>
+    <Prefer32Bit>false</Prefer32Bit>
+    <ErrorReport>none</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Default Project Settings\RG_Engine_Icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Default Project Settings\RG_Engine.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Program Files (x86)\MonoGame\v3.0\Assemblies\DesktopGL\libSDL2-2.0.0.dylib">
+      <Link>libSDL2-2.0.0.dylib</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="C:\Program Files (x86)\MonoGame\v3.0\Assemblies\DesktopGL\libopenal.1.dylib">
+      <Link>libopenal.1.dylib</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="C:\Program Files (x86)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll.config">
+      <Link>MonoGame.Framework.dll.config</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Default Modules\com.RandomiaGaming.RG_Pixel_GUI\Module.RG_Meta" />
+    <None Include="Default Modules\com.RandomiaGaming.RG_Pixel_Physics_2D\Module.RG_Meta" />
+    <None Include="Default Modules\com.RandomiaGaming.RG_Pixel_Renderer_2D\Module.RG_Meta" />
+    <None Include="Default Project Settings\Modules.RG_Meta" />
+    <None Include="Default Project Settings\Content.mgcb" />
+    <None Include="Default Project Settings\RG_Engine.manifest" />
+    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Directory.Build.props" />
+    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\global.json" />
+    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\MonoGame.Framework.Android.csproj" />
+    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\MonoGame.Framework.Android.targets" />
+    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\MonoGame.Framework.DesktopGL.csproj" />
+    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\MonoGame.Framework.DesktopGL.targets" />
+    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\MonoGame.Framework.iOS.csproj" />
+    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\MonoGame.Framework.iOS.targets" />
+    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\MonoGame.Framework.WindowsDX.csproj" />
+    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\MonoGame.Framework.WindowsDX.targets" />
+    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\MonoGame.Framework.WindowsUniversal.csproj" />
+    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\MonoGame.Framework.WindowsUniversal.targets" />
+    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\DirectX.targets" />
+    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\AlphaTestEffect.dx11.mgfxo" />
+    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\AlphaTestEffect.ogl.mgfxo" />
+    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\BasicEffect.dx11.mgfxo" />
+    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\BasicEffect.ogl.mgfxo" />
+    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\Common.fxh" />
+    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\DualTextureEffect.dx11.mgfxo" />
+    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\DualTextureEffect.ogl.mgfxo" />
+    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\EnvironmentMapEffect.dx11.mgfxo" />
+    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\EnvironmentMapEffect.ogl.mgfxo" />
+    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\Lighting.fxh" />
+    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\Macros.fxh" />
+    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\Microsoft_Permissive_License.rtf" />
+    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\RebuildMGFX.bat" />
+    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\SkinnedEffect.dx11.mgfxo" />
+    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\SkinnedEffect.ogl.mgfxo" />
+    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\SpriteEffect.dx11.mgfxo" />
+    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\SpriteEffect.ogl.mgfxo" />
+    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\Structures.fxh" />
+    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Microsoft.Devices.Sensors.targets" />
+    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\OpenAL.targets" />
+    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\OpenGL.targets" />
+    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\XAudio.targets" />
+    <None Include="LICENSE" />
+    <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".gitignore" />
+    <Content Include="Default Project Settings\RG_Engine_Icon.ico" />
+    <Content Include="Default Project Settings\RG_Engine_Icon.png" />
+    <Content Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\MonoGame.bmp" />
+    <Content Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\AlphaTestEffect.fx" />
+    <Content Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\BasicEffect.fx" />
+    <Content Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\DualTextureEffect.fx" />
+    <Content Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\EnvironmentMapEffect.fx" />
+    <Content Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\SkinnedEffect.fx" />
+    <Content Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\SpriteEffect.fx" />
+    <Content Include="Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Default Modules\com.RandomiaGaming.RG_Pixel_GUI\RGUI_Helper.cs" />
+    <Compile Include="Default Modules\com.RandomiaGaming.RG_Pixel_GUI\RG_Button.cs" />
+    <Compile Include="Default Modules\com.RandomiaGaming.RG_Pixel_GUI\RG_Element.cs" />
+    <Compile Include="Default Modules\com.RandomiaGaming.RG_Pixel_GUI\RG_Panel.cs" />
+    <Compile Include="Default Modules\com.RandomiaGaming.RG_Pixel_GUI\RG_Slider.cs" />
+    <Compile Include="Default Modules\com.RandomiaGaming.RG_Pixel_Physics_2D\RG_Box_Collider.cs" />
+    <Compile Include="Default Modules\com.RandomiaGaming.RG_Pixel_Physics_2D\RG_Collider.cs" />
+    <Compile Include="Default Modules\com.RandomiaGaming.RG_Pixel_Physics_2D\RG_Custom_Collider.cs" />
+    <Compile Include="Default Modules\com.RandomiaGaming.RG_Pixel_Physics_2D\RG_Physics_Data_Classes.cs" />
+    <Compile Include="Default Modules\com.RandomiaGaming.RG_Pixel_Physics_2D\RG_Rigidbody.cs" />
+    <Compile Include="Default Modules\com.RandomiaGaming.RG_Pixel_Physics_2D\RG_Sprite_Collider.cs" />
+    <Compile Include="Default Modules\com.RandomiaGaming.RG_Pixel_Physics_2D\RG_Tilemap_Collider.cs" />
     <Compile Include="Default Project Settings\AssemblyInfo.cs" />
     <Compile Include="Epsilon Engine Core\Data Types\RG_Bounds.cs" />
     <Compile Include="Epsilon Engine Core\Data Types\RG_Color.cs" />
@@ -590,15 +703,6 @@
     <Compile Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Microsoft\Devices\Sensors\SensorReadingEventArgs.cs" />
     <Compile Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Microsoft\Devices\Sensors\SensorState.cs" />
     <Compile Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\PrimaryThreadLoader.cs" />
-    <Compile Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Properties\AssemblyInfo.Android.cs" />
-    <Compile Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Properties\AssemblyInfo.Angle.cs" />
-    <Compile Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Properties\AssemblyInfo.DesktopGL.cs" />
-    <Compile Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Properties\AssemblyInfo.iOS.cs" />
-    <Compile Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Properties\AssemblyInfo.Mac.cs" />
-    <Compile Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Properties\AssemblyInfo.TVOS.cs" />
-    <Compile Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Properties\AssemblyInfo.UWP.cs" />
-    <Compile Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Properties\AssemblyInfo.Web.cs" />
-    <Compile Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Properties\AssemblyInfo.Windows.cs" />
     <Compile Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\SDL\SDL2.cs" />
     <Compile Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\SDL\SDLGamePlatform.cs" />
     <Compile Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\SDL\SDLGameWindow.cs" />
@@ -633,7 +737,6 @@
     <Compile Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\PlayerIndex.cs" />
     <Compile Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Point.cs" />
     <Compile Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\PreparingDeviceSettingsEventArgs.cs" />
-    <Compile Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Properties\AssemblyInfo.cs" />
     <Compile Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Quaternion.cs" />
     <Compile Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Ray.cs" />
     <Compile Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Rectangle.cs" />
@@ -672,136 +775,10 @@
     <Compile Include="Epsilon Engine Core\Module Bases\RG_Renderer.cs" />
     <Compile Include="Epsilon Engine Core\Program.cs" />
     <Compile Include="Epsilon Engine Core\RG_Component.cs" />
-    <Compile Include="Epsilon Engine Core\Epsilon_Engine_Kernal.cs" />
-    <Compile Include="Epsilon Engine Core\Epsilon_Engine_Kernal.old.cs" />
+    <Compile Include="Epsilon Engine Core\RG_Engine_Kernal.cs" />
+    <Compile Include="Epsilon Engine Core\RG_Engine_Kernal.old.cs" />
     <Compile Include="Epsilon Engine Core\RG_Game_Manager.cs" />
     <Compile Include="Epsilon Engine Core\RG_Game_Object.cs" />
-    <Compile Include="Project Settings\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="MonoGame.Framework">
-      <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="C:\Program Files (x86)\MonoGame\v3.0\Assemblies\DesktopGL\x86\SDL2.dll">
-      <Link>x86\SDL2.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="C:\Program Files (x86)\MonoGame\v3.0\Assemblies\DesktopGL\x64\SDL2.dll">
-      <Link>x64\SDL2.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="C:\Program Files (x86)\MonoGame\v3.0\Assemblies\DesktopGL\x86\soft_oal.dll">
-      <Link>x86\soft_oal.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="C:\Program Files (x86)\MonoGame\v3.0\Assemblies\DesktopGL\x64\soft_oal.dll">
-      <Link>x64\soft_oal.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="C:\Program Files (x86)\MonoGame\v3.0\Assemblies\DesktopGL\x86\libSDL2-2.0.so.0">
-      <Link>x86\libSDL2-2.0.so.0</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="C:\Program Files (x86)\MonoGame\v3.0\Assemblies\DesktopGL\x64\libSDL2-2.0.so.0">
-      <Link>x64\libSDL2-2.0.so.0</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="C:\Program Files (x86)\MonoGame\v3.0\Assemblies\DesktopGL\x86\libopenal.so.1">
-      <Link>x86\libopenal.so.1</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="C:\Program Files (x86)\MonoGame\v3.0\Assemblies\DesktopGL\x64\libopenal.so.1">
-      <Link>x64\libopenal.so.1</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\libSDL2-2.0.0.dylib">
-      <Link>libSDL2-2.0.0.dylib</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\libopenal.1.dylib">
-      <Link>libopenal.1.dylib</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll.config">
-      <Link>MonoGame.Framework.dll.config</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Default Project Settings\Content.mgcb" />
-    <None Include="Default Project Settings\Epsilon_Engine.manifest" />
-    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Directory.Build.props" />
-    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\global.json" />
-    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\MonoGame.Framework.Android.csproj" />
-    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\MonoGame.Framework.Android.targets" />
-    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\MonoGame.Framework.DesktopGL.csproj" />
-    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\MonoGame.Framework.DesktopGL.targets" />
-    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\MonoGame.Framework.iOS.csproj" />
-    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\MonoGame.Framework.iOS.targets" />
-    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\MonoGame.Framework.WindowsDX.csproj" />
-    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\MonoGame.Framework.WindowsDX.targets" />
-    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\MonoGame.Framework.WindowsUniversal.csproj" />
-    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\MonoGame.Framework.WindowsUniversal.targets" />
-    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\DirectX.targets" />
-    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\AlphaTestEffect.dx11.mgfxo" />
-    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\AlphaTestEffect.ogl.mgfxo" />
-    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\BasicEffect.dx11.mgfxo" />
-    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\BasicEffect.ogl.mgfxo" />
-    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\Common.fxh" />
-    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\DualTextureEffect.dx11.mgfxo" />
-    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\DualTextureEffect.ogl.mgfxo" />
-    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\EnvironmentMapEffect.dx11.mgfxo" />
-    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\EnvironmentMapEffect.ogl.mgfxo" />
-    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\Lighting.fxh" />
-    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\Macros.fxh" />
-    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\Microsoft_Permissive_License.rtf" />
-    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\RebuildMGFX.bat" />
-    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\SkinnedEffect.dx11.mgfxo" />
-    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\SkinnedEffect.ogl.mgfxo" />
-    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\SpriteEffect.dx11.mgfxo" />
-    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\SpriteEffect.ogl.mgfxo" />
-    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\Structures.fxh" />
-    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Microsoft.Devices.Sensors.targets" />
-    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\OpenAL.targets" />
-    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\OpenGL.targets" />
-    <None Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\XAudio.targets" />
-    <None Include="Logo.pdn" />
-    <None Include="Project Settings\Content.mgcb" />
-    <None Include="Project Settings\Epsilon_Engine.manifest" />
-  </ItemGroup>
-  <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
-      <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include=".gitignore" />
-    <Content Include="Default Project Settings\Epsilon_Engine_Icon.ico" />
-    <Content Include="Default Project Settings\Epsilon_Engine_Icon.png" />
-    <Content Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\MonoGame.bmp" />
-    <Content Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\AlphaTestEffect.fx" />
-    <Content Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\BasicEffect.fx" />
-    <Content Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\DualTextureEffect.fx" />
-    <Content Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\EnvironmentMapEffect.fx" />
-    <Content Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\SkinnedEffect.fx" />
-    <Content Include="Epsilon Engine Core\Dependencies\MonoGame.Framework\Platform\Graphics\Effect\Resources\SpriteEffect.fx" />
-    <Content Include="Logo.png" />
-    <Content Include="Project Settings\Epsilon_Engine_Icon.ico" />
-    <Content Include="Project Settings\Epsilon_Engine_Icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Default Modules\" />
-    <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

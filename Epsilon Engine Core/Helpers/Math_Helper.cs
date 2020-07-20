@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RG_Engine
+namespace Epsilon_Engine
 {
     public static class Math_Helper
     {

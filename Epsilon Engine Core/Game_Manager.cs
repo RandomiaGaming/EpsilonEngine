@@ -1,4 +1,4 @@
-namespace RG_Engine
+namespace Epsilon_Engine
 {
     public class Game_Manager
     {

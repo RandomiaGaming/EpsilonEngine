@@ -4,15 +4,15 @@ using Microsoft.Xna.Framework.Input;
 using System.Diagnostics.Tracing;
 using System.Drawing;
 
-namespace RG_Engine
+namespace Epsilon_Engine
 {
-    public sealed class RG_Engine_Kernal : Game
+    public sealed class Epsilon_Engine_Kernal : Game
     {
         private GraphicsDeviceManager GDM;
         private GraphicsDevice GD;
         private SpriteBatch SB;
 
-        public RG_Engine_Kernal()
+        public Epsilon_Engine_Kernal()
         {
             Content.RootDirectory = "Assets";
             GDM = new GraphicsDeviceManager(this);

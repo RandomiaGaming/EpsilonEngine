@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace RG_Engine
+namespace Epsilon_Engine
 {
     public sealed class RG_Texture
     {

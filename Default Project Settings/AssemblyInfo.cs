@@ -1,8 +1,8 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("RG_Engine")]
-[assembly: AssemblyProduct("RG_Engine")]
+[assembly: AssemblyTitle("Epsilon_Engine")]
+[assembly: AssemblyProduct("Epsilon_Engine")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyCompany("")]

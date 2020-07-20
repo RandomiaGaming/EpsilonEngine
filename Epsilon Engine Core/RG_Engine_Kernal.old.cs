@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace RG_Engine
+namespace Epsilon_Engine
 {
-    public static class RG_Engine_Kernal
+    public static class Epsilon_Engine_Kernal_Old
     {
         private static List<RG_Game_Object> Game_Objects = new List<RG_Game_Object>();
         private static List<RG_Game_Manager> Game_Managers = new List<RG_Game_Manager>();

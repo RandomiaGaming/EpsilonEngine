@@ -1,6 +1,6 @@
 using System;
 
-namespace RG_Engine
+namespace Epsilon_Engine
 {
     public sealed class RG_Color
     {

@@ -1,13 +1,12 @@
 ﻿using System;
-
-namespace RG_Engine
+namespace EpsilonEngine
 {
     public static class Program
     {
         [STAThread]
         static void Main()
         {
-            RG_Engine_Kernal Kernal = new RG_Engine_Kernal();
+            Epsilon_Engine_Kernal Kernal = new Epsilon_Engine_Kernal();
             Kernal.Run();
             Kernal.Dispose();
         }

@@ -19,6 +19,7 @@ namespace Microsoft.Xna.Framework
 #elif WEB
             return new WebGamePlatform(game);
 #endif
+            return null;
         }
     }
 }

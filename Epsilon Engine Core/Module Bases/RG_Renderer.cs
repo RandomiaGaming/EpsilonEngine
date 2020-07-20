@@ -1,4 +1,4 @@
-﻿namespace RG_Engine.Internal
+﻿namespace Epsilon_Engine.Internal
 {
     public abstract class RG_Renderer
     {
