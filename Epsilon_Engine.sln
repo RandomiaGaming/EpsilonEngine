@@ -1,24 +1,21 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.30225.117
+VisualStudioVersion = 16.0.30309.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epsilon_Engine", "Epsilon_Engine.csproj", "{155F6385-CEB3-412E-A49B-FA7486778BE7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
+		Debug|x86 = Debug|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{155F6385-CEB3-412E-A49B-FA7486778BE7}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{155F6385-CEB3-412E-A49B-FA7486778BE7}.Release|Any CPU.ActiveCfg = Debug|x86
-		{155F6385-CEB3-412E-A49B-FA7486778BE7}.Release|Any CPU.Build.0 = Debug|x86
+		{155F6385-CEB3-412E-A49B-FA7486778BE7}.Debug|x86.ActiveCfg = Debug|x86
+		{155F6385-CEB3-412E-A49B-FA7486778BE7}.Debug|x86.Build.0 = Debug|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {854EC9D2-7B18-4E67-A932-05698E8C92B1}
+		SolutionGuid = {22B83ACA-468B-4CB5-9850-07417114EF96}
 	EndGlobalSection
 EndGlobal

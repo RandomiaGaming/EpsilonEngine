@@ -1,48 +1,46 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using System.Diagnostics.Tracing;
-using System.Drawing;
+﻿using System;
+using System.Diagnostics;
+using System.Threading;
 
-namespace Epsilon_Engine
+namespace Epsilon_Engine.Internal
 {
-    public sealed class Epsilon_Engine_Kernal : Game
+    internal static class Epsilon_Engine_Kernal
     {
-        private GraphicsDeviceManager GDM;
-        private GraphicsDevice GD;
-        private SpriteBatch SB;
-
-        public Epsilon_Engine_Kernal()
+        public static double maxFPS = 1000;
+        private static Stopwatch gameTimer = new Stopwatch();
+        public static TimeSpan startTime = new TimeSpan(0);
+        public static TimeSpan deltaTime = new TimeSpan(0);
+        private static TimeSpan lastFrameTime = new TimeSpan(0);
+        public static double Current_FPS = 0;
+        private static bool wantsToQuit = false;
+        internal static void Consume_Thread()
         {
-            Content.RootDirectory = "Assets";
-            GDM = new GraphicsDeviceManager(this);
-        }
-        protected override void Initialize()
-        {
-            base.Initialize();
-        }
-        protected override void LoadContent()
-        {
-            base.LoadContent();
-            GD = GDM.GraphicsDevice;
-            SB = new SpriteBatch(GD);
-        }
-        protected override void Update(GameTime gameTime)
-        {
-            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+            gameTimer.Restart();
+            while (!wantsToQuit)
             {
-                Exit();
+                Update();
+                long minTPF = (long)((1 / maxFPS) * 10000000.0);
+                while (gameTimer.ElapsedTicks - lastFrameTime.Ticks < minTPF)
+                {
+
+                }
+                startTime = new TimeSpan(gameTimer.ElapsedTicks);
+                deltaTime = new TimeSpan(gameTimer.ElapsedTicks - lastFrameTime.Ticks);
+                Current_FPS = 1.0 / deltaTime.TotalSeconds;
+                lastFrameTime = new TimeSpan(gameTimer.ElapsedTicks);
             }
-            base.Update(gameTime);
+            Process.GetCurrentProcess().Kill();
         }
-        protected override void Draw(GameTime gameTime)
+        public static void Update()
         {
-            GD.Clear(new Microsoft.Xna.Framework.Color(255, 0, 255));
-            SB.Begin();
-            Texture2D Frame = new Texture2D(GD, GD.Viewport.Width, GD.Viewport.Height);
-            SB.Draw(Frame, new Vector2(0.5f, 0.5f));
-            SB.End();
-            base.Draw(gameTime);
+            //GameManagerUpdate()
+            //ComponentUpdate();
+            //PhysicsUpdate();
+            //Render();
+        }
+        public static void Initialize()
+        {
+
         }
     }
 }

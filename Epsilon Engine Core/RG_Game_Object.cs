@@ -1,19 +1,18 @@
-using System;
 using System.Collections.Generic;
 
 namespace Epsilon_Engine
 {
-    public sealed class RG_Game_Object
+    public sealed class Game_Object
     {
-        private List<RG_Component> Components = new List<RG_Component>();
-        public List<RG_Component> Get_Component_List()
+        private List<Component> Components = new List<Component>();
+        public List<Component> Get_Component_List()
         {
-            return new List<RG_Component>(Components);
+            return new List<Component>(Components);
         }
-        public List<T> Get_Components<T>() where T : RG_Component, new()
+        public List<T> Get_Components<T>() where T : Component, new()
         {
             List<T> Output = new List<T>();
-            foreach (RG_Component C in Components)
+            foreach (Component C in Components)
             {
                 if (C.GetType() == typeof(T))
                 {
@@ -22,7 +21,7 @@ namespace Epsilon_Engine
             }
             return Output;
         }
-        public RG_Component Get_Component(int Index)
+        public Component Get_Component(int Index)
         {
             if (Index < 0 || Index >= Components.Count)
             {
@@ -33,9 +32,9 @@ namespace Epsilon_Engine
                 return Components[Index];
             }
         }
-        public T Get_Component<T>() where T : RG_Component, new()
+        public T Get_Component<T>() where T : Component, new()
         {
-            foreach (RG_Component C in Components)
+            foreach (Component C in Components)
             {
                 if (C.GetType() == typeof(T))
                 {
@@ -48,32 +47,32 @@ namespace Epsilon_Engine
         {
             return Components.Count;
         }
-        public void Add_Component<T>() where T : RG_Component
+        public void Add_Component<T>() where T : Component, new()
         {
-           // Components.Add((RG_Component)T.Create());
+            Components.Add(new T());
         }
-        public void Add_Component(RG_Component New_Component)
+        public void Add_Component(Component New_Component)
         {
             Components.Add(New_Component);
         }
         public void Initialize()
         {
-            foreach (RG_Component C in Components)
+            foreach (Component C in Components)
             {
                 C.Initialize(this);
             }
         }
         public void Update(double Delta_Time)
         {
-            foreach (RG_Component C in Components)
+            foreach (Component C in Components)
             {
                 C.Update(this, Delta_Time);
             }
         }
-        private RG_Game_Object() { }
-        public static RG_Game_Object Create()
+        private Game_Object() { }
+        public static Game_Object Create()
         {
-            return new RG_Game_Object();
+            return new Game_Object();
         }
     }
 }

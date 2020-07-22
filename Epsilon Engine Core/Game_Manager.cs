@@ -1,14 +1,9 @@
-namespace Epsilon_Engine
+﻿namespace Epsilon_Engine
 {
-    public class Game_Manager
+    public abstract class Game_Manager
     {
-        public virtual void Update()
-        {
-
-        }
-        public virtual void Initialize()
-        {
-
-        }
+        public Game_Manager() { }
+        public virtual void Initialize() { }
+        public virtual void Update(double Delta_Time) { }
     }
 }
