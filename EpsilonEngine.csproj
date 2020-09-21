@@ -1,0 +1,82 @@
+﻿<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{D24BD290-5CC3-42FB-AE25-ACC4C362E3ED}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <NoStandardLibraries>false</NoStandardLibraries>
+    <AssemblyName>WindowsApplication</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>EpsilonEngine</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>EpsilonEngine.Internal.EpsilonKernal</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Logo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\AssetLoader.cs" />
+    <Compile Include="Core\Component.cs" />
+    <Compile Include="Core\Program.cs" />
+    <Compile Include="Modules\Modules.Physics.Pixel2D\Collision.cs" />
+    <Compile Include="Core\Data Types\Color.cs" />
+    <Compile Include="Core\Data Types\InitializationPacket.cs" />
+    <Compile Include="Core\Data Types\InputPacket.cs" />
+    <Compile Include="Core\Data Types\OutputPacket.cs" />
+    <Compile Include="Modules\Modules.Physics.Pixel2D\Overlap.cs" />
+    <Compile Include="Core\Data Types\Point.cs" />
+    <Compile Include="Core\Data Types\Rectangle.cs" />
+    <Compile Include="Core\Data Types\SideInfo.cs" />
+    <Compile Include="Core\Data Types\Texture.cs" />
+    <Compile Include="Core\Data Types\UpdatePacket.cs" />
+    <Compile Include="Core\Data Types\Vector.cs" />
+    <Compile Include="Modules\Modules.Physics.Pixel2D\Collider.cs" />
+    <Compile Include="Modules\Modules.Physics.Pixel2D\Rigidbody.cs" />
+    <Compile Include="Core\EpsilonKernal.cs" />
+    <Compile Include="Core\GameObject.cs" />
+    <Compile Include="Core\Helpers\MathHelper.cs" />
+    <Compile Include="Core\Helpers\RandomnessHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Modules\Modules.Rendering.Pixel2D\" />
+    <Folder Include="Platforms\Platforms.Windows.Forms\" />
+    <Folder Include="Projects\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Logo.ico" />
+    <Content Include="Logo.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
+  <ProjectExtensions>
+    <VisualStudio AllowExistingFolder="true" />
+  </ProjectExtensions>
+</Project>
