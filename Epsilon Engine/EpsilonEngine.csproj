@@ -1,0 +1,97 @@
+﻿<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{D24BD290-5CC3-42FB-AE25-ACC4C362E3ED}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <NoStandardLibraries>false</NoStandardLibraries>
+    <AssemblyName>EpsilonEngine</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>EpsilonEngine</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Logo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Presentation" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Epsilon Engine Core\Base Classes\Component.cs" />
+    <Compile Include="Epsilon Engine Core\Base Classes\Game.cs" />
+    <Compile Include="Epsilon Engine Core\Base Classes\GameObject.cs" />
+    <Compile Include="Epsilon Engine Core\Base Classes\Scene.cs" />
+    <Compile Include="Epsilon Engine Core\Data Classes\Asset Types\AssetBase.cs" />
+    <Compile Include="Epsilon Engine Core\Data Classes\Asset Types\BianaryAsset.cs" />
+    <Compile Include="Epsilon Engine Core\Data Classes\Asset Types\TextAsset.cs" />
+    <Compile Include="Epsilon Engine Core\Data Classes\Asset Types\TextureAsset.cs" />
+    <Compile Include="Epsilon Engine Core\Data Classes\AudioClip.cs" />
+    <Compile Include="Epsilon Engine Core\Data Classes\Basic Types\Color.cs" />
+    <Compile Include="Epsilon Engine Core\Data Classes\Basic Types\Point.cs" />
+    <Compile Include="Epsilon Engine Core\Data Classes\Basic Types\Rectangle.cs" />
+    <Compile Include="Epsilon Engine Core\Data Classes\Basic Types\SideInfo.cs" />
+    <Compile Include="Epsilon Engine Core\Data Classes\Basic Types\Vector.cs" />
+    <Compile Include="Epsilon Engine Core\Data Classes\Packets\Game Packets\GameInitializationPacket.cs" />
+    <Compile Include="Epsilon Engine Core\Data Classes\Packets\Game Packets\GameReturnPacket.cs" />
+    <Compile Include="Epsilon Engine Core\Data Classes\Packets\Game Packets\GameUpdatePacket.cs" />
+    <Compile Include="Epsilon Engine Core\Data Classes\Packets\GameObject Packets\GameObjectInitializationPacket.cs" />
+    <Compile Include="Epsilon Engine Core\Data Classes\Packets\GameObject Packets\GameObjectReturnPacket.cs" />
+    <Compile Include="Epsilon Engine Core\Data Classes\Packets\GameObject Packets\GameObjectUpdatePacket.cs" />
+    <Compile Include="Epsilon Engine Core\Data Classes\Packets\Scene Packets\SceneInitializationPacket.cs" />
+    <Compile Include="Epsilon Engine Core\Data Classes\Packets\Scene Packets\SceneReturnPacket.cs" />
+    <Compile Include="Epsilon Engine Core\Data Classes\Packets\Scene Packets\SceneUpdatePacket.cs" />
+    <Compile Include="Epsilon Engine Core\Data Classes\Basic Types\Texture.cs" />
+    <Compile Include="Epsilon Engine Core\Helper Classes\AssetHelper.cs" />
+    <Compile Include="Epsilon Engine Core\Helper Classes\GradientHelper.cs" />
+    <Compile Include="Epsilon Engine Core\Helper Classes\MathHelper.cs" />
+    <Compile Include="Epsilon Engine Core\Helper Classes\ModuleHelper.cs" />
+    <Compile Include="Epsilon Engine Core\Helper Classes\RandomnessHelper.cs" />
+    <Compile Include="Program.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Logo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Epsilon Engine Core\Interface Classes\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
+  <ProjectExtensions>
+    <VisualStudio AllowExistingFolder="true" />
+  </ProjectExtensions>
+</Project>
