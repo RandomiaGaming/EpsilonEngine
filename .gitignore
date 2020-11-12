@@ -1,4 +1,6 @@
-﻿/.git
-/.vs
+DontMelt/bin/
+DontMelt/obj/
+.git/
+.vs/
 *.user
 *.suo
