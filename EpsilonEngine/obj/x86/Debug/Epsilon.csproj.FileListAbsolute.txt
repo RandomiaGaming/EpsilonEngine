@@ -1,0 +1,17 @@
+/home/randomiagaming/Important Data/Epsilon Test/Epsilon/bin/Debug/Epsilon.exe
+/home/randomiagaming/Important Data/Epsilon Test/Epsilon/bin/Debug/Epsilon.pdb
+/home/randomiagaming/Important Data/Epsilon Test/Epsilon/bin/Debug/MonoGame.Framework.dll
+/home/randomiagaming/Important Data/Epsilon Test/Epsilon/bin/Debug/MonoGame.Framework.xml
+/home/randomiagaming/Important Data/Epsilon Test/Epsilon/obj/x86/Debug/Epsilon.csproj.CoreCompileInputs.cache
+/home/randomiagaming/Important Data/Epsilon Test/Epsilon/obj/x86/Debug/Epsilon.csproj.CopyComplete
+/home/randomiagaming/Important Data/Epsilon Test/Epsilon/obj/x86/Debug/Epsilon.exe
+/home/randomiagaming/Important Data/Epsilon Test/Epsilon/obj/x86/Debug/Epsilon.pdb
+/home/randomiagaming/Important Data/Epsilon/Epsilon/obj/x86/Debug/Epsilon.csproj.CoreCompileInputs.cache
+/home/randomiagaming/Important Data/Epsilon/Epsilon/bin/Debug/Epsilon.exe
+/home/randomiagaming/Important Data/Epsilon/Epsilon/bin/Debug/Epsilon.pdb
+/home/randomiagaming/Important Data/Epsilon/Epsilon/bin/Debug/MonoGame.Framework.dll
+/home/randomiagaming/Important Data/Epsilon/Epsilon/bin/Debug/MonoGame.Framework.xml
+/home/randomiagaming/Important Data/Epsilon/Epsilon/obj/x86/Debug/Epsilon.csproj.CopyComplete
+/home/randomiagaming/Important Data/Epsilon/Epsilon/obj/x86/Debug/Epsilon.exe
+/home/randomiagaming/Important Data/Epsilon/Epsilon/obj/x86/Debug/Epsilon.pdb
+/home/randomiagaming/Important Data/Epsilon/Epsilon/obj/x86/Debug/Epsilon.csprojAssemblyReference.cache

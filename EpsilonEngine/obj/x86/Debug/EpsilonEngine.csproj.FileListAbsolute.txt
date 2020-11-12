@@ -1,0 +1,9 @@
+/home/randomiagaming/Important Data/EpsilonEngine/EpsilonEngine/bin/Debug/Epsilon.exe
+/home/randomiagaming/Important Data/EpsilonEngine/EpsilonEngine/bin/Debug/Epsilon.pdb
+/home/randomiagaming/Important Data/EpsilonEngine/EpsilonEngine/bin/Debug/MonoGame.Framework.dll
+/home/randomiagaming/Important Data/EpsilonEngine/EpsilonEngine/bin/Debug/MonoGame.Framework.xml
+/home/randomiagaming/Important Data/EpsilonEngine/EpsilonEngine/obj/x86/Debug/EpsilonEngine.csprojAssemblyReference.cache
+/home/randomiagaming/Important Data/EpsilonEngine/EpsilonEngine/obj/x86/Debug/EpsilonEngine.csproj.CoreCompileInputs.cache
+/home/randomiagaming/Important Data/EpsilonEngine/EpsilonEngine/obj/x86/Debug/EpsilonEngine.csproj.CopyComplete
+/home/randomiagaming/Important Data/EpsilonEngine/EpsilonEngine/obj/x86/Debug/Epsilon.exe
+/home/randomiagaming/Important Data/EpsilonEngine/EpsilonEngine/obj/x86/Debug/Epsilon.pdb
