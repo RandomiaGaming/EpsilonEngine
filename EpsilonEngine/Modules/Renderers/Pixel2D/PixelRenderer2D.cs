@@ -9,6 +9,8 @@ namespace EpsilonEngine.Modules.Renderers.Pixel2D
 
         }
 
+        public override void Initialize() { }
+
         public override Texture Render()
         {
             Texture frame = new Texture(256, 144, new Color(255, 255, 150));
@@ -21,7 +23,7 @@ namespace EpsilonEngine.Modules.Renderers.Pixel2D
                 }
             }
 
-            if (game.inputDriver.GetCapsLockState())
+            if (machine.inputDriver.GetCapsLockState())
             {
                 foreach (GameObject g in game.gameObjects)
                 {
@@ -34,5 +36,7 @@ namespace EpsilonEngine.Modules.Renderers.Pixel2D
             
             return frame;
         }
+
+        public override void Update() { }
     }
 }

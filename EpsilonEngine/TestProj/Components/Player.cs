@@ -43,7 +43,7 @@ namespace EpsilonEngine.Projects.TestProj
         }
         private void Jump()
         {
-            if (game.inputDriver.IsKeyPressed(KeyCode.Space))
+            if (machine.inputDriver.IsKeyPressed(KeyCode.Space))
             {
                 if (touchingGround.bottom)
                 {
@@ -63,8 +63,8 @@ namespace EpsilonEngine.Projects.TestProj
         private void Move()
         {
             int moveAxis = 0;
-            bool dDown = game.inputDriver.IsKeyPressed(KeyCode.D);
-            bool adown = game.inputDriver.IsKeyPressed(KeyCode.A);
+            bool dDown = machine.inputDriver.IsKeyPressed(KeyCode.D);
+            bool adown = machine.inputDriver.IsKeyPressed(KeyCode.A);
             if (dDown && !adown)
             {
                 moveAxis = 1;

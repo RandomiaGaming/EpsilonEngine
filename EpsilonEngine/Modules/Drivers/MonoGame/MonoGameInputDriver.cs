@@ -57,5 +57,7 @@ namespace EpsilonEngine.Modules.Drivers.MonoGame
             }
             return false;
         }
+
+        public override void Initialize() { }
     }
 }

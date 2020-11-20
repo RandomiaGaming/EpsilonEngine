@@ -1,5 +1,6 @@
 ﻿using EpsilonEngine.Modules.Renderers.Pixel2D;
 using EpsilonEngine.Modules.Drivers.MonoGame;
+using EpsilonEngine.Modules.Drivers.DirectX;
 using EpsilonEngine.Modules.Physics.Pixel2D;
 using EpsilonEngine.Modules.AssetCodecs.PNG;
 using System.Collections.Generic;
@@ -7,15 +8,14 @@ namespace EpsilonEngine.Projects.TestProj
 {
     public class EpsilonGame : Game
     {
-        public EpsilonGame()
+        public EpsilonGame(Machine machine) : base(machine)
         {
             assetManager = new AssetManager(this);
             assetManager.codecs.Add(new PNGAssetCodec());
             assetManager.Initialize();
             assetManager.LoadAssets();
-
-            inputDriver = new MonoGameInputDriver(this);
-            graphicsDriver = new MonoGameGraphicsDriver(this);
+            machine.inputDriver = new MonoGameInputDriver(this);
+            machine.graphicsDriver = new DirectXGraphicsDriver(machine);
             renderer = new PixelRenderer2D(this);
 
             for (int i = 0; i < 16; i++)

@@ -2,10 +2,11 @@
 
 namespace EpsilonEngine
 {
-    public abstract class Component
+    public abstract class Component : Updatable
     {
         public readonly GameObject gameObject;
         public readonly Game game;
+        public readonly Machine machine;
 
         public Component(GameObject gameObject)
         {
@@ -19,15 +20,11 @@ namespace EpsilonEngine
                 throw new NullReferenceException();
             }
             game = gameObject.game;
-        }
-
-        public virtual void Initialize()
-        {
-
-        }
-        public virtual void Update()
-        {
-
+            if (game.machine is null)
+            {
+                throw new NullReferenceException();
+            }
+            machine = game.machine;
         }
     }
 }

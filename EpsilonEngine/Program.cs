@@ -1,14 +1,15 @@
 ﻿using System;
-using EpsilonEngine.Projects.TestProj;
-namespace Epsilon
+using EpsilonEngine.Modules.Drivers.MonoGame;
+using EpsilonEngine;
+public static class Program
 {
-    public static class Program
+    [STAThread]
+    public static void Main()
     {
-        [STAThread]
-        public static void Main()
-        {
-            EpsilonGame game = new EpsilonGame();
-            game.Initialize();
-        }
+        Machine machine = new Machine();
+        machine.graphicsDriver = new MonoGameGraphicsDriver(machine);
+
+        Game game = new Game(new EpsilonEngine.Machine());
+        game.Initialize();
     }
 }

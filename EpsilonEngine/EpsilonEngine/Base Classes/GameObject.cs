@@ -5,6 +5,7 @@ namespace EpsilonEngine
     public class GameObject
     {
         public readonly Game game;
+        public readonly Machine machine;
 
         public string name = "Unnamed Gameobject";
         public Vector2Int position = Vector2Int.Zero;
@@ -18,6 +19,11 @@ namespace EpsilonEngine
                 throw new NullReferenceException();
             }
             this.game = game;
+            if(game.machine is null)
+            {
+                throw new NullReferenceException();
+            }
+            machine = game.machine;
         }
         public virtual void Initialize()
         {

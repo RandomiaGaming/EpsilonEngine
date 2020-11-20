@@ -4,6 +4,8 @@ namespace EpsilonEngine
 {
     public class Game
     {
+        public Machine machine = null;
+
         public List<string> ConsoleOutputBuffer = new List<string>();
         public List<string> ConsoleInputBuffer = new List<string>();
 
@@ -12,20 +14,27 @@ namespace EpsilonEngine
         public List<GameObject> gameObjects = new List<GameObject>();
         public List<GameManager> gameManagers = new List<GameManager>();
 
-        public AssetManager assetManager = null;
-        public InputDriver inputDriver = null;
-        public GraphicsDriver graphicsDriver = null;
         public Renderer renderer = null;
+        public AssetManager assetManager = null;
 
         public bool requestingToQuit = false;
 
         private bool test = false;
 
+
+        public Game(Machine machine)
+        {
+            if (machine is null)
+            {
+                throw new NullReferenceException();
+            }
+            this.machine = machine;
+        }
         public virtual void Update()
         {
-            while(ConsoleInputBuffer.Count > 0)
+            while (ConsoleInputBuffer.Count > 0)
             {
-                if(ConsoleInputBuffer[0] == "Quit")
+                if (ConsoleInputBuffer[0] == "Quit")
                 {
                     requestingToQuit = true;
                 }
@@ -41,8 +50,8 @@ namespace EpsilonEngine
             }
 
             assetManager.Update();
-            inputDriver.Update();
-            graphicsDriver.Update();
+            machine.inputDriver.Update();
+            machine.graphicsDriver.Update();
 
             foreach (GameManager g in gameManagers.ToArray())
             {
@@ -61,13 +70,13 @@ namespace EpsilonEngine
                 frame = renderer.Render();
             }
 
-            graphicsDriver.Draw(frame);
+            machine.graphicsDriver.Draw(frame);
         }
         public virtual void Initialize()
         {
             assetManager.Initialize();
             assetManager.LoadAssets();
-            inputDriver.Initialize();
+            machine.inputDriver.Initialize();
 
             foreach (GameManager g in gameManagers.ToArray())
             {
@@ -79,7 +88,7 @@ namespace EpsilonEngine
                 g.Initialize();
             }
 
-            graphicsDriver.Initialize();
+            machine.graphicsDriver.Initialize();
         }
     }
 }

@@ -2,9 +2,10 @@
 
 namespace EpsilonEngine
 {
-    public abstract class GameManager
+    public abstract class GameManager : Updatable
     {
         public readonly Game game;
+        public readonly Machine machine;
         public GameManager(Game game)
         {
             if (game is null)
@@ -12,14 +13,11 @@ namespace EpsilonEngine
                 throw new NullReferenceException();
             }
             this.game = game;
-        }
-        public virtual void Initialize()
-        {
-
-        }
-        public virtual void Update()
-        {
-
+            if (game.machine is null)
+            {
+                throw new NullReferenceException();
+            }
+            machine = game.machine;
         }
     }
 }
