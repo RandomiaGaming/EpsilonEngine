@@ -1,19 +1,28 @@
 ﻿using System;
 namespace EpsilonEngine
 {
-    public abstract class GraphicsDriver : Updatable
+    public abstract class GraphicsDriver
     {
-        public readonly Machine machine;
-        public GraphicsDriver(Machine machine)
+        public readonly GameInterface gInterface;
+        public GraphicsDriver(GameInterface gInterface)
         {
-            if(machine is null)
+            if(gInterface is null)
             {
                 throw new NullReferenceException();
             }
-            this.machine = machine;
+            this.gInterface = gInterface;
         }
-        public abstract Vector2Int GetViewPortRect();
-        public abstract int GetRefreshRate();
-        public abstract void Draw(Texture frame);
+        public virtual Vector2Int GetViewPortRect()
+        {
+            throw new NotSupportedException();
+        }
+        public virtual void Draw(Texture frame)
+        {
+            throw new NotSupportedException();
+        }
+        public virtual void Initialize()
+        {
+
+        }
     }
 }

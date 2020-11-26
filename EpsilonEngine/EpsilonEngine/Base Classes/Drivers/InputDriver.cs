@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace EpsilonEngine
 {
-    public abstract class InputDriver : GameManager
+    public abstract class InputDriver
     {
-        public InputDriver(Game game) : base(game)
+        public InputDriver(GameInterface game)
         {
 
         }
@@ -13,5 +12,13 @@ namespace EpsilonEngine
         public abstract bool GetCapsLockState();
         public abstract List<KeyCode> GetPressedKeys();
         public abstract bool IsKeyPressed(KeyCode targetKeyCode);
+        public virtual void Initialize()
+        {
+
+        }
+        public virtual void Update()
+        {
+
+        }
     }
 }

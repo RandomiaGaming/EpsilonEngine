@@ -2,12 +2,13 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-namespace EpsilonEngine.Modules.Drivers.MonoGame
+
+namespace EpsilonEngine.Drivers.MonoGame
 {
     public class MonogameInterfaceGame : Microsoft.Xna.Framework.Game
     {
         private static List<MonogameInterfaceGame> MGWInterfaceGames = new List<MonogameInterfaceGame>();
-        public static MonogameInterfaceGame GetFromEpsilonGame(Game game)
+        public static MonogameInterfaceGame GetFromgInterface(GameInterface gInterface)
         {
             if (MGWInterfaceGames == null)
             {
@@ -15,7 +16,7 @@ namespace EpsilonEngine.Modules.Drivers.MonoGame
             }
             for (int i = 0; i < MGWInterfaceGames.Count; i++)
             {
-                if (MGWInterfaceGames[i].epsilonGame == game)
+                if (MGWInterfaceGames[i].gInterface == gInterface)
                 {
                     return MGWInterfaceGames[i];
                 }
@@ -24,9 +25,15 @@ namespace EpsilonEngine.Modules.Drivers.MonoGame
         }
 
         public Texture frameBuffer = null;
-        private readonly Game epsilonGame = null;
-        public MonogameInterfaceGame(Game epsilonGame)
+        private readonly GameInterface gInterface = null;
+        public MonogameInterfaceGame(GameInterface gInterface)
         {
+            if(gInterface == null)
+            {
+                throw new NullReferenceException();
+            }
+            this.gInterface = gInterface;
+
             GraphicsDeviceManager graphics = new GraphicsDeviceManager(this)
             {
                 SynchronizeWithVerticalRetrace = false
@@ -38,7 +45,6 @@ namespace EpsilonEngine.Modules.Drivers.MonoGame
             IsMouseVisible = true;
             IsFixedTimeStep = true;
             TargetElapsedTime = new TimeSpan(10000000 / 60);
-            this.epsilonGame = epsilonGame;
 
             if (MGWInterfaceGames == null)
             {
@@ -53,9 +59,9 @@ namespace EpsilonEngine.Modules.Drivers.MonoGame
         }
         protected override void Update(GameTime gameTime)
         {
-            //Console.WriteLine($"{gameTime.ElapsedGameTime.Ticks / 1000}k TPF");
-            epsilonGame.Update();
-            if (epsilonGame.requestingToQuit)
+            Console.WriteLine($"{gameTime.ElapsedGameTime.Ticks / 1000}k TPF");
+            gInterface.game.Update();
+            if (gInterface.game.requestingToQuit)
             {
                 Exit();
             }
@@ -72,7 +78,7 @@ namespace EpsilonEngine.Modules.Drivers.MonoGame
                 {
                     for (int x = 0; x < frameBuffer.width; x++)
                     {
-                        Color pixelColor = frameBuffer.GetPixelUnsafe((ushort)x, (ushort)(frameBuffer.height - y - 1));
+                        Color pixelColor = frameBuffer.GetPixelUnsafe(x, frameBuffer.height - y - 1);
                         data[i] = new Microsoft.Xna.Framework.Color(pixelColor.r, pixelColor.g, pixelColor.b);
                         i++;
                     }

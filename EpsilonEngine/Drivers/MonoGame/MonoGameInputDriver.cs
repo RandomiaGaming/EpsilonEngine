@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework.Input;
-namespace EpsilonEngine.Modules.Drivers.MonoGame
+namespace EpsilonEngine.Drivers.MonoGame
 {
     public class MonoGameInputDriver : InputDriver
     {
         private bool capsLockState;
         private bool numLockState;
         private List<KeyCode> pressedKeys = new List<KeyCode>();
-        public MonoGameInputDriver(Game game) : base(game)
+        public MonoGameInputDriver(GameInterface game) : base(game)
         {
 
         }

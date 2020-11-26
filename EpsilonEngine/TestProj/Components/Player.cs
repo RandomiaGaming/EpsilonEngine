@@ -34,7 +34,7 @@ namespace EpsilonEngine.Projects.TestProj
         }
         public override void Update()
         {
-            ((PixelRenderer2D)game.renderer).cameraPosition = gameObject.position - new Vector2Int(256 / 2, 144 / 2);
+            ((PixelRenderer2D)game.scenes[0].renderer).cameraPosition = gameObject.position - new Vector2Int(256 / 2, 144 / 2);
             rigidbody.velocity.y -= gravityForce / 60;
             Collision();
             Move();
@@ -43,7 +43,7 @@ namespace EpsilonEngine.Projects.TestProj
         }
         private void Jump()
         {
-            if (machine.inputDriver.IsKeyPressed(KeyCode.Space))
+            if (game.gInterface.inputDriver.IsKeyPressed(KeyCode.Space))
             {
                 if (touchingGround.bottom)
                 {
@@ -63,8 +63,8 @@ namespace EpsilonEngine.Projects.TestProj
         private void Move()
         {
             int moveAxis = 0;
-            bool dDown = machine.inputDriver.IsKeyPressed(KeyCode.D);
-            bool adown = machine.inputDriver.IsKeyPressed(KeyCode.A);
+            bool dDown = game.gInterface.inputDriver.IsKeyPressed(KeyCode.D);
+            bool adown = game.gInterface.inputDriver.IsKeyPressed(KeyCode.A);
             if (dDown && !adown)
             {
                 moveAxis = 1;

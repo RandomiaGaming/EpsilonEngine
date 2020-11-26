@@ -46,6 +46,9 @@
     <Reference Include="SharpDX.Desktop, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpDX.Desktop.4.2.0\lib\net45\SharpDX.Desktop.dll</HintPath>
     </Reference>
+    <Reference Include="SharpDX.Direct2D1, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.Direct2D1.4.2.0\lib\net45\SharpDX.Direct2D1.dll</HintPath>
+    </Reference>
     <Reference Include="SharpDX.Direct3D11, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpDX.Direct3D11.4.2.0\lib\net45\SharpDX.Direct3D11.dll</HintPath>
     </Reference>
@@ -58,9 +61,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EpsilonEngine\Base Classes\Machine.cs" />
-    <Compile Include="EpsilonEngine\Base Classes\Updatable.cs" />
-    <Compile Include="Modules\Drivers\DirectX\DirectXGraphicsDriver.cs" />
+    <Compile Include="EpsilonEngine\Base Classes\GameInterface.cs" />
+    <Compile Include="EpsilonEngine\Base Classes\Scene.cs" />
+    <Compile Include="Drivers\DirectX\DirectXGraphicsDriver.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="EpsilonEngine\Helper Classes\MathHelper.cs" />
     <Compile Include="EpsilonEngine\Helper Classes\GradientHelper.cs" />
@@ -77,12 +80,11 @@
     <Compile Include="EpsilonEngine\Data Types\Basic Types\KeyCode.cs" />
     <Compile Include="EpsilonEngine\Data Types\Basic Types\Texture.cs" />
     <Compile Include="EpsilonEngine\Data Types\Packets\ReturnPacket.cs" />
-    <Compile Include="TestProj\EpsilonGame.cs" />
     <Compile Include="TestProj\Components\Player.cs" />
     <Compile Include="EpsilonEngine\Data Types\Basic Types\SpriteSheet.cs" />
-    <Compile Include="Modules\Drivers\MonoGame\MonoGameGraphicsDriver.cs" />
-    <Compile Include="Modules\Drivers\MonoGame\MonoGameInputDriver.cs" />
-    <Compile Include="Modules\Drivers\MonoGame\MonoGameInterfaceGame.cs" />
+    <Compile Include="Drivers\MonoGame\MonoGameGraphicsDriver.cs" />
+    <Compile Include="Drivers\MonoGame\MonoGameInputDriver.cs" />
+    <Compile Include="Drivers\MonoGame\MonoGameInterfaceGame.cs" />
     <Compile Include="Modules\Renderers\Pixel2D\PixelRenderer2D.cs" />
     <Compile Include="EpsilonEngine\Base Classes\Drivers\GraphicsDriver.cs" />
     <Compile Include="EpsilonEngine\Base Classes\Drivers\InputDriver.cs" />

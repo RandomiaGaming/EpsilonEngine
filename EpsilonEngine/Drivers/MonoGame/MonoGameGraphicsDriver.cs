@@ -1,21 +1,15 @@
-﻿using System;
-namespace EpsilonEngine.Modules.Drivers.MonoGame
+﻿namespace EpsilonEngine.Drivers.MonoGame
 {
     public class MonoGameGraphicsDriver : GraphicsDriver
     {
         private MonogameInterfaceGame MGWInterfaceGame = null;
-        public MonoGameGraphicsDriver(Machine machine) : base(machine)
+        public MonoGameGraphicsDriver(GameInterface gInterface) : base(gInterface)
         {
 
         }
         public override void Draw(Texture frame)
         {
             MGWInterfaceGame.frameBuffer = frame;
-        }
-
-        public override int GetRefreshRate()
-        {
-            return 60;
         }
 
         public override Vector2Int GetViewPortRect()
@@ -25,18 +19,16 @@ namespace EpsilonEngine.Modules.Drivers.MonoGame
 
         public override void Initialize()
         {
-            MonogameInterfaceGame MGWIG = MonogameInterfaceGame.GetFromEpsilonGame(null);
+            MonogameInterfaceGame MGWIG = MonogameInterfaceGame.GetFromgInterface(gInterface);
             if (MGWIG != null)
             {
                 MGWInterfaceGame = MGWIG;
             }
             else
             {
-                MGWInterfaceGame = new MonogameInterfaceGame(null);
+                MGWInterfaceGame = new MonogameInterfaceGame(gInterface);
             }
             MGWInterfaceGame.Run();
         }
-
-        public override void Update() { }
     }
 }
