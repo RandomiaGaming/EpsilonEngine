@@ -1,34 +1,35 @@
-﻿namespace EpsilonEngine.Drivers.MonoGame
+﻿using System;
+namespace EpsilonEngine.Drivers.MonoGame
 {
-    public class MonoGameGraphicsDriver : GraphicsDriver
+    public sealed class MonoGameGraphicsDriver : GraphicsDriver
     {
-        private MonogameInterfaceGame MGWInterfaceGame = null;
-        public MonoGameGraphicsDriver(GameInterface gInterface) : base(gInterface)
+        private readonly MonoGameInterface monoGameInterface = null;
+        public Texture frameBuffer = null;
+        public MonoGameGraphicsDriver(GameInterface gameInterface) : base(gameInterface)
         {
-
+            if(gameInterface is null)
+            {
+                throw new NullReferenceException();
+            }
+            if (!gameInterface.GetType().IsAssignableFrom(typeof(MonoGameInterface)))
+            {
+                throw new ArgumentException();
+            }
+            monoGameInterface = (MonoGameInterface)gameInterface;
         }
         public override void Draw(Texture frame)
         {
-            MGWInterfaceGame.frameBuffer = frame;
+            frameBuffer = frame;
         }
 
-        public override Vector2Int GetViewPortRect()
+        protected override Vector2Int GetViewPortRect()
         {
-            return new Vector2Int(MGWInterfaceGame.GraphicsDevice.Viewport.Width, MGWInterfaceGame.GraphicsDevice.Viewport.Height);
+            return new Vector2Int(monoGameInterface.mgig.GraphicsDevice.Viewport.Width, monoGameInterface.mgig.GraphicsDevice.Viewport.Height);
         }
 
         public override void Initialize()
         {
-            MonogameInterfaceGame MGWIG = MonogameInterfaceGame.GetFromgInterface(gInterface);
-            if (MGWIG != null)
-            {
-                MGWInterfaceGame = MGWIG;
-            }
-            else
-            {
-                MGWInterfaceGame = new MonogameInterfaceGame(gInterface);
-            }
-            MGWInterfaceGame.Run();
+
         }
     }
 }

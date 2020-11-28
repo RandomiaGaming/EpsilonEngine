@@ -6,7 +6,7 @@ namespace EpsilonEngine.Modules.Physics.Pixel2D
         public List<Collision> collisions = new List<Collision>();
         public List<Overlap> overlaps = new List<Overlap>();
 
-        public Rectangle shape = new Rectangle(Vector2Int.Zero, new Vector2Int(16, 16));
+        public RectangleInt shape = new RectangleInt(Vector2Int.Zero, new Vector2Int(16, 16));
         public Vector2Int offset = Vector2Int.Zero;
         public SideInfo sideCollision = SideInfo.True;
         public bool trigger = false;
@@ -22,9 +22,9 @@ namespace EpsilonEngine.Modules.Physics.Pixel2D
             collisions = new List<Collision>();
             overlaps = new List<Overlap>();
         }
-        public Rectangle GetWorldShape()
+        public RectangleInt GetWorldShape()
         {
-            Rectangle output = new Rectangle(shape.min + gameObject.position + offset, shape.max + gameObject.position + offset);
+            RectangleInt output = new RectangleInt(shape.min + gameObject.position + offset, shape.max + gameObject.position + offset);
             return output;
         }
         public override void Update()
@@ -38,27 +38,12 @@ namespace EpsilonEngine.Modules.Physics.Pixel2D
 
         public virtual void LogOverlap(Collider otherCollider)
         {
-            Overlap newOverlap = new Overlap
-            {
-                thisCollider = this,
-                thisGameObject = gameObject,
-                otherCollider = otherCollider,
-                otherGameObject = otherCollider.gameObject
-            };
-            overlaps.Add(newOverlap);
+            overlaps.Add(new Overlap(this, otherCollider));
         }
 
         public void LogCollision(Collider otherCollider, SideInfo sideInfo)
         {
-            Collision newCollision = new Collision
-            {
-                thisCollider = this,
-                thisGameObject = gameObject,
-                otherCollider = otherCollider,
-                otherGameObject = otherCollider.gameObject,
-                sideInfo = sideInfo
-            };
-            collisions.Add(newCollision);
+            collisions.Add(new Collision(this, otherCollider, sideInfo));
         }
     }
 }

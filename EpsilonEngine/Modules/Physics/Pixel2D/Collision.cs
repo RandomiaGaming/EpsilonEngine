@@ -1,18 +1,43 @@
-﻿namespace EpsilonEngine.Modules.Physics.Pixel2D
+﻿using System;
+namespace EpsilonEngine.Modules.Physics.Pixel2D
 {
-    public struct Collision
+    public sealed class Collision
     {
-        public Collider otherCollider;
-        public GameObject otherGameObject;
-        public Collider thisCollider;
-        public GameObject thisGameObject;
-        public SideInfo sideInfo;
-        public Collision(Collider thisCollider, GameObject thisGameObject, Collider otherCollider, GameObject otherGameObject, SideInfo sideInfo)
+        public readonly Collider otherCollider = null;
+        public readonly GameObject otherGameObject = null;
+        public readonly Collider thisCollider = null;
+        public readonly GameObject thisGameObject = null;
+        public readonly SideInfo sideInfo = SideInfo.False;
+        public Collision(Collider thisCollider, Collider otherCollider, SideInfo sideInfo)
         {
+            if(thisCollider is null)
+            {
+                throw new NullReferenceException();
+            }
             this.otherCollider = otherCollider;
-            this.otherGameObject = otherGameObject;
-            this.thisCollider = thisCollider;
-            this.thisGameObject = thisGameObject;
+            if(thisCollider.gameObject is null)
+            {
+                throw new NullReferenceException();
+            }
+            thisGameObject = thisCollider.gameObject;
+            if(otherCollider is null)
+            {
+                throw new NullReferenceException();
+            }
+            this.otherCollider = otherCollider;
+            if(otherCollider.gameObject is null)
+            {
+                throw new NullReferenceException();
+            }
+            if(thisCollider.game != otherCollider.game)
+            {
+                throw new ArgumentException();
+            }
+            if(thisCollider.gameInterface != otherCollider.gameInterface)
+            {
+                throw new ArgumentException();
+            }
+            otherGameObject = otherCollider.gameObject;
             this.sideInfo = sideInfo;
         }
     }

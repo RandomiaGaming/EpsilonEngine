@@ -33,14 +33,14 @@
         {
             if (thisCollider != null && !thisCollider.trigger)
             {
-                Rectangle thisColliderShape = thisCollider.GetWorldShape();
+                RectangleInt thisColliderShape = thisCollider.GetWorldShape();
                 if (targetMove.x > 0)
                 {
                     for (int i = 0; i < Collider.loadedColliders.Count; i++)
                     {
                         if (Collider.loadedColliders[i] != thisCollider)
                         {
-                            Rectangle otherColliderShape = Collider.loadedColliders[i].GetWorldShape();
+                            RectangleInt otherColliderShape = Collider.loadedColliders[i].GetWorldShape();
                             if (thisColliderShape.min.y < otherColliderShape.max.y && thisColliderShape.max.y > otherColliderShape.min.y)
                             {
                                 if (thisColliderShape.min.x < otherColliderShape.max.x)
@@ -62,7 +62,7 @@
                     {
                         if (Collider.loadedColliders[i] != thisCollider)
                         {
-                            Rectangle otherColliderShape = Collider.loadedColliders[i].GetWorldShape();
+                            RectangleInt otherColliderShape = Collider.loadedColliders[i].GetWorldShape();
                             if (thisColliderShape.min.y < otherColliderShape.max.y && thisColliderShape.max.y > otherColliderShape.min.y)
                             {
                                 if (thisColliderShape.max.x > otherColliderShape.min.x)
@@ -84,7 +84,7 @@
                     {
                         if (Collider.loadedColliders[i] != thisCollider)
                         {
-                            Rectangle otherColliderShape = Collider.loadedColliders[i].GetWorldShape();
+                            RectangleInt otherColliderShape = Collider.loadedColliders[i].GetWorldShape();
                             if (thisColliderShape.min.x < otherColliderShape.max.x && thisColliderShape.max.x > otherColliderShape.min.x)
                             {
                                 if (thisColliderShape.min.y < otherColliderShape.max.y)
@@ -106,7 +106,7 @@
                     {
                         if (Collider.loadedColliders[i] != thisCollider)
                         {
-                            Rectangle otherColliderShape = Collider.loadedColliders[i].GetWorldShape();
+                            RectangleInt otherColliderShape = Collider.loadedColliders[i].GetWorldShape();
                             if (thisColliderShape.min.x < otherColliderShape.max.x && thisColliderShape.max.x > otherColliderShape.min.x)
                             {
                                 if (thisColliderShape.max.y > otherColliderShape.min.y)
@@ -131,12 +131,12 @@
             {
                 if (thisCollider.trigger)
                 {
-                    Rectangle thisColliderShape = thisCollider.GetWorldShape();
+                    RectangleInt thisColliderShape = thisCollider.GetWorldShape();
                     for (int i = 0; i < Collider.loadedColliders.Count; i++)
                     {
                         if (Collider.loadedColliders[i] != thisCollider)
                         {
-                            Rectangle otherColliderShape = Collider.loadedColliders[i].GetWorldShape();
+                            RectangleInt otherColliderShape = Collider.loadedColliders[i].GetWorldShape();
                             if (thisColliderShape.min.y < otherColliderShape.max.y && thisColliderShape.max.y > otherColliderShape.min.y && thisColliderShape.min.x < otherColliderShape.max.x && thisColliderShape.max.x > otherColliderShape.min.x)
                             {
                                 thisCollider.LogOverlap(Collider.loadedColliders[i]);
@@ -147,12 +147,12 @@
                 }
                 else
                 {
-                    Rectangle thisColliderShape = thisCollider.GetWorldShape();
+                    RectangleInt thisColliderShape = thisCollider.GetWorldShape();
                     for (int i = 0; i < Collider.loadedColliders.Count; i++)
                     {
                         if (Collider.loadedColliders[i] != thisCollider)
                         {
-                            Rectangle otherColliderShape = Collider.loadedColliders[i].GetWorldShape();
+                            RectangleInt otherColliderShape = Collider.loadedColliders[i].GetWorldShape();
                             if (Collider.loadedColliders[i].trigger)
                             {
                                 if (thisColliderShape.min.y < otherColliderShape.max.y && thisColliderShape.max.y > otherColliderShape.min.y && thisColliderShape.min.x < otherColliderShape.max.x && thisColliderShape.max.x > otherColliderShape.min.x)

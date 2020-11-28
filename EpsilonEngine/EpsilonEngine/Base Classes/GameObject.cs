@@ -4,20 +4,31 @@ namespace EpsilonEngine
 {
     public class GameObject
     {
-        public readonly Game game;
-
         public string name = "Unnamed Gameobject";
         public Vector2Int position = Vector2Int.Zero;
 
         public List<Component> components = new List<Component>();
 
-        public GameObject(Game game)
+        public readonly GameInterface gameInterface = null;
+        public readonly Game game = null;
+        public readonly Scene scene = null;
+        public GameObject(Scene scene)
         {
-            if (game is null)
+            if (scene is null)
             {
                 throw new NullReferenceException();
             }
-            this.game = game;
+            this.scene = scene;
+            if(scene.game is null)
+            {
+                throw new NullReferenceException();
+            }
+            game = scene.game;
+            if(scene.gameInterface is null)
+            {
+                throw new NullReferenceException();
+            }
+            gameInterface = scene.gameInterface;
         }
         public virtual void Initialize()
         {

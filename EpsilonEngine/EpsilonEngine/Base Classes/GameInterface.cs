@@ -1,5 +1,4 @@
-﻿using System;
-namespace EpsilonEngine
+﻿namespace EpsilonEngine
 {
     public class GameInterface
     {
@@ -11,16 +10,24 @@ namespace EpsilonEngine
         {
 
         }
-
+        public virtual void Run()
+        {
+            Initialize();
+            while (!game.requestingToQuit)
+            {
+                Tick();
+            }
+        }
         public virtual void Initialize()
         {
             inputDriver.Initialize();
             graphicsDriver.Initialize();
+            game.Initialize();
         }
-
-        public virtual void Update()
+        public virtual void Tick()
         {
             inputDriver.Update();
+            game.Update();
         }
     }
 }

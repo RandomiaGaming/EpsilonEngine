@@ -3,24 +3,23 @@ namespace EpsilonEngine
 {
     public abstract class GraphicsDriver
     {
-        public readonly GameInterface gInterface;
-        public GraphicsDriver(GameInterface gInterface)
+        public Vector2Int viewPortRect { get { return GetViewPortRect(); } private set { } }
+        public readonly GameInterface gameInterface = null;
+        public GraphicsDriver(GameInterface gameInterface)
         {
-            if(gInterface is null)
+            if(gameInterface is null)
             {
                 throw new NullReferenceException();
             }
-            this.gInterface = gInterface;
+            this.gameInterface = gameInterface;
         }
-        public virtual Vector2Int GetViewPortRect()
-        {
-            throw new NotSupportedException();
-        }
-        public virtual void Draw(Texture frame)
-        {
-            throw new NotSupportedException();
-        }
+        protected abstract Vector2Int GetViewPortRect();
+        public abstract void Draw(Texture frame);
         public virtual void Initialize()
+        {
+
+        }
+        public virtual void Update()
         {
 
         }
