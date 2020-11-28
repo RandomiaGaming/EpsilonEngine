@@ -24,8 +24,8 @@ namespace EpsilonEngine.Drivers.MonoGame
             Window.IsBorderless = false;
             Window.Title = "EpsilonEngine - RandomiaGaming";
             IsMouseVisible = true;
-            IsFixedTimeStep = true;
-            TargetElapsedTime = new TimeSpan(10000000 / 60);
+            IsFixedTimeStep = false;
+           //TargetElapsedTime = new TimeSpan(10000000 / 60);
         }
         protected override void Initialize()
         {
@@ -33,6 +33,7 @@ namespace EpsilonEngine.Drivers.MonoGame
         }
         protected override void Update(GameTime gameTime)
         {
+            Console.WriteLine($"{gameTime.ElapsedGameTime.Ticks / 1000}k TPF");
             gameInterface.Tick();
             base.Update(gameTime);
 

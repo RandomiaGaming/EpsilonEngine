@@ -8,7 +8,7 @@ namespace EpsilonEngine
         private Color[] data = new Color[0];
         public Texture(int width, int height)
         {
-            if(width <= 0 || height <= 0)
+            if (width <= 0 || height <= 0)
             {
                 throw new ArgumentOutOfRangeException();
             }
@@ -38,7 +38,7 @@ namespace EpsilonEngine
             }
             this.width = width;
             this.height = height;
-            if(data is null)
+            if (data is null)
             {
                 throw new NullReferenceException();
             }
@@ -49,34 +49,39 @@ namespace EpsilonEngine
             this.data = (Color[])data.Clone();
         }
 
-        public void Blitz(Texture data, int targetX, int targetY)
+        public static void Blitz(Texture source, Texture destination, Vector2Int position)
         {
-            for (int x = 0; x < data.width; x++)
+            for (int x = 0; x < source.width; x++)
             {
-                for (int y = 0; y < data.height; y++)
+                for (int y = 0; y < source.height; y++)
                 {
-                    if (x + targetX >= 0 && x + targetX < width && y + targetY >= 0 && y + targetY < height)
+                    if (x + position.x >= 0 && x + position.x < destination.width && y + position.y >= 0 && y + position.y < destination.height)
                     {
-                        Color otherColor = data.GetPixelUnsafe(x, y);
-                        Color thisColor = GetPixelUnsafe(x + targetX, y + targetY);
-                        SetPixelUnsafe(x + targetX, y + targetY, Color.Mix(thisColor, otherColor));
+                        Color otherColor = source.GetPixelUnsafe(x, y);
+                        Color thisColor = destination.GetPixelUnsafe(x + position.x, y + position.y);
+                        destination.SetPixelUnsafe(x + position.x, y + position.y, ColorHelper.Mix(thisColor, otherColor));
                     }
                 }
             }
         }
-        public void FillBlitz(Color fillColor, int targetX, int targetY, int sizeX, int sizeY)
+        public Texture SubTexture(RectangleInt sourceRectangle)
         {
-            for (int x = 0; x < sizeX; x++)
+            if (sourceRectangle.min.x < 0 || sourceRectangle.min.y < 0 || sourceRectangle.max.x >= width || sourceRectangle.max.y >= height)
             {
-                for (int y = 0; y < sizeY; y++)
+                throw new ArgumentException();
+            }
+
+            Texture output = new Texture(sourceRectangle.max.x - sourceRectangle.min.x, sourceRectangle.max.y - sourceRectangle.min.y);
+
+            for (int x = 0; x < output.width; x++)
+            {
+                for (int y = 0; y < output.height; y++)
                 {
-                    if (x + targetX >= 0 && x + targetX < width && y + targetY >= 0 && y + targetY < height)
-                    {
-                        Color thisColor = GetPixelUnsafe(x + targetX, y + targetY);
-                        SetPixelUnsafe(x + targetX, y + targetY, Color.Mix(thisColor, fillColor));
-                    }
+                    output.SetPixelUnsafe(x, y, GetPixelUnsafe(sourceRectangle.min.x + x, sourceRectangle.min.y + y));
                 }
             }
+
+            return output;
         }
 
         public void SetPixelUnsafe(int x, int y, Color newColor)

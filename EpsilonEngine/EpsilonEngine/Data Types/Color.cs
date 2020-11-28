@@ -11,35 +11,40 @@ namespace EpsilonEngine
         public static readonly Color Blue = new Color(0, 0, 255, 255);
         public static readonly Color Pink = new Color(255, 0, 255, 255);
 
-        public byte r;
-        public byte g;
-        public byte b;
-        public byte a;
-        public Color(byte r, byte g, byte b)
+        public byte _r;
+        public byte _g;
+        public byte _b;
+        public byte _a;
+
+        public int r { get { return _r; } set { if (value < 0 || value > 255) { throw new ArgumentException();  } _r = (byte)value; } }
+        public int g { get { return _g; } set { if (value < 0 || value > 255) { throw new ArgumentException(); } _g = (byte)value; } }
+        public int b { get { return _b; } set { if (value < 0 || value > 255) { throw new ArgumentException(); } _b = (byte)value; } }
+        public int a { get { return _a; } set { if (value < 0 || value > 255) { throw new ArgumentException(); } _a = (byte)value; } }
+        public Color(int r, int g, int b)
         {
             if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
             {
                 throw new ArgumentOutOfRangeException();
             }
-            this.r = r;
-            this.g = g;
-            this.b = b;
-            a = 255;
+            _r = (byte)r;
+            _g = (byte)g;
+            _b = (byte)b;
+            _a = 255;
         }
-        public Color(byte r, byte g, byte b, byte a)
+        public Color(int r, int g, int b, int a)
         {
             if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255 || a < 0 || a > 255)
             {
                 throw new ArgumentOutOfRangeException();
             }
-            this.r = r;
-            this.g = g;
-            this.b = b;
-            this.a = a;
+            _r = (byte)r;
+            _g = (byte)g;
+            _b = (byte)b;
+            _a = (byte)a;
         }
         public override string ToString()
         {
-            return $"(r: {r}, g: {g}, b: {b})";
+            return $"({r}, {g}, {b}, {a})";
         }
         public override bool Equals(object obj)
         {
@@ -63,25 +68,6 @@ namespace EpsilonEngine
         public static bool operator !=(Color a, Color b)
         {
             return !(a == b);
-        }
-        public static Color EvenMix(Color a, Color b)
-        {
-            return new Color((byte)((a.r + b.r) / 2), (byte)((a.g + b.g) / 2), (byte)((a.b + b.b) / 2), 255);
-        }
-        public static Color Mix(Color back, Color front)
-        {
-            if (front.a == 0)
-            {
-                return back;
-            }
-            else if (front.a == 255)
-            {
-                return front;
-            }
-            else
-            {
-                return new Color((byte)((back.r + front.r) / 2), (byte)((back.g + front.g) / 2), (byte)((back.b + front.b) / 2), 255);
-            }
         }
     }
 }

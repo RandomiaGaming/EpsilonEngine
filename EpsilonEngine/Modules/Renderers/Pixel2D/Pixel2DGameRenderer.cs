@@ -26,12 +26,15 @@ namespace EpsilonEngine.Modules.Renderers.Pixel2D
                 }
                 sceneRenders.Add(sceneRender);
             }
-            Texture output = new Texture(width, height);
+
+            Texture frame = new Texture(width, height);
+
             foreach (Texture sceneRender in sceneRenders)
             {
-                output.Blitz(sceneRender, 0, 0);
+                Texture.Blitz(sceneRender, frame, new Vector2Int(0, 0));
             }
-            return output;
+
+            return frame;
         }
     }
 }

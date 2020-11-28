@@ -3,21 +3,23 @@ using EpsilonEngine.Modules.Renderers.Pixel2D;
 using EpsilonEngine.Modules.AssetCodecs.PNG;
 namespace EpsilonEngine.Projects.TestProject
 {
-    public class Player : Component
+    public sealed class Player : Component
     {
-        public TextureSheet playerTextureSheet;
+        private Texture facingRight = null;
+        private Texture facingLeft = null;
+
         public SideInfo touchingGround = SideInfo.False;
 
-        public double moveForce = 20;
-        public double jumpForce = 8.5f;
-        public double maxMoveSpeed = 6.5f;
-        public Vector2 wallJumpForce = new Vector2(8.5, 6);
-        public double dragForce = 8;
-        public double gravityForce = 9.80665;
+        private double moveForce = 20;
+        private double jumpForce = 8.5f;
+        private double maxMoveSpeed = 6.5f;
+        private Vector2 wallJumpForce = new Vector2(8.5, 6);
+        private double dragForce = 8;
+        private double gravityForce = 9.80665;
 
-        public Rigidbody rigidbody;
-        private Collider collider;
-        private PixelGraphic2D graphic;
+        private Rigidbody rigidbody = null;
+        private Collider collider = null;
+        private PixelGraphic2D pixelGraphic2D = null;
 
         public Player(GameObject gameObject) : base(gameObject)
         {
@@ -28,17 +30,14 @@ namespace EpsilonEngine.Projects.TestProject
         {
             rigidbody = (Rigidbody)gameObject.GetComponentsOfType(typeof(Rigidbody))[0];
             collider = (Collider)gameObject.GetComponentsOfType(typeof(Collider))[0];
-            graphic = (PixelGraphic2D)gameObject.GetComponentsOfType(typeof(PixelGraphic2D))[0];
+            pixelGraphic2D = (PixelGraphic2D)gameObject.GetComponentsOfType(typeof(PixelGraphic2D))[0];
             PNGAsset playerSpriteSheet = (PNGAsset)game.assetManager.GetAsset("Player.png");
-            playerTextureSheet = new TextureSheet(playerSpriteSheet.data, 16, 32);
-            graphic.graphic = playerTextureSheet.GetTexture(0, 1);
+            facingRight = playerSpriteSheet.data.SubTexture(new RectangleInt(new Vector2Int(0 * 16, 1 * 32), new Vector2Int(1 * 16, 2 * 32)));
+            facingLeft = playerSpriteSheet.data.SubTexture(new RectangleInt(new Vector2Int(14 * 16, 0 * 32), new Vector2Int(15 * 16, 1 * 32)));
+            pixelGraphic2D.graphic = facingRight;
         }
         public override void Update()
         {
-            if (gameInterface.inputDriver.GetPrimaryMouseState().leftButtonPressed)
-            {
-                gameObject.position = (gameInterface.inputDriver.GetPrimaryMouseState().position / (Vector2)gameInterface.graphicsDriver.viewPortRect) * new Vector2Int(256, 144);
-            }
             rigidbody.velocity.y -= gravityForce / 60;
             Collision();
             Move();
@@ -73,12 +72,12 @@ namespace EpsilonEngine.Projects.TestProject
             if (dDown && !adown)
             {
                 moveAxis = 1;
-                graphic.graphic = playerTextureSheet.GetTexture(0, 1);
+                pixelGraphic2D.graphic = facingRight;
             }
             else if (!dDown && adown)
             {
                 moveAxis = -1;
-                graphic.graphic = playerTextureSheet.GetTexture(15, 0);
+                pixelGraphic2D.graphic = facingLeft;
             }
 
             if (rigidbody.velocity.x < maxMoveSpeed && moveAxis == 1)
