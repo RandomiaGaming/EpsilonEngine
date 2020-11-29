@@ -1,18 +1,18 @@
 ﻿namespace EpsilonEngine.Modules.Pixel2D
 {
-    public sealed class Rigidbody : Component
+    public sealed class Pixel2DRigidbody : Pixel2DComponent
     {
         private Vector2 subPixel = Vector2.Zero;
         public Vector2 velocity = Vector2.Zero;
 
-        private Collider thisCollider = null;
-        public Rigidbody(GameObject gameObject) : base(gameObject)
+        private Pixel2DCollider thisCollider = null;
+        public Pixel2DRigidbody(Pixel2DGameObject pixel2DGameObject) : base(pixel2DGameObject)
         {
 
         }
         public override void Initialize()
         {
-            thisCollider = gameObject.GetComponent<Collider>();
+            thisCollider = gameObject.GetComponent<Pixel2DCollider>();
         }
         public override void Update()
         {
@@ -30,11 +30,11 @@
                 RectangleInt thisColliderShape = thisCollider.GetWorldShape();
                 if (targetMove.x > 0)
                 {
-                    for (int i = 0; i < Collider.loadedColliders.Count; i++)
+                    for (int i = 0; i < Pixel2DCollider.loadedColliders.Count; i++)
                     {
-                        if (Collider.loadedColliders[i] != thisCollider)
+                        if (Pixel2DCollider.loadedColliders[i] != thisCollider)
                         {
-                            RectangleInt otherColliderShape = Collider.loadedColliders[i].GetWorldShape();
+                            RectangleInt otherColliderShape = Pixel2DCollider.loadedColliders[i].GetWorldShape();
                             if (thisColliderShape.min.y < otherColliderShape.max.y && thisColliderShape.max.y > otherColliderShape.min.y)
                             {
                                 if (thisColliderShape.min.x < otherColliderShape.max.x)
@@ -52,11 +52,11 @@
                 }
                 else if (targetMove.x < 0)
                 {
-                    for (int i = 0; i < Collider.loadedColliders.Count; i++)
+                    for (int i = 0; i < Pixel2DCollider.loadedColliders.Count; i++)
                     {
-                        if (Collider.loadedColliders[i] != thisCollider)
+                        if (Pixel2DCollider.loadedColliders[i] != thisCollider)
                         {
-                            RectangleInt otherColliderShape = Collider.loadedColliders[i].GetWorldShape();
+                            RectangleInt otherColliderShape = Pixel2DCollider.loadedColliders[i].GetWorldShape();
                             if (thisColliderShape.min.y < otherColliderShape.max.y && thisColliderShape.max.y > otherColliderShape.min.y)
                             {
                                 if (thisColliderShape.max.x > otherColliderShape.min.x)
@@ -74,11 +74,11 @@
                 }
                 if (targetMove.y > 0)
                 {
-                    for (int i = 0; i < Collider.loadedColliders.Count; i++)
+                    for (int i = 0; i < Pixel2DCollider.loadedColliders.Count; i++)
                     {
-                        if (Collider.loadedColliders[i] != thisCollider)
+                        if (Pixel2DCollider.loadedColliders[i] != thisCollider)
                         {
-                            RectangleInt otherColliderShape = Collider.loadedColliders[i].GetWorldShape();
+                            RectangleInt otherColliderShape = Pixel2DCollider.loadedColliders[i].GetWorldShape();
                             if (thisColliderShape.min.x < otherColliderShape.max.x && thisColliderShape.max.x > otherColliderShape.min.x)
                             {
                                 if (thisColliderShape.min.y < otherColliderShape.max.y)
@@ -96,11 +96,11 @@
                 }
                 else if (targetMove.y < 0)
                 {
-                    for (int i = 0; i < Collider.loadedColliders.Count; i++)
+                    for (int i = 0; i < Pixel2DCollider.loadedColliders.Count; i++)
                     {
-                        if (Collider.loadedColliders[i] != thisCollider)
+                        if (Pixel2DCollider.loadedColliders[i] != thisCollider)
                         {
-                            RectangleInt otherColliderShape = Collider.loadedColliders[i].GetWorldShape();
+                            RectangleInt otherColliderShape = Pixel2DCollider.loadedColliders[i].GetWorldShape();
                             if (thisColliderShape.min.x < otherColliderShape.max.x && thisColliderShape.max.x > otherColliderShape.min.x)
                             {
                                 if (thisColliderShape.max.y > otherColliderShape.min.y)
@@ -117,7 +117,7 @@
                     }
                 }
             }
-            gameObject.GetComponent<Pixel2DTransform>().position += targetMove;
+           pixel2DGameObject.position += targetMove;
         }
         public void LogCollisionsAndOverlaps()
         {
@@ -126,15 +126,15 @@
                 if (thisCollider.trigger)
                 {
                     RectangleInt thisColliderShape = thisCollider.GetWorldShape();
-                    for (int i = 0; i < Collider.loadedColliders.Count; i++)
+                    for (int i = 0; i < Pixel2DCollider.loadedColliders.Count; i++)
                     {
-                        if (Collider.loadedColliders[i] != thisCollider)
+                        if (Pixel2DCollider.loadedColliders[i] != thisCollider)
                         {
-                            RectangleInt otherColliderShape = Collider.loadedColliders[i].GetWorldShape();
+                            RectangleInt otherColliderShape = Pixel2DCollider.loadedColliders[i].GetWorldShape();
                             if (thisColliderShape.min.y < otherColliderShape.max.y && thisColliderShape.max.y > otherColliderShape.min.y && thisColliderShape.min.x < otherColliderShape.max.x && thisColliderShape.max.x > otherColliderShape.min.x)
                             {
-                                thisCollider.LogOverlap(Collider.loadedColliders[i]);
-                                Collider.loadedColliders[i].LogOverlap(thisCollider);
+                                thisCollider.LogOverlap(Pixel2DCollider.loadedColliders[i]);
+                                Pixel2DCollider.loadedColliders[i].LogOverlap(thisCollider);
                             }
                         }
                     }
@@ -142,44 +142,44 @@
                 else
                 {
                     RectangleInt thisColliderShape = thisCollider.GetWorldShape();
-                    for (int i = 0; i < Collider.loadedColliders.Count; i++)
+                    for (int i = 0; i < Pixel2DCollider.loadedColliders.Count; i++)
                     {
-                        if (Collider.loadedColliders[i] != thisCollider)
+                        if (Pixel2DCollider.loadedColliders[i] != thisCollider)
                         {
-                            RectangleInt otherColliderShape = Collider.loadedColliders[i].GetWorldShape();
-                            if (Collider.loadedColliders[i].trigger)
+                            RectangleInt otherColliderShape = Pixel2DCollider.loadedColliders[i].GetWorldShape();
+                            if (Pixel2DCollider.loadedColliders[i].trigger)
                             {
                                 if (thisColliderShape.min.y < otherColliderShape.max.y && thisColliderShape.max.y > otherColliderShape.min.y && thisColliderShape.min.x < otherColliderShape.max.x && thisColliderShape.max.x > otherColliderShape.min.x)
                                 {
-                                    thisCollider.LogOverlap(Collider.loadedColliders[i]);
+                                    thisCollider.LogOverlap(Pixel2DCollider.loadedColliders[i]);
                                 }
                             }
                             else
                             {
                                 if (thisColliderShape.min.y < otherColliderShape.max.y && thisColliderShape.max.y > otherColliderShape.min.y && thisColliderShape.max.x == otherColliderShape.min.x)
                                 {
-                                    thisCollider.LogCollision(Collider.loadedColliders[i], new SideInfo(false, false, false, true));
-                                    Collider.loadedColliders[i].LogCollision(thisCollider, new SideInfo(false, false, true, false));
+                                    thisCollider.LogCollision(Pixel2DCollider.loadedColliders[i], new SideInfo(false, false, false, true));
+                                    Pixel2DCollider.loadedColliders[i].LogCollision(thisCollider, new SideInfo(false, false, true, false));
                                 }
                                 else if (thisColliderShape.min.y < otherColliderShape.max.y && thisColliderShape.max.y > otherColliderShape.min.y && thisColliderShape.min.x == otherColliderShape.max.x)
                                 {
-                                    thisCollider.LogCollision(Collider.loadedColliders[i], new SideInfo(false, false, true, false));
-                                    Collider.loadedColliders[i].LogCollision(thisCollider, new SideInfo(false, false, false, true));
+                                    thisCollider.LogCollision(Pixel2DCollider.loadedColliders[i], new SideInfo(false, false, true, false));
+                                    Pixel2DCollider.loadedColliders[i].LogCollision(thisCollider, new SideInfo(false, false, false, true));
                                 }
                                 else if (thisColliderShape.min.x < otherColliderShape.max.x && thisColliderShape.max.x > otherColliderShape.min.x && thisColliderShape.max.y == otherColliderShape.min.y)
                                 {
-                                    thisCollider.LogCollision(Collider.loadedColliders[i], new SideInfo(true, false, false, false));
-                                    Collider.loadedColliders[i].LogCollision(thisCollider, new SideInfo(false, true, false, false));
+                                    thisCollider.LogCollision(Pixel2DCollider.loadedColliders[i], new SideInfo(true, false, false, false));
+                                    Pixel2DCollider.loadedColliders[i].LogCollision(thisCollider, new SideInfo(false, true, false, false));
                                 }
                                 else if (thisColliderShape.min.x < otherColliderShape.max.x && thisColliderShape.max.x > otherColliderShape.min.x && thisColliderShape.min.y == otherColliderShape.max.y)
                                 {
-                                    thisCollider.LogCollision(Collider.loadedColliders[i], new SideInfo(false, true, false, false));
-                                    Collider.loadedColliders[i].LogCollision(thisCollider, new SideInfo(true, false, false, false));
+                                    thisCollider.LogCollision(Pixel2DCollider.loadedColliders[i], new SideInfo(false, true, false, false));
+                                    Pixel2DCollider.loadedColliders[i].LogCollision(thisCollider, new SideInfo(true, false, false, false));
                                 }
                                 else if (thisColliderShape.min.y < otherColliderShape.max.y && thisColliderShape.max.y > otherColliderShape.min.y && thisColliderShape.min.x < otherColliderShape.max.x && thisColliderShape.max.x > otherColliderShape.min.x)
                                 {
-                                    thisCollider.LogCollision(Collider.loadedColliders[i], SideInfo.True);
-                                    Collider.loadedColliders[i].LogCollision(thisCollider, SideInfo.True);
+                                    thisCollider.LogCollision(Pixel2DCollider.loadedColliders[i], SideInfo.True);
+                                    Pixel2DCollider.loadedColliders[i].LogCollision(thisCollider, SideInfo.True);
                                 }
                             }
                         }

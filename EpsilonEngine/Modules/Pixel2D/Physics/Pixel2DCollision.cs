@@ -1,14 +1,14 @@
 ﻿using System;
 namespace EpsilonEngine.Modules.Pixel2D
 {
-    public sealed class Collision
+    public sealed class Pixel2DCollision
     {
-        public readonly Collider otherCollider = null;
+        public readonly Pixel2DCollider otherCollider = null;
         public readonly GameObject otherGameObject = null;
-        public readonly Collider thisCollider = null;
+        public readonly Pixel2DCollider thisCollider = null;
         public readonly GameObject thisGameObject = null;
         public readonly SideInfo sideInfo = SideInfo.False;
-        public Collision(Collider thisCollider, Collider otherCollider, SideInfo sideInfo)
+        public Pixel2DCollision(Pixel2DCollider thisCollider, Pixel2DCollider otherCollider, SideInfo sideInfo)
         {
             if(thisCollider is null)
             {

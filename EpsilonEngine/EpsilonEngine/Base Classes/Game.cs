@@ -15,7 +15,7 @@ namespace EpsilonEngine
         public readonly GameInterface gameInterface = null;
         public Game(GameInterface gameInterface)
         {
-            if(gameInterface is null)
+            if (gameInterface is null)
             {
                 throw new NullReferenceException();
             }
@@ -24,28 +24,7 @@ namespace EpsilonEngine
 
         public virtual void Update()
         {
-            #region Update Scene Culling
-            if (scenesToUnload is null)
-            {
-                scenesToUnload = new List<int>();
-            }
-            scenesToUnload.Sort();
-            foreach(int sceneID in scenesToUnload)
-            {
-                scenes.RemoveAt(sceneID);
-            }
-            scenesToUnload = new List<int>();
-
-            foreach(Scene sceneToLoad in scenesToLoad)
-            {
-                scenes.Add(sceneToLoad);
-            }
-            foreach (Scene sceneToLoad in scenesToLoad)
-            {
-                sceneToLoad.Initialize();
-            }
-            scenesToLoad = new List<Scene>();
-            #endregion
+            CullScenes();
 
             foreach (Scene scene in scenes)
             {
@@ -57,8 +36,9 @@ namespace EpsilonEngine
         public virtual void Initialize()
         {
             assetManager.LoadAssets();
-
-            #region Initialize Scene Culling
+        }
+        public virtual void CullScenes()
+        {
             if (scenesToUnload is null)
             {
                 scenesToUnload = new List<int>();
@@ -68,15 +48,21 @@ namespace EpsilonEngine
             {
                 scenes.RemoveAt(sceneID);
             }
+            scenesToUnload = new List<int>();
+
             foreach (Scene sceneToLoad in scenesToLoad)
             {
                 scenes.Add(sceneToLoad);
             }
-            #endregion
-
-            foreach (Scene scene in scenes)
+            foreach (Scene sceneToLoad in scenesToLoad)
             {
-                scene.Initialize();
+                sceneToLoad.Initialize();
+            }
+            scenesToLoad = new List<Scene>();
+
+            foreach(Scene scene in scenes)
+            {
+                scene.CullGameObjects();
             }
         }
 
@@ -88,12 +74,12 @@ namespace EpsilonEngine
         #region Scene Management Methods
         public virtual Scene GetScene(int index)
         {
-            if(scenes is null)
+            if (scenes is null)
             {
                 scenes = new List<Scene>();
                 return null;
             }
-            if(index < 0 || index >= scenes.Count)
+            if (index < 0 || index >= scenes.Count)
             {
                 throw new ArgumentException();
             }
@@ -105,7 +91,7 @@ namespace EpsilonEngine
         }
         public virtual int GetSceneCount()
         {
-            if(scenes is null)
+            if (scenes is null)
             {
                 scenes = new List<Scene>();
                 return 0;
@@ -123,7 +109,7 @@ namespace EpsilonEngine
             {
                 throw new ArgumentException();
             }
-            if(scenesToUnload is null)
+            if (scenesToUnload is null)
             {
                 scenesToUnload = new List<int>();
             }
@@ -146,7 +132,7 @@ namespace EpsilonEngine
             }
             for (int i = 0; i < scenes.Count; i++)
             {
-                if(scenes[i] == target)
+                if (scenes[i] == target)
                 {
                     scenesToUnload.Add(i);
                 }
@@ -154,11 +140,11 @@ namespace EpsilonEngine
         }
         public virtual void LoadScene(Scene newScene)
         {
-            if(scenesToLoad is null)
+            if (scenesToLoad is null)
             {
                 scenesToLoad = new List<Scene>();
             }
-            if(newScene is null)
+            if (newScene is null)
             {
                 throw new NullReferenceException();
             }

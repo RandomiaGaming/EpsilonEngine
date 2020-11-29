@@ -1,30 +1,30 @@
 ﻿using System.Collections.Generic;
 namespace EpsilonEngine.Modules.Pixel2D
 {
-    public class Collider : Component
+    public class Pixel2DCollider : Pixel2DComponent
     {
-        public List<Collision> collisions = new List<Collision>();
-        public List<Overlap> overlaps = new List<Overlap>();
+        public List<Pixel2DCollision> collisions = new List<Pixel2DCollision>();
+        public List<Pixel2DOverlap> overlaps = new List<Pixel2DOverlap>();
 
         public RectangleInt shape = new RectangleInt(Vector2Int.Zero, new Vector2Int(16, 16));
         public Vector2Int offset = Vector2Int.Zero;
         public SideInfo sideCollision = SideInfo.True;
         public bool trigger = false;
 
-        public static List<Collider> loadedColliders = new List<Collider>();
+        public static List<Pixel2DCollider> loadedColliders = new List<Pixel2DCollider>();
 
-        public Collider(GameObject gameObject) : base(gameObject)
+        public Pixel2DCollider(Pixel2DGameObject pixel2DGameObject) : base(pixel2DGameObject)
         {
 
         }
         public void Flush()
         {
-            collisions = new List<Collision>();
-            overlaps = new List<Overlap>();
+            collisions = new List<Pixel2DCollision>();
+            overlaps = new List<Pixel2DOverlap>();
         }
         public RectangleInt GetWorldShape()
         {
-            RectangleInt output = new RectangleInt(shape.min + gameObject.GetComponent<Pixel2DTransform>().position + offset, shape.max + gameObject.GetComponent<Pixel2DTransform>().position + offset);
+            RectangleInt output = new RectangleInt(shape.min + pixel2DGameObject.position + offset, shape.max + pixel2DGameObject.position + offset);
             return output;
         }
         public override void Update()
@@ -36,14 +36,14 @@ namespace EpsilonEngine.Modules.Pixel2D
             loadedColliders.Add(this);
         }
 
-        public virtual void LogOverlap(Collider otherCollider)
+        public virtual void LogOverlap(Pixel2DCollider otherCollider)
         {
-            overlaps.Add(new Overlap(this, otherCollider));
+            overlaps.Add(new Pixel2DOverlap(this, otherCollider));
         }
 
-        public void LogCollision(Collider otherCollider, SideInfo sideInfo)
+        public void LogCollision(Pixel2DCollider otherCollider, SideInfo sideInfo)
         {
-            collisions.Add(new Collision(this, otherCollider, sideInfo));
+            collisions.Add(new Pixel2DCollision(this, otherCollider, sideInfo));
         }
     }
 }

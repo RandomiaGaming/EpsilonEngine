@@ -4,7 +4,7 @@ using EpsilonEngine.Modules.Pixel2D;
 using System.Collections.Generic;
 using EpsilonEngine.Modules.PNGCodec;
 using EpsilonEngine;
-using DontMelt;
+using EpsilonEngine.Projects.DontMelt;
 
 public static class Program
 {
@@ -20,64 +20,51 @@ public static class Program
         game.assetManager = new AssetManager(game);
         game.assetManager.RegisterCodec(new PNGAssetCodec(game.assetManager));
         game.assetManager.LoadAssets();
-        game.renderer = new Pixel2DGameRenderer(game);
+        game.renderer = new FlattenGameRenderer(game);
 
-        Scene scene = new Scene(game);
+        Pixel2DScene mainScene = new Pixel2DScene(game);
 
-        scene.renderer = new Pixel2DSceneRenderer(scene);
+        mainScene.renderer = new Pixel2DSceneRenderer(mainScene);
 
         for (int i = 0; i < 16; i++)
         {
-            GameObject ground = new GameObject(scene);
+            Pixel2DGameObject ground = new Pixel2DGameObject(mainScene, new Vector2Int(i * 16, 0), ((PNGAsset)game.assetManager.GetAsset("Ground.png")).data);
 
-            Pixel2DGraphic groundGraphic = new Pixel2DGraphic(ground)
-            {
-                graphic = ((PNGAsset)game.assetManager.GetAsset("Ground.png")).data
-            };
-
-            Collider groundCollider = new Collider(ground)
+            Pixel2DCollider groundCollider = new Pixel2DCollider(ground)
             {
                 offset = Vector2Int.Zero,
                 sideCollision = SideInfo.True,
-                collisions = new List<Collision>(),
-                overlaps = new List<Overlap>(),
+                collisions = new List<Pixel2DCollision>(),
+                overlaps = new List<Pixel2DOverlap>(),
                 shape = new RectangleInt(Vector2Int.Zero, new Vector2Int(16, 16))
             };
 
-            ground.AddComponent(new Pixel2DTransform(ground, new Vector2Int(i * 16, 0)));
-            ground.AddComponent(groundGraphic);
             ground.AddComponent(groundCollider);
-            ground.AddComponent(groundGraphic);
-
-            scene.InstantiateGameObject(ground);
+            mainScene.InstantiateGameObject(ground);
         }
 
-        GameObject player = new GameObject(scene);
+        Pixel2DGameObject player = new Pixel2DGameObject(mainScene, new Vector2Int(128, 72), ((PNGAsset)game.assetManager.GetAsset("Ground.png")).data);
 
-        Pixel2DGraphic playerGraphic = new Pixel2DGraphic(player);
-
-        Collider playerCollider = new Collider(player)
+        Pixel2DCollider playerCollider = new Pixel2DCollider(player)
         {
             offset = new Vector2Int(4, 0),
             sideCollision = SideInfo.True,
-            collisions = new List<Collision>(),
-            overlaps = new List<Overlap>(),
+            collisions = new List<Pixel2DCollision>(),
+            overlaps = new List<Pixel2DOverlap>(),
             shape = new RectangleInt(Vector2Int.Zero, new Vector2Int(8, 24))
         };
 
-        Rigidbody playerRigidbody = new Rigidbody(player);
+        Pixel2DRigidbody playerRigidbody = new Pixel2DRigidbody(player);
 
         Player playerComponent = new Player(player);
 
-        player.AddComponent(new Pixel2DTransform(player, new Vector2Int(128, 72)));
         player.AddComponent(playerCollider);
         player.AddComponent(playerRigidbody);
         player.AddComponent(playerComponent);
-        player.AddComponent(playerGraphic);
 
-        scene.InstantiateGameObject(player);
+        mainScene.InstantiateGameObject(player);
 
-        game.LoadScene(scene);
+        game.LoadScene(mainScene);
 
         gameInterface.Run(game);
     }

@@ -2,9 +2,9 @@
 
 namespace EpsilonEngine.Modules.Pixel2D
 {
-    public class Pixel2DGameRenderer : GameRenderer
+    public class FlattenGameRenderer : GameRenderer
     {
-        public Pixel2DGameRenderer(Game game) : base(game)
+        public FlattenGameRenderer(Game game) : base(game)
         {
 
         }
@@ -12,6 +12,7 @@ namespace EpsilonEngine.Modules.Pixel2D
         {
             int width = 0;
             int height = 0;
+
             List<Texture> sceneRenders = new List<Texture>();
             foreach (Scene scene in game.GetScenes())
             {

@@ -28,33 +28,18 @@ namespace EpsilonEngine
 
         public virtual void Initialize()
         {
-            #region Initialize GameObject Culling
-            if (gameObjectsToDestroy is null)
-            {
-                gameObjectsToDestroy = new List<int>();
-            }
-            gameObjectsToDestroy.Sort();
-            foreach (int gameObjectID in gameObjectsToDestroy)
-            {
-                gameObjects.RemoveAt(gameObjectID);
-            }
-            gameObjectsToDestroy = new List<int>();
 
-            foreach (GameObject gameObjectToLoad in gameObjectsToInstantiate)
-            {
-                gameObjects.Add(gameObjectToLoad);
-            }
-            gameObjectsToInstantiate = new List<GameObject>();
-            #endregion
-
-            foreach (GameObject go in gameObjects)
-            {
-                go.Initialize();
-            }
         }
         public virtual void Update()
         {
-            #region Update GameObject Culling
+            foreach (GameObject go in gameObjects)
+            {
+                go.Update();
+            }
+        }
+
+        public virtual void CullGameObjects()
+        {
             if (gameObjectsToDestroy is null)
             {
                 gameObjectsToDestroy = new List<int>();
@@ -75,11 +60,10 @@ namespace EpsilonEngine
                 gameObjectToLoad.Initialize();
             }
             gameObjectsToInstantiate = new List<GameObject>();
-            #endregion
 
-            foreach (GameObject go in gameObjects)
+            foreach(GameObject gameObject in gameObjects)
             {
-                go.Update();
+                gameObject.CullComponents();
             }
         }
 

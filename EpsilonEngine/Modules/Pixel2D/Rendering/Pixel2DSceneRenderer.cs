@@ -1,24 +1,27 @@
-﻿namespace EpsilonEngine.Modules.Pixel2D
+﻿using System;
+namespace EpsilonEngine.Modules.Pixel2D
 {
     public class Pixel2DSceneRenderer : SceneRenderer
     {
         public Vector2Int cameraPosition = Vector2Int.Zero;
-        public Pixel2DSceneRenderer(Scene scene) : base(scene)
+        public readonly Pixel2DScene pixel2DScene = null;
+        public Pixel2DSceneRenderer(Pixel2DScene pixel2DScene) : base(pixel2DScene)
         {
-
+            if (pixel2DScene is null)
+            {
+                throw new NullReferenceException();
+            }
+            this.pixel2DScene = pixel2DScene;
         }
         public override Texture Render()
         {
             Texture frame = new Texture(256, 144, new Color(255, 255, 155, 255));
 
-            foreach (GameObject g in scene.GetGameObjects())
+            foreach (Pixel2DGameObject pixel2DGameObject in pixel2DScene.GetPixel2DGameObjects())
             {
-                foreach (Pixel2DGraphic pg2d in g.GetComponents<Pixel2DGraphic>())
+                if (pixel2DGameObject.texture is not null)
                 {
-                    if (pg2d.graphic != null)
-                    {
-                        TextureHelper.Blitz(pg2d.graphic, frame, new Vector2Int(g.GetComponent<Pixel2DTransform>().position.x + pg2d.offset.x - cameraPosition.x, g.GetComponent<Pixel2DTransform>().position.y + pg2d.offset.y - cameraPosition.y));
-                    }
+                    TextureHelper.Blitz(pixel2DGameObject.texture, frame, new Vector2Int(pixel2DGameObject.position.x - cameraPosition.x, pixel2DGameObject.position.y - cameraPosition.y));
                 }
             }
 

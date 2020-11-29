@@ -1,13 +1,13 @@
 ﻿using System;
 namespace EpsilonEngine.Modules.Pixel2D
 {
-    public sealed class Overlap
+    public sealed class Pixel2DOverlap
     {
-        public readonly Collider otherCollider = null;
+        public readonly Pixel2DCollider otherCollider = null;
         public readonly GameObject otherGameObject = null;
-        public readonly Collider thisCollider = null;
+        public readonly Pixel2DCollider thisCollider = null;
         public readonly GameObject thisGameObject = null;
-        public Overlap(Collider thisCollider, Collider otherCollider)
+        public Pixel2DOverlap(Pixel2DCollider thisCollider, Pixel2DCollider otherCollider)
         {
             if (thisCollider is null)
             {

@@ -31,33 +31,18 @@ namespace EpsilonEngine
         }
         public virtual void Initialize()
         {
-            #region Initialize Component Culling
-            if (componentsToRemove is null)
-            {
-                componentsToRemove = new List<int>();
-            }
-            componentsToRemove.Sort();
-            foreach (int componentID in componentsToRemove)
-            {
-                components.RemoveAt(componentID);
-            }
-            componentsToRemove = new List<int>();
 
-            foreach (Component componentToAdd in componentsToAdd)
-            {
-                components.Add(componentToAdd);
-            }
-            componentsToAdd = new List<Component>();
-            #endregion
-
-            foreach (Component c in components)
-            {
-                c.Initialize();
-            }
         }
         public virtual void Update()
         {
-            #region Update Component Culling
+            foreach (Component c in components)
+            {
+                c.Update();
+            }
+        }
+
+        public virtual void CullComponents()
+        {
             if (componentsToRemove is null)
             {
                 componentsToRemove = new List<int>();
@@ -78,12 +63,6 @@ namespace EpsilonEngine
                 componentToAdd.Initialize();
             }
             componentsToAdd = new List<Component>();
-            #endregion
-
-            foreach (Component c in components)
-            {
-                c.Update();
-            }
         }
 
         #region Component Management Methods

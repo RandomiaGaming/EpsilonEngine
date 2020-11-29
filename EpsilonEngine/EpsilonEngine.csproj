@@ -56,8 +56,10 @@
     <Compile Include="EpsilonEngine\Base Classes\Scene.cs" />
     <Compile Include="EpsilonEngine\Helper Classes\ColorHelper.cs" />
     <Compile Include="EpsilonEngine\Helper Classes\RandomnessHelper.cs" />
+    <Compile Include="Modules\Pixel2D\Pixel2DComponent.cs" />
+    <Compile Include="Modules\Pixel2D\Pixel2DGameObject.cs" />
+    <Compile Include="Modules\Pixel2D\Pixel2DScene.cs" />
     <Compile Include="Modules\Pixel2D\Rendering\Pixel2DGameRenderer.cs" />
-    <Compile Include="Modules\Pixel2D\Pixel2DTransform.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="EpsilonEngine\Helper Classes\MathHelper.cs" />
     <Compile Include="EpsilonEngine\Helper Classes\GradientHelper.cs" />
@@ -86,7 +88,6 @@
     <Compile Include="Modules\PNGCodec\PNGAsset.cs" />
     <Compile Include="EpsilonEngine\Base Classes\Asset Loading\AssetCodec.cs" />
     <Compile Include="EpsilonEngine\Base Classes\Asset Loading\AssetManager.cs" />
-    <Compile Include="Modules\Pixel2D\Rendering\Pixel2DGraphic.cs" />
     <Compile Include="Modules\Pixel2D\Physics\Pixel2DCollider.cs" />
     <Compile Include="Modules\Pixel2D\Physics\Pixel2DRigidbody.cs" />
     <Compile Include="Modules\Pixel2D\Physics\Pixel2DCollision.cs" />
