@@ -1,10 +1,8 @@
 ﻿using System;
-
 namespace EpsilonEngine
 {
     public abstract class Component
     {
-
         public readonly GameInterface gameInterface = null;
         public readonly Game game = null;
         public readonly Scene scene = null;

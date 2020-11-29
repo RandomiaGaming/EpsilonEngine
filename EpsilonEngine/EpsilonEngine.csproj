@@ -40,38 +40,24 @@
     <Reference Include="MonoGame.Framework">
       <HintPath>..\packages\MonoGame.Framework.DesktopGL.3.8.0.1641\lib\net452\MonoGame.Framework.dll</HintPath>
     </Reference>
-    <Reference Include="SharpDX, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpDX.4.2.0\lib\net45\SharpDX.dll</HintPath>
-    </Reference>
-    <Reference Include="SharpDX.Desktop, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpDX.Desktop.4.2.0\lib\net45\SharpDX.Desktop.dll</HintPath>
-    </Reference>
-    <Reference Include="SharpDX.Direct2D1, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpDX.Direct2D1.4.2.0\lib\net45\SharpDX.Direct2D1.dll</HintPath>
-    </Reference>
-    <Reference Include="SharpDX.Direct3D11, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpDX.Direct3D11.4.2.0\lib\net45\SharpDX.Direct3D11.dll</HintPath>
-    </Reference>
-    <Reference Include="SharpDX.DXGI, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpDX.DXGI.4.2.0\lib\net45\SharpDX.DXGI.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Drivers\MonoGame\MonoGameInterface.cs" />
+    <Compile Include="EpsilonEngine\Helper Classes\TextureHelper.cs" />
+    <Compile Include="Modules\MonoGame\MonoGameInterface.cs" />
     <Compile Include="EpsilonEngine\Base Classes\Drivers\Input\KeyboardState.cs" />
     <Compile Include="EpsilonEngine\Base Classes\Drivers\Input\MouseButton.cs" />
     <Compile Include="EpsilonEngine\Base Classes\Drivers\Input\MouseState.cs" />
     <Compile Include="EpsilonEngine\Base Classes\GameInterface.cs" />
     <Compile Include="EpsilonEngine\Base Classes\Moduels\GameRenderer.cs" />
     <Compile Include="EpsilonEngine\Base Classes\Scene.cs" />
-    <Compile Include="Drivers\DirectX\DirectXGraphicsDriver.cs" />
     <Compile Include="EpsilonEngine\Helper Classes\ColorHelper.cs" />
     <Compile Include="EpsilonEngine\Helper Classes\RandomnessHelper.cs" />
-    <Compile Include="Modules\Renderers\Pixel2D\Pixel2DGameRenderer.cs" />
+    <Compile Include="Modules\Pixel2D\Rendering\Pixel2DGameRenderer.cs" />
+    <Compile Include="Modules\Pixel2D\Pixel2DTransform.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="EpsilonEngine\Helper Classes\MathHelper.cs" />
     <Compile Include="EpsilonEngine\Helper Classes\GradientHelper.cs" />
@@ -86,35 +72,36 @@
     <Compile Include="EpsilonEngine\Data Types\SideInfo.cs" />
     <Compile Include="EpsilonEngine\Base Classes\Drivers\Input\KeyboardButton.cs" />
     <Compile Include="EpsilonEngine\Data Types\Texture.cs" />
-    <Compile Include="Test Project\Components\Player.cs" />
-    <Compile Include="Drivers\MonoGame\MonoGameGraphicsDriver.cs" />
-    <Compile Include="Drivers\MonoGame\MonoGameInputDriver.cs" />
-    <Compile Include="Drivers\MonoGame\MonoGameInterfaceGame.cs" />
-    <Compile Include="Modules\Renderers\Pixel2D\Pixel2DSceneRenderer.cs" />
+    <Compile Include="Dont Melt\Components\Player.cs" />
+    <Compile Include="Modules\MonoGame\MonoGameGraphicsDriver.cs" />
+    <Compile Include="Modules\MonoGame\MonoGameInputDriver.cs" />
+    <Compile Include="Modules\MonoGame\MonoGameInterfaceGame.cs" />
+    <Compile Include="Modules\Pixel2D\Rendering\Pixel2DSceneRenderer.cs" />
     <Compile Include="EpsilonEngine\Base Classes\Drivers\GraphicsDriver.cs" />
     <Compile Include="EpsilonEngine\Base Classes\Drivers\Input\InputDriver.cs" />
     <Compile Include="EpsilonEngine\Base Classes\Asset Loading\AssetBase.cs" />
-    <Compile Include="Modules\Asset Codecs\Asset Types\AudioAsset.cs" />
-    <Compile Include="Modules\Asset Codecs\Asset Types\BianaryAsset.cs" />
-    <Compile Include="Modules\Asset Codecs\Asset Types\TextAsset.cs" />
-    <Compile Include="Modules\Asset Codecs\PNG\PNGAsset.cs" />
+    <Compile Include="Modules\PNGCodec\Asset Types\AudioAsset.cs" />
+    <Compile Include="Modules\PNGCodec\Asset Types\BianaryAsset.cs" />
+    <Compile Include="Modules\PNGCodec\Asset Types\TextAsset.cs" />
+    <Compile Include="Modules\PNGCodec\PNGAsset.cs" />
     <Compile Include="EpsilonEngine\Base Classes\Asset Loading\AssetCodec.cs" />
     <Compile Include="EpsilonEngine\Base Classes\Asset Loading\AssetManager.cs" />
-    <Compile Include="Modules\Renderers\Pixel2D\PixelGraphic2D.cs" />
-    <Compile Include="Modules\Physics\Pixel2D\Collider.cs" />
-    <Compile Include="Modules\Physics\Pixel2D\Rigidbody.cs" />
-    <Compile Include="Modules\Physics\Pixel2D\Collision.cs" />
-    <Compile Include="Modules\Physics\Pixel2D\Overlap.cs" />
-    <Compile Include="Modules\Asset Codecs\PNG\PNGAssetCodec.cs" />
+    <Compile Include="Modules\Pixel2D\Rendering\Pixel2DGraphic.cs" />
+    <Compile Include="Modules\Pixel2D\Physics\Pixel2DCollider.cs" />
+    <Compile Include="Modules\Pixel2D\Physics\Pixel2DRigidbody.cs" />
+    <Compile Include="Modules\Pixel2D\Physics\Pixel2DCollision.cs" />
+    <Compile Include="Modules\Pixel2D\Physics\Pixel2DOverlap.cs" />
+    <Compile Include="Modules\PNGCodec\PNGAssetCodec.cs" />
     <Compile Include="EpsilonEngine\Data Types\Vector3.cs" />
     <Compile Include="EpsilonEngine\Data Types\Vector3Int.cs" />
     <Compile Include="EpsilonEngine\Base Classes\Moduels\SceneRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Test Project\Assets\Audio Clips\Jump.mp3" />
-    <EmbeddedResource Include="Test Project\Assets\Textures\Player.png" />
-    <EmbeddedResource Include="Test Project\Assets\Textures\Ground.png" />
+    <EmbeddedResource Include="Dont Melt\Assets\Audio Clips\Jump.mp3" />
+    <EmbeddedResource Include="Dont Melt\Assets\Textures\Player.png" />
+    <EmbeddedResource Include="Dont Melt\Assets\Textures\Ground.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MonoGame.Framework.DesktopGL.3.8.0.1641\build\MonoGame.Framework.DesktopGL.targets" Condition="Exists('..\packages\MonoGame.Framework.DesktopGL.3.8.0.1641\build\MonoGame.Framework.DesktopGL.targets')" />
   <ProjectExtensions>
