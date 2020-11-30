@@ -35,12 +35,10 @@ namespace EpsilonEngine.Modules.Pixel2D
         {
             loadedColliders.Add(this);
         }
-
         public virtual void LogOverlap(Pixel2DCollider otherCollider)
         {
             overlaps.Add(new Pixel2DOverlap(this, otherCollider));
         }
-
         public void LogCollision(Pixel2DCollider otherCollider, SideInfo sideInfo)
         {
             collisions.Add(new Pixel2DCollision(this, otherCollider, sideInfo));

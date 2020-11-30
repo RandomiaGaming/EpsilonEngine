@@ -2,13 +2,10 @@
 
 namespace EpsilonEngine.Modules.PNGCodec
 {
-    public sealed class PNGAssetCodec : AssetCodec
+    public static class PNGAssetCodec
     {
-        public PNGAssetCodec(AssetManager assetManager) : base(assetManager, "png")
-        {
-
-        }
-        public override AssetBase DecodeStream(Stream stream, string name)
+        [RegisterCodec("PNG")]
+        public static AssetBase DecodePNG(Stream stream, string name)
         {
             System.Drawing.Image loadedImage = System.Drawing.Image.FromStream(stream);
             System.Drawing.Bitmap loadedBitMap = new System.Drawing.Bitmap(loadedImage);

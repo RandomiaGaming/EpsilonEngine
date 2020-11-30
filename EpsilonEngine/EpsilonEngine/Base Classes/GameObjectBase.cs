@@ -1,14 +1,14 @@
 ﻿using System;
 namespace EpsilonEngine
 {
-    public abstract class SceneRenderer
+    public abstract class GameObjectBase
     {
-        public readonly GameInterface gameInterface = null;
-        public readonly Game game = null;
-        public readonly Scene scene = null;
-        public SceneRenderer(Scene scene)
+        public readonly GameInterfaceBase gameInterface = null;
+        public readonly GameBase game = null;
+        public readonly SceneBase scene = null;
+        public GameObjectBase(SceneBase scene)
         {
-            if(scene is null)
+            if (scene is null)
             {
                 throw new NullReferenceException();
             }
@@ -24,12 +24,15 @@ namespace EpsilonEngine
             }
             gameInterface = scene.gameInterface;
         }
-        public abstract Texture Render();
+        public virtual void Initialize()
+        {
+
+        }
         public virtual void Update()
         {
 
         }
-        public virtual void Initialize()
+        public virtual void Cleanup()
         {
 
         }

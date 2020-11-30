@@ -12,7 +12,7 @@
         }
         public override void Initialize()
         {
-            thisCollider = gameObject.GetComponent<Pixel2DCollider>();
+            thisCollider = pixel2DGameObject.GetComponent<Pixel2DCollider>();
         }
         public override void Update()
         {

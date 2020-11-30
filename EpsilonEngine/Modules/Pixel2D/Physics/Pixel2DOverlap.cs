@@ -4,9 +4,9 @@ namespace EpsilonEngine.Modules.Pixel2D
     public sealed class Pixel2DOverlap
     {
         public readonly Pixel2DCollider otherCollider = null;
-        public readonly GameObject otherGameObject = null;
+        public readonly Pixel2DGameObject otherGameObject = null;
         public readonly Pixel2DCollider thisCollider = null;
-        public readonly GameObject thisGameObject = null;
+        public readonly Pixel2DGameObject thisGameObject = null;
         public Pixel2DOverlap(Pixel2DCollider thisCollider, Pixel2DCollider otherCollider)
         {
             if (thisCollider is null)
@@ -18,7 +18,7 @@ namespace EpsilonEngine.Modules.Pixel2D
             {
                 throw new NullReferenceException();
             }
-            thisGameObject = thisCollider.gameObject;
+            thisGameObject = thisCollider.pixel2DGameObject;
             if (otherCollider is null)
             {
                 throw new NullReferenceException();
@@ -36,7 +36,7 @@ namespace EpsilonEngine.Modules.Pixel2D
             {
                 throw new ArgumentException();
             }
-            otherGameObject = otherCollider.gameObject;
+            otherGameObject = otherCollider.pixel2DGameObject;
         }
     }
 }

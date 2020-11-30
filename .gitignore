@@ -4,3 +4,4 @@ EpsilonEngine/obj/
 .vs/
 *.user
 *.suo
+packages/

@@ -1,6 +1,6 @@
 ﻿namespace EpsilonEngine
 {
-    public enum MouseButton : int
+    public enum MouseButton : byte
     {
         Button0,
         Button1,

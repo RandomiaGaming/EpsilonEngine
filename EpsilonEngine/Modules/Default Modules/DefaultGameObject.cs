@@ -2,46 +2,29 @@
 using System.Collections.Generic;
 namespace EpsilonEngine
 {
-    public class GameObject
+    public sealed class DefaultGameObject : GameObjectBase
     {
-        protected List<Component> components = new List<Component>();
-        protected List<int> componentsToRemove = new List<int>();
-        protected List<Component> componentsToAdd = new List<Component>();
+        private List<ComponentBase> components = new List<ComponentBase>();
+        private List<int> componentsToRemove = new List<int>();
+        private List<ComponentBase> componentsToAdd = new List<ComponentBase>();
 
-        public readonly GameInterface gameInterface = null;
-        public readonly Game game = null;
-        public readonly Scene scene = null;
-        public GameObject(Scene scene)
-        {
-            if (scene is null)
-            {
-                throw new NullReferenceException();
-            }
-            this.scene = scene;
-            if(scene.game is null)
-            {
-                throw new NullReferenceException();
-            }
-            game = scene.game;
-            if(scene.gameInterface is null)
-            {
-                throw new NullReferenceException();
-            }
-            gameInterface = scene.gameInterface;
-        }
-        public virtual void Initialize()
+        public DefaultGameObject(SceneBase scene) : base(scene)
         {
 
         }
-        public virtual void Update()
+        public override void Initialize()
         {
-            foreach (Component c in components)
+
+        }
+        public override void Update()
+        {
+            foreach (ComponentBase c in components)
             {
                 c.Update();
             }
         }
 
-        public virtual void CullComponents()
+        public override void Cleanup()
         {
             if (componentsToRemove is null)
             {
@@ -54,23 +37,23 @@ namespace EpsilonEngine
             }
             componentsToRemove = new List<int>();
 
-            foreach (Component componentToAdd in componentsToAdd)
+            foreach (ComponentBase componentToAdd in componentsToAdd)
             {
                 components.Add(componentToAdd);
             }
-            foreach (Component componentToAdd in componentsToAdd)
+            foreach (ComponentBase componentToAdd in componentsToAdd)
             {
                 componentToAdd.Initialize();
             }
-            componentsToAdd = new List<Component>();
+            componentsToAdd = new List<ComponentBase>();
         }
 
         #region Component Management Methods
-        public virtual Component GetComponent(int index)
+        public ComponentBase GetComponent(int index)
         {
             if (components is null)
             {
-                components = new List<Component>();
+                components = new List<ComponentBase>();
                 return null;
             }
             if (index < 0 || index >= components.Count)
@@ -79,11 +62,11 @@ namespace EpsilonEngine
             }
             return components[index];
         }
-        public virtual Component GetComponent(Type targetType)
+        public ComponentBase GetComponent(Type targetType)
         {
             if (components is null)
             {
-                components = new List<Component>();
+                components = new List<ComponentBase>();
                 return null;
             }
             if (targetType is null)
@@ -99,11 +82,11 @@ namespace EpsilonEngine
             }
             return null;
         }
-        public virtual T GetComponent<T>() where T : Component
+        public T GetComponent<T>() where T : ComponentBase
         {
             if (components is null)
             {
-                components = new List<Component>();
+                components = new List<ComponentBase>();
                 return null;
             }
             for (int i = 0; i < components.Count; i++)
@@ -115,22 +98,22 @@ namespace EpsilonEngine
             }
             return null;
         }
-        public virtual List<Component> GetComponents()
+        public List<ComponentBase> GetComponents()
         {
-            return new List<Component>(components);
+            return new List<ComponentBase>(components);
         }
-        public virtual List<Component> GetComponents(Type targetType)
+        public List<ComponentBase> GetComponents(Type targetType)
         {
             if (components is null)
             {
-                components = new List<Component>();
+                components = new List<ComponentBase>();
                 return null;
             }
             if(targetType is null)
             {
                 throw new NullReferenceException();
             }
-            List<Component> output = new List<Component>();
+            List<ComponentBase> output = new List<ComponentBase>();
             for (int i = 0; i < components.Count; i++)
             {
                 if (components[i].GetType().IsAssignableFrom(targetType))
@@ -140,11 +123,11 @@ namespace EpsilonEngine
             }
             return output;
         }
-        public virtual List<T> GetComponents<T>() where T : Component
+        public List<T> GetComponents<T>() where T : ComponentBase
         {
             if (components is null)
             {
-                components = new List<Component>();
+                components = new List<ComponentBase>();
                 return null;
             }
             List<T> output = new List<T>();
@@ -157,20 +140,20 @@ namespace EpsilonEngine
             }
             return output;
         }
-        public virtual int GetComponentCount()
+        public int GetComponentCount()
         {
             if (components is null)
             {
-                components = new List<Component>();
+                components = new List<ComponentBase>();
                 return 0;
             }
             return components.Count;
         }
-        public virtual void RemoveComponent(int index)
+        public void RemoveComponent(int index)
         {
             if (components is null)
             {
-                components = new List<Component>();
+                components = new List<ComponentBase>();
                 return;
             }
             if (index < 0 || index >= components.Count)
@@ -183,11 +166,11 @@ namespace EpsilonEngine
             }
             componentsToRemove.Add(index);
         }
-        public virtual void RemoveComponent(Component target)
+        public void RemoveComponent(ComponentBase target)
         {
             if (components is null)
             {
-                components = new List<Component>();
+                components = new List<ComponentBase>();
                 return;
             }
             if (target is null)
@@ -206,11 +189,11 @@ namespace EpsilonEngine
                 }
             }
         }
-        public virtual void RemoveComponents(Type targetType)
+        public void RemoveComponents(Type targetType)
         {
             if (components is null)
             {
-                components = new List<Component>();
+                components = new List<ComponentBase>();
                 return;
             }
             if (targetType is null)
@@ -229,11 +212,11 @@ namespace EpsilonEngine
                 }
             }
         }
-        public virtual void RemoveComponents<T>() where T : Component
+        public void RemoveComponents<T>() where T : ComponentBase
         {
             if (components is null)
             {
-                components = new List<Component>();
+                components = new List<ComponentBase>();
                 return;
             }
             if (componentsToRemove is null)
@@ -248,11 +231,11 @@ namespace EpsilonEngine
                 }
             }
         }
-        public virtual void AddComponent(Component newComponent)
+        public void AddComponent(ComponentBase newComponent)
         {
             if (componentsToAdd is null)
             {
-                componentsToAdd = new List<Component>();
+                componentsToAdd = new List<ComponentBase>();
             }
             if(newComponent is null)
             {

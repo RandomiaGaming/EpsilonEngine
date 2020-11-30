@@ -1,13 +1,13 @@
 ﻿using System;
 namespace EpsilonEngine
 {
-    public abstract class Component
+    public abstract class ComponentBase
     {
-        public readonly GameInterface gameInterface = null;
-        public readonly Game game = null;
-        public readonly Scene scene = null;
-        public readonly GameObject gameObject = null;
-        public Component(GameObject gameObject)
+        public readonly GameInterfaceBase gameInterface = null;
+        public readonly GameBase game = null;
+        public readonly SceneBase scene = null;
+        public readonly GameObjectBase gameObject = null;
+        public ComponentBase(GameObjectBase gameObject)
         {
             if (gameObject is null)
             {
@@ -35,6 +35,10 @@ namespace EpsilonEngine
 
         }
         public virtual void Update()
+        {
+
+        }
+        public virtual void Cleanup()
         {
 
         }

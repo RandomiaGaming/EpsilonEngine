@@ -1,6 +1,6 @@
 ﻿namespace EpsilonEngine
 {
-    public enum KeyboardButton : int
+    public enum KeyboardButton : byte
     {
         A,
         B,

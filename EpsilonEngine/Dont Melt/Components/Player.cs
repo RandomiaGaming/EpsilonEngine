@@ -26,9 +26,9 @@ namespace EpsilonEngine.Projects.DontMelt
 
         public override void Initialize()
         {
-            rigidbody = gameObject.GetComponent<Pixel2DRigidbody>();
-            collider = gameObject.GetComponent<Pixel2DCollider>();
-            PNGAsset playerSpriteSheet = (PNGAsset)game.assetManager.GetAsset("Player.png");
+            rigidbody = pixel2DGameObject.GetComponent<Pixel2DRigidbody>();
+            collider = pixel2DGameObject.GetComponent<Pixel2DCollider>();
+            PNGAsset playerSpriteSheet = (PNGAsset)AssetManager.GetAsset("Player.png");
             facingRight = TextureHelper.SubTexture(playerSpriteSheet.data, new RectangleInt(new Vector2Int(0 * 16, 1 * 32), new Vector2Int(1 * 16, 2 * 32)));
             facingLeft = TextureHelper.SubTexture(playerSpriteSheet.data, new RectangleInt(new Vector2Int(14 * 16, 0 * 32), new Vector2Int(15 * 16, 1 * 32)));
             pixel2DGameObject.texture = facingRight;
@@ -40,11 +40,11 @@ namespace EpsilonEngine.Projects.DontMelt
             Move();
             Jump();
             Drag();
-            ((Pixel2DSceneRenderer)gameObject.scene.renderer).cameraPosition = pixel2DGameObject.position - new Vector2Int(256 / 2, 144 / 2);
+            pixel2DScene.cameraPosition = pixel2DGameObject.position - new Vector2Int(256 / 2, 144 / 2);
         }
         private void Jump()
         {
-            if (gameInterface.inputDriver.GetPrimaryKeyboardState().GetKeyboardButtonState(KeyboardButton.Space))
+            if (gameInterface.GetPrimaryKeyboardState().GetKeyboardButtonState(KeyboardButton.Space))
             {
                 if (touchingGround.bottom)
                 {
@@ -64,8 +64,8 @@ namespace EpsilonEngine.Projects.DontMelt
         private void Move()
         {
             int moveAxis = 0;
-            bool dDown = gameInterface.inputDriver.GetPrimaryKeyboardState().GetKeyboardButtonState(KeyboardButton.D);
-            bool adown = gameInterface.inputDriver.GetPrimaryKeyboardState().GetKeyboardButtonState(KeyboardButton.A);
+            bool dDown = gameInterface.GetPrimaryKeyboardState().GetKeyboardButtonState(KeyboardButton.D);
+            bool adown = gameInterface.GetPrimaryKeyboardState().GetKeyboardButtonState(KeyboardButton.A);
             if (dDown && !adown)
             {
                 moveAxis = 1;

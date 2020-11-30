@@ -4,10 +4,10 @@ using System;
 
 namespace EpsilonEngine.Modules.MonoGame
 {
-    public class MonogameInterfaceGame : Microsoft.Xna.Framework.Game
+    public class MonoGameInterfaceGame : Microsoft.Xna.Framework.Game
     {
         private readonly MonoGameInterface gameInterface = null;
-        public MonogameInterfaceGame(MonoGameInterface gameInterface)
+        public MonoGameInterfaceGame(MonoGameInterface gameInterface)
         {
             if (gameInterface is null)
             {
@@ -33,7 +33,7 @@ namespace EpsilonEngine.Modules.MonoGame
         }
         protected override void Update(GameTime gameTime)
         {
-            Console.WriteLine($"{gameTime.ElapsedGameTime.Ticks / 1000}k TPF");
+            Console.WriteLine($"{gameTime.ElapsedGameTime.Ticks / 1000}k TPF which is {(int)(1.0 / (gameTime.ElapsedGameTime.Ticks / 10000000.0))} FPS.");
             gameInterface.MonoGameUpdateCallBack();
             base.Update(gameTime);
             if (gameInterface.game.requestingToQuit)
@@ -43,7 +43,7 @@ namespace EpsilonEngine.Modules.MonoGame
         }
         protected override void Draw(GameTime gameTime)
         {
-            Texture frameBuffer = ((MonoGameGraphicsDriver)gameInterface.graphicsDriver).frameBuffer;
+            Texture frameBuffer = gameInterface.frameBuffer;
             if (frameBuffer != null)
             {
                 Texture2D frame = new Texture2D(GraphicsDevice, frameBuffer.width, frameBuffer.height);
@@ -61,7 +61,7 @@ namespace EpsilonEngine.Modules.MonoGame
                 frame.SetData(data);
                 SpriteBatch spriteBatch = new SpriteBatch(GraphicsDevice);
                 spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-                spriteBatch.Draw(frame, new Microsoft.Xna.Framework.Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), Microsoft.Xna.Framework.Color.White);
+                spriteBatch.Draw(frame, new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), Microsoft.Xna.Framework.Color.White);
                 spriteBatch.End();
             }
             base.Draw(gameTime);

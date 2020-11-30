@@ -2,43 +2,28 @@
 using System.Collections.Generic;
 namespace EpsilonEngine
 {
-    public class Scene
+    public sealed class DefaultScene : SceneBase
     {
-        public SceneRenderer renderer;
+        private List<GameObjectBase> gameObjects = new List<GameObjectBase>();
+        private List<int> gameObjectsToDestroy = new List<int>();
+        private List<GameObjectBase> gameObjectsToInstantiate = new List<GameObjectBase>();
 
-        protected List<GameObject> gameObjects = new List<GameObject>();
-        protected List<int> gameObjectsToDestroy = new List<int>();
-        protected List<GameObject> gameObjectsToInstantiate = new List<GameObject>();
-
-        public readonly GameInterface gameInterface = null;
-        public readonly Game game = null;
-        public Scene(Game game)
-        {
-            if (game is null)
-            {
-                throw new NullReferenceException();
-            }
-            this.game = game;
-            if (game.gameInterface is null)
-            {
-                throw new NullReferenceException();
-            }
-            gameInterface = game.gameInterface;
-        }
-
-        public virtual void Initialize()
+        public DefaultScene(GameBase game) : base(game)
         {
 
         }
-        public virtual void Update()
+        public override Texture Render()
         {
-            foreach (GameObject go in gameObjects)
+            return null;
+        }
+        public override void Update()
+        {
+            foreach (GameObjectBase go in gameObjects)
             {
                 go.Update();
             }
         }
-
-        public virtual void CullGameObjects()
+        public override void Cleanup()
         {
             if (gameObjectsToDestroy is null)
             {
@@ -51,28 +36,28 @@ namespace EpsilonEngine
             }
             gameObjectsToDestroy = new List<int>();
 
-            foreach (GameObject gameObjectToLoad in gameObjectsToInstantiate)
+            foreach (GameObjectBase gameObjectToLoad in gameObjectsToInstantiate)
             {
                 gameObjects.Add(gameObjectToLoad);
             }
-            foreach (GameObject gameObjectToLoad in gameObjectsToInstantiate)
+            foreach (GameObjectBase gameObjectToLoad in gameObjectsToInstantiate)
             {
                 gameObjectToLoad.Initialize();
             }
-            gameObjectsToInstantiate = new List<GameObject>();
+            gameObjectsToInstantiate = new List<GameObjectBase>();
 
-            foreach(GameObject gameObject in gameObjects)
+            foreach (GameObjectBase gameObject in gameObjects)
             {
-                gameObject.CullComponents();
+                gameObject.Cleanup();
             }
         }
 
         #region GameObject Management Methods
-        public virtual GameObject GetGameObject(int index)
+        public GameObjectBase GetGameObject(int index)
         {
             if (gameObjects is null)
             {
-                gameObjects = new List<GameObject>();
+                gameObjects = new List<GameObjectBase>();
                 return null;
             }
             if (index < 0 || index >= gameObjects.Count)
@@ -81,24 +66,24 @@ namespace EpsilonEngine
             }
             return gameObjects[index];
         }
-        public virtual List<GameObject> GetGameObjects()
+        public List<GameObjectBase> GetGameObjects()
         {
-            return new List<GameObject>(gameObjects);
+            return new List<GameObjectBase>(gameObjects);
         }
-        public virtual int GetGameObjectCount()
+        public int GetGameObjectCount()
         {
             if (gameObjects is null)
             {
-                gameObjects = new List<GameObject>();
+                gameObjects = new List<GameObjectBase>();
                 return 0;
             }
             return gameObjects.Count;
         }
-        public virtual void DestroyGameObject(int index)
+        public void DestroyGameObject(int index)
         {
             if (gameObjects is null)
             {
-                gameObjects = new List<GameObject>();
+                gameObjects = new List<GameObjectBase>();
                 return;
             }
             if (index < 0 || index >= gameObjects.Count)
@@ -111,11 +96,11 @@ namespace EpsilonEngine
             }
             gameObjectsToDestroy.Add(index);
         }
-        public virtual void DestroyGameObject(GameObject target)
+        public void DestroyGameObject(GameObjectBase target)
         {
             if (gameObjects is null)
             {
-                gameObjects = new List<GameObject>();
+                gameObjects = new List<GameObjectBase>();
                 return;
             }
             if (target is null)
@@ -134,13 +119,13 @@ namespace EpsilonEngine
                 }
             }
         }
-        public virtual void InstantiateGameObject(GameObject newGameObject)
+        public void InstantiateGameObject(GameObjectBase newGameObject)
         {
             if (gameObjectsToInstantiate is null)
             {
-                gameObjectsToInstantiate = new List<GameObject>();
+                gameObjectsToInstantiate = new List<GameObjectBase>();
             }
-            if(newGameObject is null)
+            if (newGameObject is null)
             {
                 throw new NullReferenceException();
             }

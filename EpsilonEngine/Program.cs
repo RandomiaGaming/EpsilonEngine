@@ -11,24 +11,22 @@ public static class Program
     [STAThread]
     public static void Main()
     {
-        GameInterface gameInterface = new MonoGameInterface();
-        gameInterface.inputDriver = new MonoGameInputDriver(gameInterface);
-        gameInterface.graphicsDriver = new MonoGameGraphicsDriver(gameInterface);
+        AssetManager.LoadCodecs();
+        AssetManager.LoadAssets();
 
-        Game game = new Game(gameInterface);
+        GameInterfaceBase gameInterface = new MonoGameInterface();
 
-        game.assetManager = new AssetManager(game);
-        game.assetManager.RegisterCodec(new PNGAssetCodec(game.assetManager));
-        game.assetManager.LoadAssets();
-        game.renderer = new FlattenGameRenderer(game);
+        DefaultGame game = new DefaultGame(gameInterface);
 
         Pixel2DScene mainScene = new Pixel2DScene(game);
 
-        mainScene.renderer = new Pixel2DSceneRenderer(mainScene);
-
         for (int i = 0; i < 16; i++)
         {
-            Pixel2DGameObject ground = new Pixel2DGameObject(mainScene, new Vector2Int(i * 16, 0), ((PNGAsset)game.assetManager.GetAsset("Ground.png")).data);
+            Pixel2DGameObject ground = new Pixel2DGameObject(mainScene)
+            {
+                texture = ((PNGAsset)AssetManager.GetAsset("Ground.png")).data,
+                position = new Vector2Int(i * 16, 0)
+            };
 
             Pixel2DCollider groundCollider = new Pixel2DCollider(ground)
             {
@@ -43,7 +41,11 @@ public static class Program
             mainScene.InstantiateGameObject(ground);
         }
 
-        Pixel2DGameObject player = new Pixel2DGameObject(mainScene, new Vector2Int(128, 72), ((PNGAsset)game.assetManager.GetAsset("Ground.png")).data);
+        Pixel2DGameObject player = new Pixel2DGameObject(mainScene)
+        {
+            texture = ((PNGAsset)AssetManager.GetAsset("Ground.png")).data,
+            position = new Vector2Int(128, 72)
+        };
 
         Pixel2DCollider playerCollider = new Pixel2DCollider(player)
         {
