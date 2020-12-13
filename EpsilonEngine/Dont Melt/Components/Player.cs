@@ -1,6 +1,8 @@
 ﻿using EpsilonEngine.Modules.Pixel2D;
 using EpsilonEngine.Modules.PNGCodec;
-namespace EpsilonEngine.Projects.DontMelt
+using EpsilonEngine;
+
+namespace DontMelt
 {
     public sealed class Player : Pixel2DComponent
     {
@@ -28,9 +30,9 @@ namespace EpsilonEngine.Projects.DontMelt
         {
             rigidbody = pixel2DGameObject.GetComponent<Pixel2DRigidbody>();
             collider = pixel2DGameObject.GetComponent<Pixel2DCollider>();
-            PNGAsset playerSpriteSheet = (PNGAsset)AssetManager.GetAsset("Player.png");
-            facingRight = TextureHelper.SubTexture(playerSpriteSheet.data, new RectangleInt(new Vector2Int(0 * 16, 1 * 32), new Vector2Int(1 * 16, 2 * 32)));
-            facingLeft = TextureHelper.SubTexture(playerSpriteSheet.data, new RectangleInt(new Vector2Int(14 * 16, 0 * 32), new Vector2Int(15 * 16, 1 * 32)));
+            PNGAsset playerSpriteSheet = (PNGAsset)AssetHelper.GetAsset("Player.png");
+            facingLeft = TextureHelper.SubTexture(playerSpriteSheet.data, new RectangleInt(new Vector2Int(0, 0), new Vector2Int(16, 16)));
+            facingRight = TextureHelper.SubTexture(playerSpriteSheet.data, new RectangleInt(new Vector2Int(16, 0), new Vector2Int(32, 16)));
             pixel2DGameObject.texture = facingRight;
         }
         public override void Update()
@@ -40,7 +42,7 @@ namespace EpsilonEngine.Projects.DontMelt
             Move();
             Jump();
             Drag();
-            pixel2DScene.cameraPosition = pixel2DGameObject.position - new Vector2Int(256 / 2, 144 / 2);
+            pixel2DScene.cameraPosition = pixel2DGameObject.position - new Vector2Int(256 / 2, 144 / 2) + new Vector2Int(8, 8);
         }
         private void Jump()
         {
@@ -103,10 +105,10 @@ namespace EpsilonEngine.Projects.DontMelt
 
         private void Collision()
         {
-           bool touchingGroundOnBottom = false;
-           bool touchingGroundOnTop = false;
-           bool touchingGroundOnLeft = false;
-           bool touchingGroundOnRight = false;
+            bool touchingGroundOnBottom = false;
+            bool touchingGroundOnTop = false;
+            bool touchingGroundOnLeft = false;
+            bool touchingGroundOnRight = false;
             foreach (Pixel2DCollision c in collider.collisions)
             {
                 if (c.sideInfo.bottom)

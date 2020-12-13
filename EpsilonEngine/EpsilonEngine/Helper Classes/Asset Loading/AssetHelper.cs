@@ -5,7 +5,7 @@ using System;
 
 namespace EpsilonEngine
 {
-    public static class AssetManager
+    public static class AssetHelper
     {
         private static List<AssetBase> assets = new List<AssetBase>();
         private static List<CodecInfo> codecs = new List<CodecInfo>();

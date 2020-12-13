@@ -21,7 +21,7 @@ namespace EpsilonEngine
         }
         public static Texture SubTexture(Texture source, RectangleInt sourceRectangle)
         {
-            if (sourceRectangle.min.x < 0 || sourceRectangle.min.y < 0 || sourceRectangle.max.x >= source.width || sourceRectangle.max.y >= source.height)
+            if (sourceRectangle.min.x < 0 || sourceRectangle.min.y < 0 || sourceRectangle.max.x > source.width || sourceRectangle.max.y > source.height)
             {
                 throw new ArgumentException();
             }

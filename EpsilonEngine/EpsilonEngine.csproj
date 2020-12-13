@@ -32,8 +32,29 @@
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <EmbeddedResource Include="Dont Melt\Assets\Stages\A GREAT FALL.dmstage" />
+    <EmbeddedResource Include="Dont Melt\Assets\Stages\BOUNCING AROUND.dmstage" />
+    <EmbeddedResource Include="Dont Melt\Assets\Stages\EVER HIGHER WITHOUT REST.dmstage" />
+    <EmbeddedResource Include="Dont Melt\Assets\Stages\GETTING TRICKY.dmstage" />
+    <EmbeddedResource Include="Dont Melt\Assets\Stages\GHOST FORTRESS.dmstage" />
+    <EmbeddedResource Include="Dont Melt\Assets\Stages\GHOSTLY CANNONS.dmstage" />
+    <EmbeddedResource Include="Dont Melt\Assets\Stages\INTRO TO FLYING.dmstage" />
+    <EmbeddedResource Include="Dont Melt\Assets\Stages\ONE WAY LABERINTH.dmstage" />
+    <EmbeddedResource Include="Dont Melt\Assets\Stages\PRETTY FUN RIGHT.dmstage" />
+    <EmbeddedResource Include="Dont Melt\Assets\Stages\RYTHEM TEMPLE.dmstage" />
+    <EmbeddedResource Include="Dont Melt\Assets\Stages\SHORT AND TART.dmstage" />
+    <EmbeddedResource Include="Dont Melt\Assets\Stages\SPRING SEA.dmstage" />
+    <EmbeddedResource Include="Dont Melt\Assets\Stages\SWITCHY FUN.dmstage" />
+    <EmbeddedResource Include="Dont Melt\Assets\Stages\TETHER TEMPLE.dmstage" />
+    <EmbeddedResource Include="Dont Melt\Assets\Stages\THE BEGINING.dmstage" />
+    <EmbeddedResource Include="Dont Melt\Assets\Stages\THE DROP.dmstage" />
+    <EmbeddedResource Include="Dont Melt\Assets\Stages\THE FINNAL CASTEL.dmstage" />
+    <EmbeddedResource Include="Dont Melt\Assets\Stages\TRACKS OH MY.dmstage" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -46,6 +67,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Dont Melt\Components\Player.cs" />
+    <Compile Include="EpsilonEngine\Base Classes\SceneManagerBase.cs" />
     <Compile Include="EpsilonEngine\Base Classes\GameObjectBase.cs" />
     <Compile Include="EpsilonEngine\Base Classes\GameBase.cs" />
     <Compile Include="EpsilonEngine\Base Classes\SceneBase.cs" />
@@ -53,23 +77,24 @@
     <Compile Include="EpsilonEngine\Data Types\LockedMatrix.cs" />
     <Compile Include="EpsilonEngine\Helper Classes\Asset Loading\CodecInfo.cs" />
     <Compile Include="EpsilonEngine\Helper Classes\TextureHelper.cs" />
-    <Compile Include="Modules\MonoGame\MonoGameInterface.cs" />
+    <Compile Include="Interfaces\MonoGame\MonoGameInterface.cs" />
     <Compile Include="EpsilonEngine\Data Types\KeyboardState.cs" />
     <Compile Include="EpsilonEngine\Data Types\MouseButton.cs" />
     <Compile Include="EpsilonEngine\Data Types\MouseState.cs" />
     <Compile Include="EpsilonEngine\Base Classes\GameInterfaceBase.cs" />
-    <Compile Include="Modules\Default Modules\DefaultScene.cs" />
+    <Compile Include="Interfaces\Default Modules\DefaultScene.cs" />
     <Compile Include="EpsilonEngine\Helper Classes\ColorHelper.cs" />
     <Compile Include="EpsilonEngine\Helper Classes\RandomnessHelper.cs" />
-    <Compile Include="Modules\Pixel2D\Pixel2DComponent.cs" />
-    <Compile Include="Modules\Pixel2D\Pixel2DGameObject.cs" />
-    <Compile Include="Modules\Pixel2D\Pixel2DScene.cs" />
+    <Compile Include="Interfaces\Pixel2D\Pixel2DSceneManager.cs" />
+    <Compile Include="Interfaces\Pixel2D\Pixel2DComponent.cs" />
+    <Compile Include="Interfaces\Pixel2D\Pixel2DGameObject.cs" />
+    <Compile Include="Interfaces\Pixel2D\Pixel2DScene.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="EpsilonEngine\Helper Classes\MathHelper.cs" />
     <Compile Include="EpsilonEngine\Helper Classes\GradientHelper.cs" />
-    <Compile Include="Modules\Default Modules\DefaultGame.cs" />
+    <Compile Include="Interfaces\Default Modules\DefaultGame.cs" />
     <Compile Include="EpsilonEngine\Base Classes\ComponentBase.cs" />
-    <Compile Include="Modules\Default Modules\DefaultGameObject.cs" />
+    <Compile Include="Interfaces\Default Modules\DefaultGameObject.cs" />
     <Compile Include="EpsilonEngine\Data Types\Vector2Int.cs" />
     <Compile Include="EpsilonEngine\Data Types\Color.cs" />
     <Compile Include="EpsilonEngine\Data Types\AudioClip.cs" />
@@ -78,26 +103,72 @@
     <Compile Include="EpsilonEngine\Data Types\SideInfo.cs" />
     <Compile Include="EpsilonEngine\Data Types\KeyboardButton.cs" />
     <Compile Include="EpsilonEngine\Data Types\Texture.cs" />
-    <Compile Include="Dont Melt\Components\Player.cs" />
-    <Compile Include="Modules\MonoGame\MonoGameInterfaceGame.cs" />
+    <Compile Include="Interfaces\MonoGame\MonoGameInterfaceGame.cs" />
     <Compile Include="EpsilonEngine\Helper Classes\Asset Loading\AssetBase.cs" />
-    <Compile Include="Modules\PNGCodec\PNGAsset.cs" />
+    <Compile Include="Interfaces\PNGCodec\PNGAsset.cs" />
     <Compile Include="EpsilonEngine\Helper Classes\Asset Loading\AssetCodecAttribute.cs" />
     <Compile Include="EpsilonEngine\Helper Classes\Asset Loading\AssetHelper.cs" />
-    <Compile Include="Modules\Pixel2D\Physics\Pixel2DCollider.cs" />
-    <Compile Include="Modules\Pixel2D\Physics\Pixel2DRigidbody.cs" />
-    <Compile Include="Modules\Pixel2D\Physics\Pixel2DCollision.cs" />
-    <Compile Include="Modules\Pixel2D\Physics\Pixel2DOverlap.cs" />
-    <Compile Include="Modules\PNGCodec\PNGAssetCodec.cs" />
+    <Compile Include="Interfaces\Pixel2D\Physics\Pixel2DCollider.cs" />
+    <Compile Include="Interfaces\Pixel2D\Physics\Pixel2DRigidbody.cs" />
+    <Compile Include="Interfaces\Pixel2D\Physics\Pixel2DCollision.cs" />
+    <Compile Include="Interfaces\Pixel2D\Physics\Pixel2DOverlap.cs" />
+    <Compile Include="Interfaces\PNGCodec\PNGAssetCodec.cs" />
     <Compile Include="EpsilonEngine\Data Types\Vector3.cs" />
     <Compile Include="EpsilonEngine\Data Types\Vector3Int.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Dont Melt\Assets\Audio Clips\Jump.mp3" />
-    <EmbeddedResource Include="Dont Melt\Assets\Textures\Player.png" />
-    <EmbeddedResource Include="Dont Melt\Assets\Textures\Ground.png" />
+    <EmbeddedResource Include="Dont Melt\Assets\Textures\Item Textures\Player.png" />
+    <EmbeddedResource Include="Dont Melt\Assets\Audio Clips\Music\Don%27t Melt - Rain Drops!.mp3" />
+    <EmbeddedResource Include="Dont Melt\Assets\Audio Clips\Music\Don%27t Melt! - Beach!.mp3" />
+    <EmbeddedResource Include="Dont Melt\Assets\Audio Clips\Music\Don%27t Melt! - Calm!.mp3" />
+    <EmbeddedResource Include="Dont Melt\Assets\Audio Clips\Music\Don%27t Melt! - Dubstep!.mp3" />
+    <EmbeddedResource Include="Dont Melt\Assets\Audio Clips\Music\Don%27t Melt! - Expert!.mp3" />
+    <EmbeddedResource Include="Dont Melt\Assets\Audio Clips\Music\Don%27t Melt! - Funky!.mp3" />
+    <EmbeddedResource Include="Dont Melt\Assets\Audio Clips\Music\Don%27t Melt! - Hard!.mp3" />
+    <EmbeddedResource Include="Dont Melt\Assets\Audio Clips\Music\Don%27t Melt! - Mythic!.mp3" />
+    <EmbeddedResource Include="Dont Melt\Assets\Audio Clips\Music\Don%27t Melt! - Normal!.mp3" />
+    <EmbeddedResource Include="Dont Melt\Assets\Audio Clips\Music\Don%27t Melt! - Peaceful!.mp3" />
+    <EmbeddedResource Include="Dont Melt\Assets\Audio Clips\Sound FX\Jump.mp3" />
+    <EmbeddedResource Include="Dont Melt\Assets\Textures\Item Textures\Arrow.png" />
+    <EmbeddedResource Include="Dont Melt\Assets\Textures\Item Textures\BounceBox.png" />
+    <EmbeddedResource Include="Dont Melt\Assets\Textures\Item Textures\CheckPoint.png" />
+    <EmbeddedResource Include="Dont Melt\Assets\Textures\Item Textures\GhostBlock.png" />
+    <EmbeddedResource Include="Dont Melt\Assets\Textures\Item Textures\GoalGate.png" />
+    <EmbeddedResource Include="Dont Melt\Assets\Textures\Item Textures\Ground.png" />
+    <EmbeddedResource Include="Dont Melt\Assets\Textures\Item Textures\Lava.png" />
+    <EmbeddedResource Include="Dont Melt\Assets\Textures\Item Textures\LavaBubble.png" />
+    <EmbeddedResource Include="Dont Melt\Assets\Textures\Item Textures\LavaCannon.png" />
+    <EmbeddedResource Include="Dont Melt\Assets\Textures\Item Textures\NoJump.png" />
+    <EmbeddedResource Include="Dont Melt\Assets\Textures\Item Textures\OneWayGate.png" />
+    <EmbeddedResource Include="Dont Melt\Assets\Textures\Item Textures\OnOffBlock.png" />
+    <EmbeddedResource Include="Dont Melt\Assets\Textures\Item Textures\OnOffSpike.png" />
+    <EmbeddedResource Include="Dont Melt\Assets\Textures\Item Textures\PlayerCannon.png" />
+    <EmbeddedResource Include="Dont Melt\Assets\Textures\Item Textures\Spiny.png" />
+    <EmbeddedResource Include="Dont Melt\Assets\Textures\Item Textures\Spring.png" />
+    <EmbeddedResource Include="Dont Melt\Assets\Textures\Item Textures\Switch.png" />
+    <EmbeddedResource Include="Dont Melt\Assets\Textures\Item Textures\Tether.png" />
+    <EmbeddedResource Include="Dont Melt\Assets\Textures\Item Textures\Track.png" />
+    <EmbeddedResource Include="Dont Melt\Assets\Textures\UI Textures\All.png" />
+    <EmbeddedResource Include="Dont Melt\Assets\Textures\UI Textures\Arrow.png" />
+    <EmbeddedResource Include="Dont Melt\Assets\Textures\UI Textures\Back.png" />
+    <EmbeddedResource Include="Dont Melt\Assets\Textures\UI Textures\Brush.png" />
+    <EmbeddedResource Include="Dont Melt\Assets\Textures\UI Textures\Bucket.png" />
+    <EmbeddedResource Include="Dont Melt\Assets\Textures\UI Textures\Button.png" />
+    <EmbeddedResource Include="Dont Melt\Assets\Textures\UI Textures\Dot.png" />
+    <EmbeddedResource Include="Dont Melt\Assets\Textures\UI Textures\Eraser.png" />
+    <EmbeddedResource Include="Dont Melt\Assets\Textures\UI Textures\menuicon.png" />
+    <EmbeddedResource Include="Dont Melt\Assets\Textures\UI Textures\MoreItems.png" />
+    <EmbeddedResource Include="Dont Melt\Assets\Textures\UI Textures\PauseButton.png" />
+    <EmbeddedResource Include="Dont Melt\Assets\Textures\UI Textures\Play.png" />
+    <EmbeddedResource Include="Dont Melt\Assets\Textures\UI Textures\Reset.png" />
+    <EmbeddedResource Include="Dont Melt\Assets\Textures\UI Textures\Selection.png" />
+    <EmbeddedResource Include="Dont Melt\Assets\Textures\UI Textures\SettingsGear.png" />
+    <EmbeddedResource Include="Dont Melt\Assets\Textures\UI Textures\ToggleValue.png" />
+    <EmbeddedResource Include="Dont Melt\Assets\Textures\UI Textures\Undo.png" />
+    <EmbeddedResource Include="Dont Melt\Assets\Textures\UI Textures\White Square.png" />
+    <EmbeddedResource Include="Dont Melt\Assets\Textures\UI Textures\WorldArrow.png" />
+    <Content Include="Icon.ico" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MonoGame.Framework.DesktopGL.3.8.0.1641\build\MonoGame.Framework.DesktopGL.targets" Condition="Exists('..\packages\MonoGame.Framework.DesktopGL.3.8.0.1641\build\MonoGame.Framework.DesktopGL.targets')" />
   <ProjectExtensions>
