@@ -4,7 +4,7 @@ using System;
 
 namespace EpsilonEngine.Interfaces.MonoGame
 {
-    public class MonoGameInterfaceGame : Game
+    public class MonoGameInterfaceGame : Microsoft.Xna.Framework.Game
     {
         private readonly MonoGameInterface gameInterface = null;
         public MonoGameInterfaceGame(MonoGameInterface gameInterface)

@@ -1,10 +1,10 @@
 ﻿using System;
 namespace EpsilonEngine
 {
-    public class AudioClip
+    public struct AudioClip
     {
-        public readonly int sampleRate = 48000;
-        private readonly byte[] data = new byte[0];
+        public int sampleRate;
+        public byte[] data;
         public AudioClip(int sampleRate, byte[] data)
         {
             if(sampleRate <= 0)
@@ -15,12 +15,8 @@ namespace EpsilonEngine
             {
                 throw new ArgumentException();
             }
-            this.data = (byte[])data.Clone();
+            this.data = data;
             this.sampleRate = sampleRate;
-        }
-        public byte[] GetData()
-        {
-            return (byte[])data.Clone();
         }
     }
 }

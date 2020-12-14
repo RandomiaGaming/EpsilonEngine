@@ -1,8 +1,6 @@
 ﻿using System;
 using EpsilonEngine.Interfaces.MonoGame;
-using EpsilonEngine.Modules.Pixel2D;
 using System.Collections.Generic;
-using EpsilonEngine.Modules.PNGCodec;
 using EpsilonEngine;
 
 namespace DontMelt
@@ -12,27 +10,26 @@ namespace DontMelt
         [STAThread]
         public static void Main()
         {
-            AssetHelper.LoadCodecs();
-            AssetHelper.LoadAssets();
+            GameInterface gameInterface = new MonoGameInterface();
 
-            GameInterfaceBase gameInterface = new MonoGameInterface();
+            Game game = new Game(gameInterface);
 
-            DefaultGame game = new DefaultGame(gameInterface);
+            game.Initialize();
 
-            Pixel2DScene mainScene = new Pixel2DScene(game);
+            Scene mainScene = new Scene(game);
 
             for (int i = 0; i < 16; i++)
             {
-                Pixel2DGameObject ground = new Pixel2DGameObject(mainScene);
-                ground.texture = ((PNGAsset)AssetHelper.GetAsset("Ground.png")).data;
+                GameObject ground = new GameObject(mainScene);
+                ground.texture = ((TextureAsset)game.assetManager.GetAssetByName("Ground")).data;
                 ground.position = new Vector2Int(i * 16, 0);
 
-                Pixel2DCollider groundCollider = new Pixel2DCollider(ground)
+                Collider groundCollider = new Collider(ground)
                 {
                     offset = Vector2Int.Zero,
                     sideCollision = SideInfo.True,
-                    collisions = new List<Pixel2DCollision>(),
-                    overlaps = new List<Pixel2DOverlap>(),
+                    collisions = new List<Collision>(),
+                    overlaps = new List<Overlap>(),
                     shape = new RectangleInt(Vector2Int.Zero, new Vector2Int(16, 16))
                 };
 
@@ -40,21 +37,21 @@ namespace DontMelt
                 mainScene.InstantiateGameObject(ground);
             }
 
-            Pixel2DGameObject player = new Pixel2DGameObject(mainScene)
+            GameObject player = new GameObject(mainScene)
             {
                 position = new Vector2Int(128, 72)
             };
 
-            Pixel2DCollider playerCollider = new Pixel2DCollider(player)
+            Collider playerCollider = new Collider(player)
             {
                 offset = new Vector2Int(0, 0),
                 sideCollision = SideInfo.True,
-                collisions = new List<Pixel2DCollision>(),
-                overlaps = new List<Pixel2DOverlap>(),
+                collisions = new List<Collision>(),
+                overlaps = new List<Overlap>(),
                 shape = new RectangleInt(new Vector2Int(2, 2), new Vector2Int(14, 14))
             };
 
-            Pixel2DRigidbody playerRigidbody = new Pixel2DRigidbody(player);
+            Rigidbody playerRigidbody = new Rigidbody(player);
 
             Player playerComponent = new Player(player);
 

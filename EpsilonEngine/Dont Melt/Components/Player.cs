@@ -1,10 +1,7 @@
-﻿using EpsilonEngine.Modules.Pixel2D;
-using EpsilonEngine.Modules.PNGCodec;
-using EpsilonEngine;
-
+﻿using EpsilonEngine;
 namespace DontMelt
 {
-    public sealed class Player : Pixel2DComponent
+    public sealed class Player : Component
     {
         private Texture facingRight = null;
         private Texture facingLeft = null;
@@ -18,22 +15,22 @@ namespace DontMelt
         private const double dragForce = 8;
         private const double gravityForce = 9.80665;
 
-        private Pixel2DRigidbody rigidbody = null;
-        private Pixel2DCollider collider = null;
+        private Rigidbody rigidbody = null;
+        private Collider collider = null;
 
-        public Player(Pixel2DGameObject pixel2DGameObject) : base(pixel2DGameObject)
+        public Player(GameObject pixel2DGameObject) : base(pixel2DGameObject)
         {
 
         }
 
         public override void Initialize()
         {
-            rigidbody = pixel2DGameObject.GetComponent<Pixel2DRigidbody>();
-            collider = pixel2DGameObject.GetComponent<Pixel2DCollider>();
-            PNGAsset playerSpriteSheet = (PNGAsset)AssetHelper.GetAsset("Player.png");
+            rigidbody = gameObject.GetComponent<Rigidbody>();
+            collider = gameObject.GetComponent<Collider>();
+            TextureAsset playerSpriteSheet = (TextureAsset)game.assetManager.GetAssetByName("Player");
             facingLeft = TextureHelper.SubTexture(playerSpriteSheet.data, new RectangleInt(new Vector2Int(0, 0), new Vector2Int(16, 16)));
             facingRight = TextureHelper.SubTexture(playerSpriteSheet.data, new RectangleInt(new Vector2Int(16, 0), new Vector2Int(32, 16)));
-            pixel2DGameObject.texture = facingRight;
+            gameObject.texture = facingRight;
         }
         public override void Update()
         {
@@ -42,7 +39,7 @@ namespace DontMelt
             Move();
             Jump();
             Drag();
-            pixel2DScene.cameraPosition = pixel2DGameObject.position - new Vector2Int(256 / 2, 144 / 2) + new Vector2Int(8, 8);
+            scene.cameraPosition = gameObject.position - new Vector2Int(256 / 2, 144 / 2) + new Vector2Int(8, 8);
         }
         private void Jump()
         {
@@ -71,12 +68,12 @@ namespace DontMelt
             if (dDown && !adown)
             {
                 moveAxis = 1;
-                pixel2DGameObject.texture = facingRight;
+                gameObject.texture = facingRight;
             }
             else if (!dDown && adown)
             {
                 moveAxis = -1;
-                pixel2DGameObject.texture = facingLeft;
+                gameObject.texture = facingLeft;
             }
 
             if (rigidbody.velocity.x < maxMoveSpeed && moveAxis == 1)
@@ -109,7 +106,7 @@ namespace DontMelt
             bool touchingGroundOnTop = false;
             bool touchingGroundOnLeft = false;
             bool touchingGroundOnRight = false;
-            foreach (Pixel2DCollision c in collider.collisions)
+            foreach (Collision c in collider.collisions)
             {
                 if (c.sideInfo.bottom)
                 {

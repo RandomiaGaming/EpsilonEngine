@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace EpsilonEngine.Interfaces.MonoGame
 {
-    public sealed class MonoGameInterface : GameInterfaceBase
+    public sealed class MonoGameInterface : GameInterface
     {
         public readonly MonoGameInterfaceGame monoGameInterfaceGame = null;
 
@@ -17,19 +17,7 @@ namespace EpsilonEngine.Interfaces.MonoGame
         {
             monoGameInterfaceGame = new MonoGameInterfaceGame(this);
         }
-        public MonoGameInterface(GameBase game) : base(game)
-        {
-            monoGameInterfaceGame = new MonoGameInterfaceGame(this);
-        }
-        public override void Run()
-        {
-            if(game is null)
-            {
-                throw new NullReferenceException();
-            }
-            Run(game);
-        }
-        public override void Run(GameBase game)
+        public override void Run(Game game)
         {
             if (game is null)
             {
@@ -40,7 +28,6 @@ namespace EpsilonEngine.Interfaces.MonoGame
                 throw new ArgumentException();
             }
             this.game = game;
-            game.Initialize();
             UpdateInput();
             monoGameInterfaceGame.Run();
         }
