@@ -5,7 +5,7 @@ namespace EpsilonEngine
     public sealed class BianaryAsset : AssetBase
     {
         public readonly byte[] data = null;
-        public BianaryAsset(Stream stream, string name, string extension, string resourceName, byte[] data) : base(stream, name, extension, resourceName)
+        public BianaryAsset(Stream sourceStream, string fullName, byte[] data) : base(sourceStream, fullName)
         {
             if(data is null)
             {

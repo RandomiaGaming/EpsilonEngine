@@ -4,52 +4,28 @@ namespace EpsilonEngine
 {
     public abstract class AssetBase
     {
-        public readonly Stream stream = null;
-        public readonly string name = "";
-        public readonly string extension = "";
-        public readonly string resourceName = "";
-        public AssetBase(Stream stream, string name, string extension, string resourceName)
+        public readonly Stream sourceStream = null;
+        public readonly string fullName = "";
+        public AssetBase(Stream sourceStream, string fullName)
         {
-            if(stream is null)
+            if(sourceStream is null)
             {
                 throw new NullReferenceException();
             }
-            if(stream.Length == 0)
-            {
-                throw new ArgumentException();
-            }
-            this.stream = stream;
-            if(name is null)
+            this.sourceStream = sourceStream;
+            if(fullName is null)
             {
                 throw new NullReferenceException();
             }
-            if(name == "" || name.Contains("."))
+            if(fullName == "")
             {
                 throw new ArgumentException();
             }
-            this.name = name;
-            if (extension is null)
-            {
-                throw new NullReferenceException();
-            }
-            if (extension == "" || extension.Contains("."))
-            {
-                throw new ArgumentException();
-            }
-            this.extension = extension;
-            if(resourceName is null)
-            {
-                throw new NullReferenceException();
-            }
-            if(resourceName == "")
-            {
-                throw new ArgumentException();
-            }
-            this.resourceName = resourceName;
+            this.fullName = fullName;
         }
         public sealed override string ToString()
         {
-            return $"({name})";
+            return $"({fullName})";
         }
         public sealed override bool Equals(object obj)
         {
@@ -57,11 +33,11 @@ namespace EpsilonEngine
             {
                 return false;
             }
-            return name == ((AssetBase)obj).name;
+            return fullName == ((AssetBase)obj).fullName;
         }
         public sealed override int GetHashCode()
         {
-            return name.GetHashCode();
+            return fullName.GetHashCode();
         }
     }
 }

@@ -4,7 +4,7 @@ namespace EpsilonEngine
     public sealed class TextAsset : AssetBase
     {
         public readonly string data = null;
-        public TextAsset(Stream stream, string name, string extension, string resourceName, string data) : base(stream, name, extension, resourceName)
+        public TextAsset(Stream sourceStream, string fullName, string data) : base(sourceStream, fullName)
         {
             this.data = data;
         }
