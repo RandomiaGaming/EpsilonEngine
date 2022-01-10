@@ -3,12 +3,19 @@ namespace EpsilonEngine
 {
     public abstract class GameManager
     {
-        public bool destroyed { get; private set; } = false;
+        public bool destroyed
+        {
+            get
+            {
+                return _destroyed;
+            }
+        }
+        private bool _destroyed = false;
         public Game game
         {
             get
             {
-                if (!destroyed)
+                if (_destroyed)
                 {
                     throw new Exception("GameManager has been destroyed.");
                 }
@@ -20,84 +27,88 @@ namespace EpsilonEngine
         {
             if (game is null)
             {
-                throw new NullReferenceException();
+                throw new Exception("game was null.");
             }
             _game = game;
             _game.AddGameManager(this);
         }
-        public void CallDestroy()
+        #region Methods
+        public void Destroy()
         {
-            if (destroyed)
+            if (_destroyed)
             {
                 throw new Exception("GameManager has been destroyed.");
             }
-            Destroy();
+            onDestroy();
             _game.RemoveGameManager(this);
-            destroyed = true;
+            _destroyed = true;
         }
-        public void CallInitialize()
+        internal void Initialize()
         {
-            if (destroyed)
+            if (_destroyed)
             {
                 throw new Exception("GameManager has been destroyed.");
             }
-            Initialize();
+            initialize();
         }
-        public void CallPrepare()
+        internal void Prepare()
         {
-            if (destroyed)
+            if (_destroyed)
             {
                 throw new Exception("GameManager has been destroyed.");
             }
-            Prepare();
+            prepare();
         }
-        public void CallUpdate()
+        internal void Update()
         {
-            if (destroyed)
+            if (_destroyed)
             {
                 throw new Exception("GameManager has been destroyed.");
             }
-            Update();
+            update();
         }
-        public void CallCleanup()
+        internal void Cleanup()
         {
-            if (destroyed)
+            if (_destroyed)
             {
                 throw new Exception("GameManager has been destroyed.");
             }
-            Cleanup();
+            cleanup();
         }
-        public RenderTexture CallRender()
+        internal void Render()
         {
-            if (destroyed)
+            if (_destroyed)
             {
                 throw new Exception("GameManager has been destroyed.");
             }
-            return Render();
+            render();
         }
-        protected virtual void Destroy()
+        #endregion
+        #region Overridables
+        protected virtual void onDestroy()
         {
 
         }
-        protected virtual void Initialize()
+        protected virtual void initialize()
         {
 
         }
-        protected virtual void Prepare()
+        protected virtual void prepare()
         {
 
         }
-        protected virtual void Update()
+        protected virtual void update()
         {
 
         }
-        protected virtual void Cleanup()
+        protected virtual void cleanup()
         {
 
         }
-        protected virtual RenderTexture Render()
+        protected virtual void render()
         {
-            return new RenderTexture();
+
         }
+        #endregion
     }
 }

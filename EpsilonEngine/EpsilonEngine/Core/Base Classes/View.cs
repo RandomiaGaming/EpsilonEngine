@@ -2,12 +2,9 @@
 using System.Collections.Generic;
 namespace EpsilonEngine
 {
-    public class Scene
+    public abstract class View
     {
         public bool destroyed { get; private set; } = false;
-        public Point cameraPosition = Point.Zero;
-        private List<GameObject> gameObjects = new List<GameObject>();
-        private List<SceneManager> sceneManagers = new List<SceneManager>();
         public Game game
         {
             get
@@ -19,8 +16,8 @@ namespace EpsilonEngine
                 return _game;
             }
         }
-        private Game _game = null;
-        public Scene(Game game)
+        private readonly Game _game = null;
+        public Veiw(Game game)
         {
             if (game is null)
             {

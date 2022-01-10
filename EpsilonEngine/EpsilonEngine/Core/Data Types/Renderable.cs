@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace EpsilonEngine
 {
     public abstract class Renderable
@@ -29,10 +24,6 @@ namespace EpsilonEngine
         {
             get
             {
-                if (!destroyed)
-                {
-                    throw new Exception("GameManager has been destroyed.");
-                }
                 return _game;
             }
         }

@@ -4,105 +4,25 @@ namespace EpsilonEngine
 {
     public class Game
     {
-        public bool exited { get; private set; } = false;
-        public Point viewportSize = new Point(256, 144);
-        private List<Scene> scenes = new List<Scene>();
-        private List<GameManager> gameManagers = new List<GameManager>();
-        private InputManager _inputManager = null;
-        private GameInterface _monoGameInterface = null;
+        public bool destroyed { get; private set; } = false;
+        private List<View> _views = new List<View>();
+        private List<GameManager> _gameManagers = new List<GameManager>();
+        private GameInterface _gameInterface = null;
+        public string name = "Unnamed Game";
+        public Game(GameInterface gameInterface)
+        {
+            if (gameInterface is null)
+            {
+                throw new Exception("gameInterface cannot be null.");
+            }
+            _gameInterface = gameInterface;
+            _gameInterface.SetGame(this);
+        }
 
-        private string _name = "Unnamed Game";
-        public string name
-        {
-            get
-            {
-                return _name;
-            }
-        }
-        public InputManager inputManager
-        {
-            get
-            {
-                return _inputManager;
-            }
-        }
-        public Game(string name)
-        {
-            if (name is null)
-            {
-                throw new Exception("Name cannot be null.");
-            }
-            _name = name;
-            _inputManager = new InputManager(this);
-        }
-        public void Quit()
-        {
-            if (exited)
-            {
-                throw new Exception("Game has been exited.");
-            }
-            foreach (GameManager gameManager in gameManagers)
-            {
-                gameManager.CallDestroy();
-            }
-            foreach (Scene scene in scenes)
-            {
-                scene.Destroy();
-            }
-            exited = true;
-        }
-        public RenderTexture Tick()
-        {
-            if (exited)
-            {
-                throw new Exception("Game has been quit.");
-            }
-            foreach (GameManager gameManager in gameManagers)
-            {
-                gameManager.CallPrepare();
-            }
-            foreach (Scene scene in scenes)
-            {
-                scene.Prepare();
-            }
-            foreach (GameManager gameManager in gameManagers)
-            {
-                gameManager.CallUpdate();
-            }
-            foreach (Scene scene in scenes)
-            {
-                scene.Update();
-            }
-            foreach (GameManager gameManager in gameManagers)
-            {
-                gameManager.CallCleanup();
-            }
-            foreach (Scene scene in scenes)
-            {
-                scene.Cleanup();
-            }
-            return Render();
-        }
-        public RenderTexture Render()
-        {
-            if (exited)
-            {
-                throw new Exception("Game has been quit.");
-            }
-            RenderTexture output = new RenderTexture();
-            foreach (GameManager gameManager in gameManagers)
-            {
-                output.Merge(gameManager.CallRender());
-            }
-            foreach (Scene scene in scenes)
-            {
-                output.Merge(scene.Render());
-            }
-            return output;
-        }
+
         public GameManager GetGameManager(int index)
         {
-            if (exited)
+            if (destroyed)
             {
                 throw new Exception("Game has been exited.");
             }
@@ -114,7 +34,7 @@ namespace EpsilonEngine
         }
         public GameManager GetGameManager(Type type)
         {
-            if (exited)
+            if (destroyed)
             {
                 throw new Exception("Game has been exited.");
             }
@@ -137,7 +57,7 @@ namespace EpsilonEngine
         }
         public T GetGameManager<T>() where T : GameManager
         {
-            if (exited)
+            if (destroyed)
             {
                 throw new Exception("Game has been exited.");
             }
@@ -152,7 +72,7 @@ namespace EpsilonEngine
         }
         public List<GameManager> GetGameManagers()
         {
-            if (exited)
+            if (destroyed)
             {
                 throw new Exception("Game has been exited.");
             }
@@ -160,7 +80,7 @@ namespace EpsilonEngine
         }
         public List<GameManager> GetGameManagers(Type type)
         {
-            if (exited)
+            if (destroyed)
             {
                 throw new Exception("Game has been exited.");
             }
@@ -184,7 +104,7 @@ namespace EpsilonEngine
         }
         public List<T> GetGameManagers<T>() where T : GameManager
         {
-            if (exited)
+            if (destroyed)
             {
                 throw new Exception("Game has been exited.");
             }
@@ -200,7 +120,7 @@ namespace EpsilonEngine
         }
         public int GetGameManagerCount()
         {
-            if (exited)
+            if (destroyed)
             {
                 throw new Exception("Game has been exited.");
             }
@@ -208,7 +128,7 @@ namespace EpsilonEngine
         }
         public void RemoveGameManager(GameManager gameManager)
         {
-            if (exited)
+            if (destroyed)
             {
                 throw new Exception("Game has been exited.");
             }
@@ -232,7 +152,7 @@ namespace EpsilonEngine
         }
         public void AddGameManager(GameManager gameManager)
         {
-            if (exited)
+            if (destroyed)
             {
                 throw new Exception("Game has been exited.");
             }
@@ -254,100 +174,122 @@ namespace EpsilonEngine
             gameManagers.Add(gameManager);
             gameManager.CallInitialize();
         }
-        public Scene GetScene(int index)
+        public void SetScene(Scene scene)
         {
-            if (exited)
-            {
-                throw new Exception("Game has been exited.");
-            }
-            if (index < 0 || index >= scenes.Count)
-            {
-                throw new ArgumentException();
-            }
-            return scenes[index];
-        }
-        public List<Scene> GetScenes()
-        {
-            if (exited)
-            {
-                throw new Exception("Game has been exited.");
-            }
-            return new List<Scene>(scenes);
-        }
-        public int GetSceneCount()
-        {
-            if (exited)
-            {
-                throw new Exception("Game has been exited.");
-            }
-            return scenes.Count;
-        }
-        public void RemoveScene(Scene scene)
-        {
-            if (exited)
+            if (destroyed)
             {
                 throw new Exception("Game has been exited.");
             }
             if (scene is null)
             {
-                throw new Exception("Scene was null.");
-            }
-            if (scene.game != this)
-            {
-                throw new Exception("Scene belongs on a different Game.");
-            }
-            for (int i = 0; i < scenes.Count; i++)
-            {
-                if (scenes[i] == scene)
-                {
-                    scenes.RemoveAt(i);
-                    return;
-                }
-            }
-            throw new Exception("Scene not found on this Game.");
-        }
-        public void AddScene(Scene scene)
-        {
-            if (exited)
-            {
-                throw new Exception("Game has been exited.");
-            }
-            if (scene is null)
-            {
-                throw new Exception("Scene was null.");
+                this.scene = null;
+                return;
             }
             if (scene.game != this)
             {
                 throw new Exception("Scene belongs to a different Game.");
             }
-            for (int i = 0; i < scenes.Count; i++)
-            {
-                if (scenes[i] == scene)
-                {
-                    throw new Exception("Scene was already added.");
-                }
-            }
-            scenes.Add(scene);
+            this.scene = scene;
         }
-        public void SetMonoGameInterface(GameInterface monoGameInterface)
+
+        #region Methods
+        public void Initialize()
         {
-            if (monoGameInterface is null)
-            {
-                throw new Exception("monoGameInterface cannot be set to null.");
-            }
-            if (monoGameInterface.game != this)
-            {
-                throw new Exception("monoGameInterface belongs to a different Game.");
-            }
-            _monoGameInterface = monoGameInterface;
+
         }
-        public void Run()
+        public void Destroy()
         {
-            if(_monoGameInterface is null)
+            if (destroyed)
             {
-                throw new Exception("Cannot run game until MonoGameInterface is set. Please create a MonoGameInterface for this Game.");
+                throw new Exception("Game has been exited.");
             }
-            _monoGameInterface.Run();
+            foreach (GameManager gameManager in _gameManagers)
+            {
+                gameManager.Destroy();
+            }
+            foreach (Scene scene in _scenes)
+            {
+                scene.Destroy();
+            }
+            destroyed = true;
         }
+        public void Update()
+        {
+            if (destroyed)
+            {
+                throw new Exception("Game has been quit.");
+            }
+            foreach (GameManager gameManager in gameManagers)
+            {
+                gameManager.CallPrepare();
+            }
+            scene.Prepare();
+            canvas.Prepare();
+            foreach (GameManager gameManager in gameManagers)
+            {
+                gameManager.CallUpdate();
+            }
+            scene.Update();
+            canvas.Prepare();
+            foreach (GameManager gameManager in gameManagers)
+            {
+                gameManager.CallCleanup();
+            }
+            foreach (Scene scene in scenes)
+            {
+                scene.Cleanup();
+            }
+            return Render();
+        }
+        public void Render()
+        {
+            if (destroyed)
+            {
+                throw new Exception("Game has been quit.");
+            }
+            RenderTexture output = new RenderTexture();
+            foreach (GameManager gameManager in gameManagers)
+            {
+                output.Merge(gameManager.CallRender());
+            }
+            foreach (Scene scene in scenes)
+            {
+                output.Merge(scene.Render());
+            }
+            return output;
+        }
+        #endregion
+        #region Overrides
+        public override string ToString()
+        {
+            return $"EpsilonEngine.Game({name})";
+        }
+        #endregion
+        #region Overridables
+        protected virtual void onDestroy()
+        {
+
+        }
+        protected virtual void initialize()
+        {
+
+        }
+        protected virtual void prepare()
+        {
+
+        }
+        protected virtual void update()
+        {
+
+        }
+        protected virtual void cleanup()
+        {
+
+        }
+        protected virtual void render()
+        {
+
+        }
+        #endregion
     }
 }

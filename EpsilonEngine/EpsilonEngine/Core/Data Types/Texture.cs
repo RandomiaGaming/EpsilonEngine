@@ -1,7 +1,7 @@
 using System;
 namespace EpsilonEngine
 {
-    public struct Texture
+    public sealed class Texture : Renderable
     {
         public int width { get; private set; }
         public int height { get; private set; }

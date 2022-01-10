@@ -2,7 +2,7 @@
 
 namespace EpsilonEngine
 {
-    public class UnlockedMatrix<T> where T : class, new()
+    public class UnlockedMatrix<T> where T : new()
     {
         private struct ElementLocationPair
         {
@@ -48,7 +48,7 @@ namespace EpsilonEngine
                 }
             }
 
-            return null;
+            return default(T);
         }
 
         public void ClearBuffer()

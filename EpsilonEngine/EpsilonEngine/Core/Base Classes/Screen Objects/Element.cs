@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 namespace EpsilonEngine
 {
-    public class GameObject
+    public class Element
     {
         public bool destroyed { get; private set; } = false;
         public Rect bounds;

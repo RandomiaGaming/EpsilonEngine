@@ -56,13 +56,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="EpsilonEngine\Core\Base Classes\Screen Objects\ElementBehavior.cs" />
-    <Compile Include="EpsilonEngine\Core\Base Classes\Screen Objects\Element.cs" />
-    <Compile Include="EpsilonEngine\Core\Base Classes\Screen Objects\Canvas.cs" />
-    <Compile Include="EpsilonEngine\Core\Base Classes\Screen Objects\CanvasManager.cs" />
     <Compile Include="EpsilonEngine\Core\Base Classes\Game.cs" />
     <Compile Include="EpsilonEngine\Core\Base Classes\GameManager.cs" />
-    <Compile Include="EpsilonEngine\Core\Base Classes\Veiw.cs" />
+    <Compile Include="EpsilonEngine\Core\Base Classes\View.cs" />
     <Compile Include="EpsilonEngine\Core\Data Types\RenderInstruction.cs" />
     <Compile Include="EpsilonEngine\Core\Data Types\RenderTexture.cs" />
     <Compile Include="EpsilonEngine\Core\Data Types\Structs\Color.cs" />
@@ -84,8 +80,9 @@
     <Compile Include="EpsilonEngine\Core\Helper Classes\InputHelper.cs" />
     <Compile Include="EpsilonEngine\Core\Helper Classes\MathHelper.cs" />
     <Compile Include="EpsilonEngine\Core\Helper Classes\RandomnessHelper.cs" />
-    <Compile Include="EpsilonEngine\Core\Base Classes\MonoGameInterface.cs" />
+    <Compile Include="EpsilonEngine\Core\Base Classes\GameInterface.cs" />
     <Compile Include="Test Game\Program.cs" />
+    <Compile Include="Test Game\TestGame.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Test Game\Assets\Cat.png" />
