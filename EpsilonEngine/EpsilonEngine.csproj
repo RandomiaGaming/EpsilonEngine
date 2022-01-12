@@ -56,9 +56,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="EpsilonEngine\Core\Base Classes\Component.cs" />
     <Compile Include="EpsilonEngine\Core\Base Classes\Game.cs" />
     <Compile Include="EpsilonEngine\Core\Base Classes\GameManager.cs" />
-    <Compile Include="EpsilonEngine\Core\Base Classes\View.cs" />
+    <Compile Include="EpsilonEngine\Core\Base Classes\GameObject.cs" />
+    <Compile Include="EpsilonEngine\Core\Base Classes\Scene.cs" />
+    <Compile Include="EpsilonEngine\Core\Base Classes\SceneManager.cs" />
     <Compile Include="EpsilonEngine\Core\Data Types\RenderInstruction.cs" />
     <Compile Include="EpsilonEngine\Core\Data Types\RenderTexture.cs" />
     <Compile Include="EpsilonEngine\Core\Data Types\Structs\Color.cs" />
@@ -87,7 +90,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Test Game\Assets\Cat.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="EpsilonEngine\TEMPLATE.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MonoGame.Framework.DesktopGL.3.8.0.1641\build\MonoGame.Framework.DesktopGL.targets" Condition="Exists('..\packages\MonoGame.Framework.DesktopGL.3.8.0.1641\build\MonoGame.Framework.DesktopGL.targets')" />
   <ProjectExtensions>

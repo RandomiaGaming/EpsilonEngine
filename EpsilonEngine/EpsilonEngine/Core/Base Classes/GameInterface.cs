@@ -4,9 +4,6 @@ namespace EpsilonEngine
 {
     public sealed class GameInterface : Microsoft.Xna.Framework.Game
     {
-        #region Contants
-        private static readonly Microsoft.Xna.Framework.Color errorPink = new Microsoft.Xna.Framework.Color(255, 0, 255, 255);
-        #endregion
         #region Variables
         private Microsoft.Xna.Framework.GraphicsDeviceManager _graphicsDeviceManager = null;
         private Game _game = null;
@@ -14,12 +11,17 @@ namespace EpsilonEngine
         private TimeSpan _deltaTime = new TimeSpan(0);
         private string _name = "Unnamed Game Interface";
         private bool _destroyed = false;
+        private bool _running = false;
         #endregion
         #region Properties
         public Microsoft.Xna.Framework.GameWindow GameWindow
         {
             get
             {
+                if (_destroyed)
+                {
+                    throw new Exception("GameInterface has been destroyed.");
+                }
                 return Window;
             }
         }
@@ -27,13 +29,21 @@ namespace EpsilonEngine
         {
             get
             {
-                return graphics;
+                if (_destroyed)
+                {
+                    throw new Exception("GameInterface has been destroyed.");
+                }
+                return _graphicsDeviceManager;
             }
         }
         public Game Game
         {
             get
             {
+                if (_destroyed)
+                {
+                    throw new Exception("GameInterface has been destroyed.");
+                }
                 return _game;
             }
         }
@@ -41,6 +51,10 @@ namespace EpsilonEngine
         {
             get
             {
+                if (_destroyed)
+                {
+                    throw new Exception("GameInterface has been destroyed.");
+                }
                 return _timeSinceStart;
             }
         }
@@ -48,6 +62,10 @@ namespace EpsilonEngine
         {
             get
             {
+                if (_destroyed)
+                {
+                    throw new Exception("GameInterface has been destroyed.");
+                }
                 return _deltaTime;
             }
         }
@@ -55,11 +73,37 @@ namespace EpsilonEngine
         {
             get
             {
+                if (_destroyed)
+                {
+                    throw new Exception("GameInterface has been destroyed.");
+                }
                 return _name;
             }
             set
             {
-                if(de)
+                if (_destroyed)
+                {
+                    throw new Exception("GameInterface has been destroyed.");
+                }
+                _name = value;
+            }
+        }
+        public bool Running
+        {
+            get
+            {
+                if (_destroyed)
+                {
+                    throw new Exception("GameInterface has been destroyed.");
+                }
+                return _running;
+            }
+        }
+        public bool Destroyed
+        {
+            get
+            {
+                return _destroyed;
             }
         }
         #endregion
@@ -92,7 +136,7 @@ namespace EpsilonEngine
             base.Window.AllowUserResizing = true;
             base.Window.IsBorderless = false;
             base.Window.Position = new Microsoft.Xna.Framework.Point();
-            base.Window.Title = "Unnamed Game";
+            base.Window.Title = _name;
 
             base.InactiveSleepTime = new TimeSpan(10000000 * 3);
             base.IsFixedTimeStep = false;
@@ -104,16 +148,28 @@ namespace EpsilonEngine
         #region Overrides
         protected sealed override void Initialize()
         {
+            if (_destroyed)
+            {
+                throw new Exception("GameInterface has been destroyed.");
+            }
+
             if (_game is null)
             {
                 throw new Exception("Cannot run game interface until game is set.");
             }
+            _running = true;
+
             _game.Initialize();
 
             base.Initialize();
         }
         protected sealed override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
+            if (_destroyed)
+            {
+                throw new Exception("GameInterface has been destroyed.");
+            }
+
             if (_game is null)
             {
                 throw new Exception("Cannot run game interface until game is set.");
@@ -128,12 +184,17 @@ namespace EpsilonEngine
         }
         protected sealed override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
+            if (_destroyed)
+            {
+                throw new Exception("GameInterface has been destroyed.");
+            }
+
             if (_game is null)
             {
                 throw new Exception("Cannot run game interface until game is set.");
             }
 
-            GraphicsDevice.Clear(errorPink);
+            GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Black);
 
             _game.Render();
 
@@ -141,32 +202,30 @@ namespace EpsilonEngine
         }
         protected override void Dispose(bool disposing)
         {
-            if (!(_game is null))
-            {
-                _game.Destroy();
-            }
-
+            DestroyWithoutDispose();
             base.Dispose(disposing);
         }
         protected override void OnExiting(object sender, EventArgs args)
         {
-            if (!(_game is null))
-            {
-                _game.Destroy();
-            }
-
-            this.Dispose();
-
-            base.OnExiting(sender, args);
+            Destroy();
         }
         public override string ToString()
         {
+            if (_destroyed)
+            {
+                throw new Exception("GameInterface has been destroyed.");
+            }
+
             return $"EpsilonEngine.GameInterface({_name})";
         }
         #endregion
         #region Methods
         internal void SetGame(Game game)
         {
+            if (_running)
+            {
+                throw new Exception("game cannot be set while running.");
+            }
             if (game is null)
             {
                 throw new Exception("game was null.");
@@ -175,13 +234,30 @@ namespace EpsilonEngine
         }
         public void Destroy()
         {
+            if (_destroyed)
+            {
+                return;
+            }
+
+            DestroyWithoutDispose();
+
+            this.Dispose();
+        }
+        #region Private Methods
+        private void DestroyWithoutDispose()
+        {
+            if (_destroyed)
+            {
+                return;
+            }
+
             if (!(_game is null))
             {
                 _game.Destroy();
             }
-
-            this.Dispose();
+            _destroyed = true;
         }
+        #endregion
         #endregion
     }
 }
