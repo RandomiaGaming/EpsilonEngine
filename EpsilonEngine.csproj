@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{860F4A85-ECE7-425F-AA6E-D91D6FA5E502}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>EpsilonEngine</RootNamespace>
+    <AssemblyName>EpsilonEngine</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EpsilonEngine\AddOns\DefaultComponents\CameraFollower.cs" />
+    <Compile Include="EpsilonEngine\AddOns\DefaultComponents\Image.cs" />
+    <Compile Include="EpsilonEngine\AddOns\DefaultComponents\ParticleSystem.cs" />
+    <Compile Include="EpsilonEngine\AddOns\DefaultComponents\TextureRenderer.cs" />
+    <Compile Include="EpsilonEngine\AddOns\Helpers\GradientHelper.cs" />
+    <Compile Include="EpsilonEngine\AddOns\Helpers\MathHelper.cs" />
+    <Compile Include="EpsilonEngine\AddOns\Helpers\RandomnessHelper.cs" />
+    <Compile Include="EpsilonEngine\AddOns\Input\DefaultInputBindingAttribute.cs" />
+    <Compile Include="EpsilonEngine\AddOns\Input\HardwareInput.cs" />
+    <Compile Include="EpsilonEngine\AddOns\Input\InputAttibutes.cs" />
+    <Compile Include="EpsilonEngine\AddOns\Input\InputBinding.cs" />
+    <Compile Include="EpsilonEngine\AddOns\Input\InputManager.cs" />
+    <Compile Include="EpsilonEngine\AddOns\Input\RegisterHardwareInputAttribute.cs" />
+    <Compile Include="EpsilonEngine\AddOns\Input\RegisterVirtualInputAttribute.cs" />
+    <Compile Include="EpsilonEngine\AddOns\Input\VirtualInput.cs" />
+    <Compile Include="EpsilonEngine\AddOns\Networking\LocalServer.cs" />
+    <Compile Include="EpsilonEngine\AddOns\Tilemaps\Tile.cs" />
+    <Compile Include="EpsilonEngine\AddOns\Tilemaps\Tilemap.cs" />
+    <Compile Include="EpsilonEngine\Base Classes\Game.cs" />
+    <Compile Include="EpsilonEngine\Base Classes\GameInterface.cs" />
+    <Compile Include="EpsilonEngine\Base Classes\GameManager.cs" />
+    <Compile Include="EpsilonEngine\Base Classes\Profiler.cs" />
+    <Compile Include="EpsilonEngine\Base Classes\PumpEvent.cs" />
+    <Compile Include="EpsilonEngine\Base Classes\Screen Space\Canvas.cs" />
+    <Compile Include="EpsilonEngine\Base Classes\Screen Space\CanvasBehavior.cs" />
+    <Compile Include="EpsilonEngine\Base Classes\Screen Space\Element.cs" />
+    <Compile Include="EpsilonEngine\Base Classes\World Space\Component.cs" />
+    <Compile Include="EpsilonEngine\Base Classes\World Space\GameObject.cs" />
+    <Compile Include="EpsilonEngine\Base Classes\World Space\Scene.cs" />
+    <Compile Include="EpsilonEngine\Base Classes\World Space\SceneManager.cs" />
+    <Compile Include="EpsilonEngine\Core\DataTypes\Bounds.cs" />
+    <Compile Include="EpsilonEngine\Core\DataTypes\Color.cs" />
+    <Compile Include="EpsilonEngine\Core\DataTypes\Point.cs" />
+    <Compile Include="EpsilonEngine\Core\DataTypes\Rectangle.cs" />
+    <Compile Include="EpsilonEngine\Core\DataTypes\Texture.cs" />
+    <Compile Include="EpsilonEngine\Core\DataTypes\TextureEditor.cs" />
+    <Compile Include="EpsilonEngine\Core\DataTypes\Vector.cs" />
+    <Compile Include="EpsilonEngine\Core\Game.cs" />
+    <Compile Include="EpsilonEngine\Core\GameInterface.cs" />
+    <Compile Include="EpsilonEngine\Core\GameManager.cs" />
+    <Compile Include="EpsilonEngine\Core\Profiler.cs" />
+    <Compile Include="EpsilonEngine\Core\Pumps\InverseOrderedPump.cs" />
+    <Compile Include="EpsilonEngine\Core\Pumps\OrderedPump.cs" />
+    <Compile Include="EpsilonEngine\Core\Pumps\PumpEvent.cs" />
+    <Compile Include="EpsilonEngine\Core\Pumps\SingleRunPump.cs" />
+    <Compile Include="EpsilonEngine\Core\Pumps\UnorderedPump.cs" />
+    <Compile Include="EpsilonEngine\Core\ScreenSpace\Canvas.cs" />
+    <Compile Include="EpsilonEngine\Core\ScreenSpace\CanvasBehavior.cs" />
+    <Compile Include="EpsilonEngine\Core\ScreenSpace\Element.cs" />
+    <Compile Include="EpsilonEngine\Core\WorldSpace\Component.cs" />
+    <Compile Include="EpsilonEngine\Core\WorldSpace\GameObject.cs" />
+    <Compile Include="EpsilonEngine\Core\WorldSpace\Scene.cs" />
+    <Compile Include="EpsilonEngine\Core\WorldSpace\SceneManager.cs" />
+    <Compile Include="EpsilonEngine\DataTypes\Bounds.cs" />
+    <Compile Include="EpsilonEngine\DataTypes\Color.cs" />
+    <Compile Include="EpsilonEngine\DataTypes\Point.cs" />
+    <Compile Include="EpsilonEngine\DataTypes\Rectangle.cs" />
+    <Compile Include="EpsilonEngine\DataTypes\Texture.cs" />
+    <Compile Include="EpsilonEngine\DataTypes\Vector.cs" />
+    <Compile Include="EpsilonEngine\Default Components\CameraFollower.cs" />
+    <Compile Include="EpsilonEngine\Default Components\Image.cs" />
+    <Compile Include="EpsilonEngine\Default Components\ParticleSystem.cs" />
+    <Compile Include="EpsilonEngine\Default Components\TextureRenderer.cs" />
+    <Compile Include="EpsilonEngine\Helper Classes\MathHelper.cs" />
+    <Compile Include="EpsilonEngine\Helper Classes\RandomnessHelper.cs" />
+    <Compile Include="EpsilonEngine\Input\DefaultInputBindingAttribute.cs" />
+    <Compile Include="EpsilonEngine\Input\HardwareInput.cs" />
+    <Compile Include="EpsilonEngine\Input\InputAttibutes.cs" />
+    <Compile Include="EpsilonEngine\Input\InputBinding.cs" />
+    <Compile Include="EpsilonEngine\Input\InputManager.cs" />
+    <Compile Include="EpsilonEngine\Input\KeyboardInput.cs" />
+    <Compile Include="EpsilonEngine\Input\RegisterHardwareInputAttribute.cs" />
+    <Compile Include="EpsilonEngine\Input\RegisterVirtualInputAttribute.cs" />
+    <Compile Include="EpsilonEngine\Input\VirtualInput.cs" />
+    <Compile Include="EpsilonEngine\Physics\Collision.cs" />
+    <Compile Include="EpsilonEngine\Physics\Direction.cs" />
+    <Compile Include="EpsilonEngine\Physics\DirectionInfo.cs" />
+    <Compile Include="EpsilonEngine\Physics\Overlap.cs" />
+    <Compile Include="EpsilonEngine\Physics\PhysicsLayer.cs" />
+    <Compile Include="EpsilonEngine\Physics\PhysicsObject.cs" />
+    <Compile Include="EpsilonEngine\Physics\PhysicsScene.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="TestProject\TestGame.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".gitignore" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

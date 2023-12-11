@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EpsilonEngine", "EpsilonEngine.csproj", "{860F4A85-ECE7-425F-AA6E-D91D6FA5E502}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{860F4A85-ECE7-425F-AA6E-D91D6FA5E502}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{860F4A85-ECE7-425F-AA6E-D91D6FA5E502}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{860F4A85-ECE7-425F-AA6E-D91D6FA5E502}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{860F4A85-ECE7-425F-AA6E-D91D6FA5E502}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {566369DA-70AA-462A-8C79-D37039B87022}
+	EndGlobalSection
+EndGlobal
