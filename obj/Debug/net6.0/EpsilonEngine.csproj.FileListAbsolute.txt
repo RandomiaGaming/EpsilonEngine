@@ -1,0 +1,36 @@
+D:\Programming Projects\Don't Melt! - Crystal Caves Remastered!\EpsilonEngine\bin\Debug\net6.0\EpsilonEngine.deps.json
+D:\Programming Projects\Don't Melt! - Crystal Caves Remastered!\EpsilonEngine\bin\Debug\net6.0\EpsilonEngine.dll
+D:\Programming Projects\Don't Melt! - Crystal Caves Remastered!\EpsilonEngine\bin\Debug\net6.0\EpsilonEngine.pdb
+D:\Programming Projects\Don't Melt! - Crystal Caves Remastered!\EpsilonEngine\obj\Debug\net6.0\EpsilonEngine.csproj.AssemblyReference.cache
+D:\Programming Projects\Don't Melt! - Crystal Caves Remastered!\EpsilonEngine\obj\Debug\net6.0\EpsilonEngine.GeneratedMSBuildEditorConfig.editorconfig
+D:\Programming Projects\Don't Melt! - Crystal Caves Remastered!\EpsilonEngine\obj\Debug\net6.0\EpsilonEngine.AssemblyInfoInputs.cache
+D:\Programming Projects\Don't Melt! - Crystal Caves Remastered!\EpsilonEngine\obj\Debug\net6.0\EpsilonEngine.AssemblyInfo.cs
+D:\Programming Projects\Don't Melt! - Crystal Caves Remastered!\EpsilonEngine\obj\Debug\net6.0\EpsilonEngine.csproj.CoreCompileInputs.cache
+D:\Programming Projects\Don't Melt! - Crystal Caves Remastered!\EpsilonEngine\obj\Debug\net6.0\EpsilonEngine.dll
+D:\Programming Projects\Don't Melt! - Crystal Caves Remastered!\EpsilonEngine\obj\Debug\net6.0\refint\EpsilonEngine.dll
+D:\Programming Projects\Don't Melt! - Crystal Caves Remastered!\EpsilonEngine\obj\Debug\net6.0\EpsilonEngine.pdb
+D:\Programming Projects\Don't Melt! - Crystal Caves Remastered!\EpsilonEngine\obj\Debug\net6.0\ref\EpsilonEngine.dll
+D:\Programming Projects\DMCCR\EpsilonEngine\bin\Debug\net6.0\EpsilonEngine.deps.json
+D:\Programming Projects\DMCCR\EpsilonEngine\bin\Debug\net6.0\EpsilonEngine.dll
+D:\Programming Projects\DMCCR\EpsilonEngine\bin\Debug\net6.0\EpsilonEngine.pdb
+D:\Programming Projects\DMCCR\EpsilonEngine\obj\Debug\net6.0\EpsilonEngine.csproj.AssemblyReference.cache
+D:\Programming Projects\DMCCR\EpsilonEngine\obj\Debug\net6.0\EpsilonEngine.GeneratedMSBuildEditorConfig.editorconfig
+D:\Programming Projects\DMCCR\EpsilonEngine\obj\Debug\net6.0\EpsilonEngine.AssemblyInfoInputs.cache
+D:\Programming Projects\DMCCR\EpsilonEngine\obj\Debug\net6.0\EpsilonEngine.AssemblyInfo.cs
+D:\Programming Projects\DMCCR\EpsilonEngine\obj\Debug\net6.0\EpsilonEngine.csproj.CoreCompileInputs.cache
+D:\Programming Projects\DMCCR\EpsilonEngine\obj\Debug\net6.0\EpsilonEngine.dll
+D:\Programming Projects\DMCCR\EpsilonEngine\obj\Debug\net6.0\refint\EpsilonEngine.dll
+D:\Programming Projects\DMCCR\EpsilonEngine\obj\Debug\net6.0\EpsilonEngine.pdb
+D:\Programming Projects\DMCCR\EpsilonEngine\obj\Debug\net6.0\ref\EpsilonEngine.dll
+D:\Epsilon\EpsilonEngine\bin\Debug\net6.0\EpsilonEngine.deps.json
+D:\Epsilon\EpsilonEngine\bin\Debug\net6.0\EpsilonEngine.dll
+D:\Epsilon\EpsilonEngine\bin\Debug\net6.0\EpsilonEngine.pdb
+D:\Epsilon\EpsilonEngine\obj\Debug\net6.0\EpsilonEngine.csproj.AssemblyReference.cache
+D:\Epsilon\EpsilonEngine\obj\Debug\net6.0\EpsilonEngine.GeneratedMSBuildEditorConfig.editorconfig
+D:\Epsilon\EpsilonEngine\obj\Debug\net6.0\EpsilonEngine.AssemblyInfoInputs.cache
+D:\Epsilon\EpsilonEngine\obj\Debug\net6.0\EpsilonEngine.AssemblyInfo.cs
+D:\Epsilon\EpsilonEngine\obj\Debug\net6.0\EpsilonEngine.csproj.CoreCompileInputs.cache
+D:\Epsilon\EpsilonEngine\obj\Debug\net6.0\EpsilonEngine.dll
+D:\Epsilon\EpsilonEngine\obj\Debug\net6.0\refint\EpsilonEngine.dll
+D:\Epsilon\EpsilonEngine\obj\Debug\net6.0\EpsilonEngine.pdb
+D:\Epsilon\EpsilonEngine\obj\Debug\net6.0\ref\EpsilonEngine.dll
