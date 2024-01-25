@@ -8,5 +8,5 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCopyright("Copyright RandomiaGaming © 2023")]
 [assembly: AssemblyTrademark("Trademark RandomiaGaming ™ 2023")]
 [assembly: ComVisible(false)]
-[assembly: AssemblyVersion("0.1")]
-[assembly: AssemblyFileVersion("0.1")]
+[assembly: AssemblyVersion("2.0")]
+[assembly: AssemblyFileVersion("2.0")]

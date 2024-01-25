@@ -1,26 +1,25 @@
-//Approved 09/22/2022
+//Approved 2.0
 namespace EpsilonEngine
 {
     public struct Point
     {
         #region Public Constants
         public static readonly Point Zero;
-        public static readonly Point One = new(1, 1);
+        public static readonly Point One = new Point(1, 1);
+        public static readonly Point MaxValue = new Point(int.MaxValue, int.MaxValue);
+        public static readonly Point MinValue = new Point(int.MinValue, int.MinValue);
         public static readonly Point PositiveOne = One;
-        public static readonly Point NegativeOne = new(-1, -1);
+        public static readonly Point NegativeOne = new Point(-1, -1);
 
-        public static readonly Point Up = new(0, 1);
-        public static readonly Point Down = new(0, -1);
-        public static readonly Point Right = new(1, 0);
-        public static readonly Point Left = new(-1, 0);
+        public static readonly Point Up = new Point(0, 1);
+        public static readonly Point Down = new Point(0, -1);
+        public static readonly Point Right = new Point(1, 0);
+        public static readonly Point Left = new Point(-1, 0);
 
         public static readonly Point UpRight = One;
-        public static readonly Point UpLeft = new(-1, 1);
-        public static readonly Point DownRight = new(1, -1);
+        public static readonly Point UpLeft = new Point(-1, 1);
+        public static readonly Point DownRight = new Point(1, -1);
         public static readonly Point DownLeft = NegativeOne;
-
-        public static readonly Point MaxValue = new(int.MaxValue, int.MaxValue);
-        public static readonly Point MinValue = new(int.MinValue, int.MinValue);
         #endregion
         #region Public Varialbes
         public int X;
@@ -45,7 +44,7 @@ namespace EpsilonEngine
         }
         public override bool Equals(object obj)
         {
-            if (obj is null || obj.GetType() != typeof(Point))
+            if (obj is null || !(obj is Point))
             {
                 return false;
             }
@@ -57,17 +56,31 @@ namespace EpsilonEngine
         }
         public override int GetHashCode()
         {
-            return unchecked(X + Y);
+            return X ^ Y;
         }
         #endregion
         #region Public Operators
-        public static bool operator ==(Point a, Point b)
+        public static Point operator +(Point a)
         {
-            return a.X == b.X && a.Y == b.Y;
+            return a;
         }
-        public static bool operator !=(Point a, Point b)
+        public static Point operator -(Point a)
         {
-            return a.X != b.X || a.Y != b.Y;
+            a.X = -a.X;
+            a.Y = -a.Y;
+            return a;
+        }
+        public static Point operator ++(Point a)
+        {
+            a.X++;
+            a.Y++;
+            return a;
+        }
+        public static Point operator --(Point a)
+        {
+            a.X--;
+            a.Y--;
+            return a;
         }
 
         public static Point operator +(Point a, Point b)
@@ -92,6 +105,12 @@ namespace EpsilonEngine
         {
             a.X /= b.X;
             a.Y /= b.Y;
+            return a;
+        }
+        public static Point operator %(Point a, Point b)
+        {
+            a.X %= b.X;
+            a.Y %= b.Y;
             return a;
         }
 
@@ -119,12 +138,36 @@ namespace EpsilonEngine
             a.Y /= b;
             return a;
         }
-
-        public static Point operator -(Point a)
+        public static Point operator %(Point a, int b)
         {
-            a.X = -a.X;
-            a.Y = -a.Y;
+            a.X %= b;
+            a.Y %= b;
             return a;
+        }
+
+        public static bool operator ==(Point a, Point b)
+        {
+            return a.X == b.X && a.Y == b.Y;
+        }
+        public static bool operator !=(Point a, Point b)
+        {
+            return a.X != b.X || a.Y != b.Y;
+        }
+        public static bool operator <(Point a, Point b)
+        {
+            return a.X < b.X && a.Y < b.Y;
+        }
+        public static bool operator >(Point a, Point b)
+        {
+            return a.X > b.X || a.Y > b.Y;
+        }
+        public static bool operator <=(Point a, Point b)
+        {
+            return a.X <= b.X && a.Y <= b.Y;
+        }
+        public static bool operator >=(Point a, Point b)
+        {
+            return a.X >= b.X || a.Y >= b.Y;
         }
 
         public static explicit operator Point(Vector source)

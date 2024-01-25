@@ -1,7 +1,7 @@
 ﻿using EpsilonEngine;
 public sealed class TestGame : Game
 {
-    public TestGame()
+    public TestGame() : base(0, 0)
     {
         IsFullScreen = true;
         KillProcessOnExit = true;

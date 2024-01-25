@@ -12,6 +12,8 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -22,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,16 +34,17 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>TestProject.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MonoGame.Framework, Version=3.8.0.1641, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\MonoGame.Framework.DesktopGL.3.8.0.1641\lib\net452\MonoGame.Framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EpsilonEngine\AddOns\DefaultComponents\CameraFollower.cs" />
@@ -50,29 +54,21 @@
     <Compile Include="EpsilonEngine\AddOns\Helpers\GradientHelper.cs" />
     <Compile Include="EpsilonEngine\AddOns\Helpers\MathHelper.cs" />
     <Compile Include="EpsilonEngine\AddOns\Helpers\RandomnessHelper.cs" />
-    <Compile Include="EpsilonEngine\AddOns\Input\DefaultInputBindingAttribute.cs" />
-    <Compile Include="EpsilonEngine\AddOns\Input\HardwareInput.cs" />
-    <Compile Include="EpsilonEngine\AddOns\Input\InputAttibutes.cs" />
-    <Compile Include="EpsilonEngine\AddOns\Input\InputBinding.cs" />
-    <Compile Include="EpsilonEngine\AddOns\Input\InputManager.cs" />
-    <Compile Include="EpsilonEngine\AddOns\Input\RegisterHardwareInputAttribute.cs" />
-    <Compile Include="EpsilonEngine\AddOns\Input\RegisterVirtualInputAttribute.cs" />
-    <Compile Include="EpsilonEngine\AddOns\Input\VirtualInput.cs" />
     <Compile Include="EpsilonEngine\AddOns\Networking\LocalServer.cs" />
     <Compile Include="EpsilonEngine\AddOns\Tilemaps\Tile.cs" />
     <Compile Include="EpsilonEngine\AddOns\Tilemaps\Tilemap.cs" />
-    <Compile Include="EpsilonEngine\Base Classes\Game.cs" />
-    <Compile Include="EpsilonEngine\Base Classes\GameInterface.cs" />
-    <Compile Include="EpsilonEngine\Base Classes\GameManager.cs" />
-    <Compile Include="EpsilonEngine\Base Classes\Profiler.cs" />
-    <Compile Include="EpsilonEngine\Base Classes\PumpEvent.cs" />
-    <Compile Include="EpsilonEngine\Base Classes\Screen Space\Canvas.cs" />
-    <Compile Include="EpsilonEngine\Base Classes\Screen Space\CanvasBehavior.cs" />
-    <Compile Include="EpsilonEngine\Base Classes\Screen Space\Element.cs" />
-    <Compile Include="EpsilonEngine\Base Classes\World Space\Component.cs" />
-    <Compile Include="EpsilonEngine\Base Classes\World Space\GameObject.cs" />
-    <Compile Include="EpsilonEngine\Base Classes\World Space\Scene.cs" />
-    <Compile Include="EpsilonEngine\Base Classes\World Space\SceneManager.cs" />
+    <Compile Include="EpsilonEngine\BetterInput\DefaultInputBindingAttribute.cs" />
+    <Compile Include="EpsilonEngine\BetterInput\HardwareInput.cs" />
+    <Compile Include="EpsilonEngine\BetterInput\InputAttibutes.cs" />
+    <Compile Include="EpsilonEngine\BetterInput\InputBinding.cs" />
+    <Compile Include="EpsilonEngine\BetterInput\InputManager.cs" />
+    <Compile Include="EpsilonEngine\BetterInput\KeyboardInput.cs" />
+    <Compile Include="EpsilonEngine\BetterInput\RegisterHardwareInputAttribute.cs" />
+    <Compile Include="EpsilonEngine\BetterInput\RegisterVirtualInputAttribute.cs" />
+    <Compile Include="EpsilonEngine\BetterInput\VirtualInput.cs" />
+    <Compile Include="EpsilonEngine\Event Hierarchy\CanvasSpace\Canvas.cs" />
+    <Compile Include="EpsilonEngine\Event Hierarchy\CanvasSpace\CanvasBehavior.cs" />
+    <Compile Include="EpsilonEngine\Event Hierarchy\CanvasSpace\Element.cs" />
     <Compile Include="EpsilonEngine\Core\DataTypes\Bounds.cs" />
     <Compile Include="EpsilonEngine\Core\DataTypes\Color.cs" />
     <Compile Include="EpsilonEngine\Core\DataTypes\Point.cs" />
@@ -80,63 +76,55 @@
     <Compile Include="EpsilonEngine\Core\DataTypes\Texture.cs" />
     <Compile Include="EpsilonEngine\Core\DataTypes\TextureEditor.cs" />
     <Compile Include="EpsilonEngine\Core\DataTypes\Vector.cs" />
-    <Compile Include="EpsilonEngine\Core\Game.cs" />
-    <Compile Include="EpsilonEngine\Core\GameInterface.cs" />
-    <Compile Include="EpsilonEngine\Core\GameManager.cs" />
-    <Compile Include="EpsilonEngine\Core\Profiler.cs" />
+    <Compile Include="EpsilonEngine\Event Hierarchy\GameSpace\Game.cs" />
+    <Compile Include="EpsilonEngine\Event Hierarchy\GameSpace\GameInterface.cs" />
+    <Compile Include="EpsilonEngine\Event Hierarchy\GameSpace\GameManager.cs" />
+    <Compile Include="EpsilonEngine\Event Hierarchy\GameSpace\Profiler.cs" />
     <Compile Include="EpsilonEngine\Core\Pumps\InverseOrderedPump.cs" />
     <Compile Include="EpsilonEngine\Core\Pumps\OrderedPump.cs" />
     <Compile Include="EpsilonEngine\Core\Pumps\PumpEvent.cs" />
     <Compile Include="EpsilonEngine\Core\Pumps\SingleRunPump.cs" />
     <Compile Include="EpsilonEngine\Core\Pumps\UnorderedPump.cs" />
-    <Compile Include="EpsilonEngine\Core\ScreenSpace\Canvas.cs" />
-    <Compile Include="EpsilonEngine\Core\ScreenSpace\CanvasBehavior.cs" />
-    <Compile Include="EpsilonEngine\Core\ScreenSpace\Element.cs" />
-    <Compile Include="EpsilonEngine\Core\WorldSpace\Component.cs" />
-    <Compile Include="EpsilonEngine\Core\WorldSpace\GameObject.cs" />
-    <Compile Include="EpsilonEngine\Core\WorldSpace\Scene.cs" />
-    <Compile Include="EpsilonEngine\Core\WorldSpace\SceneManager.cs" />
-    <Compile Include="EpsilonEngine\DataTypes\Bounds.cs" />
-    <Compile Include="EpsilonEngine\DataTypes\Color.cs" />
-    <Compile Include="EpsilonEngine\DataTypes\Point.cs" />
-    <Compile Include="EpsilonEngine\DataTypes\Rectangle.cs" />
-    <Compile Include="EpsilonEngine\DataTypes\Texture.cs" />
-    <Compile Include="EpsilonEngine\DataTypes\Vector.cs" />
+    <Compile Include="EpsilonEngine\Event Hierarchy\SceneSpace\Component.cs" />
+    <Compile Include="EpsilonEngine\Event Hierarchy\SceneSpace\GameObject.cs" />
+    <Compile Include="EpsilonEngine\Event Hierarchy\SceneSpace\Scene.cs" />
+    <Compile Include="EpsilonEngine\Event Hierarchy\SceneSpace\SceneManager.cs" />
     <Compile Include="EpsilonEngine\Default Components\CameraFollower.cs" />
     <Compile Include="EpsilonEngine\Default Components\Image.cs" />
     <Compile Include="EpsilonEngine\Default Components\ParticleSystem.cs" />
     <Compile Include="EpsilonEngine\Default Components\TextureRenderer.cs" />
-    <Compile Include="EpsilonEngine\Helper Classes\MathHelper.cs" />
-    <Compile Include="EpsilonEngine\Helper Classes\RandomnessHelper.cs" />
-    <Compile Include="EpsilonEngine\Input\DefaultInputBindingAttribute.cs" />
-    <Compile Include="EpsilonEngine\Input\HardwareInput.cs" />
-    <Compile Include="EpsilonEngine\Input\InputAttibutes.cs" />
-    <Compile Include="EpsilonEngine\Input\InputBinding.cs" />
-    <Compile Include="EpsilonEngine\Input\InputManager.cs" />
-    <Compile Include="EpsilonEngine\Input\KeyboardInput.cs" />
-    <Compile Include="EpsilonEngine\Input\RegisterHardwareInputAttribute.cs" />
-    <Compile Include="EpsilonEngine\Input\RegisterVirtualInputAttribute.cs" />
-    <Compile Include="EpsilonEngine\Input\VirtualInput.cs" />
-    <Compile Include="EpsilonEngine\Physics\Collision.cs" />
-    <Compile Include="EpsilonEngine\Physics\Direction.cs" />
-    <Compile Include="EpsilonEngine\Physics\DirectionInfo.cs" />
-    <Compile Include="EpsilonEngine\Physics\Overlap.cs" />
-    <Compile Include="EpsilonEngine\Physics\PhysicsLayer.cs" />
-    <Compile Include="EpsilonEngine\Physics\PhysicsObject.cs" />
-    <Compile Include="EpsilonEngine\Physics\PhysicsScene.cs" />
+    <Compile Include="EpsilonEngine\Helpers\MathHelper.cs" />
+    <Compile Include="EpsilonEngine\Helpers\RandomnessHelper.cs" />
+    <Compile Include="EpsilonEngine\PixelPhysics\Collision.cs" />
+    <Compile Include="EpsilonEngine\PixelPhysics\Direction.cs" />
+    <Compile Include="EpsilonEngine\PixelPhysics\DirectionInfo.cs" />
+    <Compile Include="EpsilonEngine\PixelPhysics\Overlap.cs" />
+    <Compile Include="EpsilonEngine\PixelPhysics\PhysicsLayer.cs" />
+    <Compile Include="EpsilonEngine\PixelPhysics\PhysicsObject.cs" />
+    <Compile Include="EpsilonEngine\PixelPhysics\PhysicsScene.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="TestProject\TestGame.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="EpsilonEngine\BetterAL\" />
+    <Folder Include="EpsilonEngine\DirectXLib\" />
     <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="packages\MonoGame.Framework.DesktopGL.3.8.0.1641\build\MonoGame.Framework.DesktopGL.targets" Condition="Exists('packages\MonoGame.Framework.DesktopGL.3.8.0.1641\build\MonoGame.Framework.DesktopGL.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\MonoGame.Framework.DesktopGL.3.8.0.1641\build\MonoGame.Framework.DesktopGL.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\MonoGame.Framework.DesktopGL.3.8.0.1641\build\MonoGame.Framework.DesktopGL.targets'))" />
+  </Target>
 </Project>

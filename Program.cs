@@ -1,12 +1,14 @@
-﻿namespace TestProject
+﻿using EpsilonEngine;
+
+namespace TestProject
 {
     public static class Program
     {
         [System.STAThread()]
         public static int Main()
         {
-            DMCCR dmccr = new DMCCR();
-            dmccr.Run();
+            TestGame game = new TestGame();
+            game.Run();
             return 0;
         }
     }
