@@ -1,20 +1,23 @@
-//Approved 2.0
-//Note: Vectors can contain values such as NaN and PositiveInfinity so make sure to account for extrenuous cases in your code.
+// Approved 2.0
+// Note: Vectors can contain values such as NaN and PositiveInfinity so make sure to account for extrenuous cases in your code.
+// Ignore warnings for not overriding GetHashCode.
+#pragma warning disable CS0659
+#pragma warning disable CS0661
 namespace EpsilonEngine
 {
     public struct Vector
     {
         #region Public Constants
         public static readonly Vector Zero;
-        public static readonly Vector Infinity = new Vector(double.PositiveInfinity, double.PositiveInfinity);
-        public static readonly Vector PositiveInfinity = Infinity;
+        public static readonly Vector Infinity = PositiveInfinity;
+        public static readonly Vector PositiveInfinity = new Vector(double.PositiveInfinity, double.PositiveInfinity);
         public static readonly Vector NegativeInfinity = new Vector(double.NegativeInfinity, double.NegativeInfinity);
         public static readonly Vector NaN = new Vector(double.NaN, double.NaN);
         public static readonly Vector MaxValue = new Vector(double.MaxValue, double.MaxValue);
         public static readonly Vector MinValue = new Vector(double.MinValue, double.MinValue);
         public static readonly Vector Epsilon = new Vector(double.Epsilon, double.Epsilon);
-        public static readonly Vector One = new Vector(1.0, 1.0);
-        public static readonly Vector PositiveOne = One;
+        public static readonly Vector One = PositiveOne;
+        public static readonly Vector PositiveOne = new Vector(1.0, 1.0);
         public static readonly Vector NegativeOne = new Vector(-1.0, -1.0);
 
         public static readonly Vector Up = new Vector(0.0, 1.0);
@@ -22,7 +25,7 @@ namespace EpsilonEngine
         public static readonly Vector Right = new Vector(1.0, 0.0);
         public static readonly Vector Left = new Vector(-1.0, 0.0);
 
-        public static readonly Vector UpRight = One;
+        public static readonly Vector UpRight = PositiveOne;
         public static readonly Vector UpLeft = new Vector(-1.0, 1.0);
         public static readonly Vector DownRight = new Vector(1.0, -1.0);
         public static readonly Vector DownLeft = NegativeOne;
@@ -56,17 +59,6 @@ namespace EpsilonEngine
             }
             Vector a = (Vector)obj;
             return X == a.X && Y == a.Y;
-        }
-        [System.Security.SecuritySafeCritical]
-        public override unsafe int GetHashCode()
-        {
-            double xCopy = X;
-            double yCopy = Y;
-            long xLong = *(long*)(&xCopy);
-            long yLong = *(long*)(&yCopy);
-            int xCrumpled = (int)xLong ^ (int)(xLong >> 32);
-            int yCrumpled = (int)yLong ^ (int)(yLong >> 32);
-            return xCrumpled ^ yCrumpled;
         }
         #endregion
         #region Public Operators
@@ -195,7 +187,7 @@ namespace EpsilonEngine
         }
         public bool IsNaN()
         {
-            return !(X is double.NaN || Y is double.NaN);
+            return X is double.NaN || Y is double.NaN;
         }
         #endregion
     }

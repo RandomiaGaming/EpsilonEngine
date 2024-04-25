@@ -1,14 +1,17 @@
-//Approved 2.0
+// Approved 2.0
+// Ignore warnings for not overriding GetHashCode.
+#pragma warning disable CS0659
+#pragma warning disable CS0661
 namespace EpsilonEngine
 {
     public struct Point
     {
         #region Public Constants
-        public static readonly Point Zero;
+        public static readonly Point Zero = new Point(0, 0);
         public static readonly Point One = new Point(1, 1);
         public static readonly Point MaxValue = new Point(int.MaxValue, int.MaxValue);
         public static readonly Point MinValue = new Point(int.MinValue, int.MinValue);
-        public static readonly Point PositiveOne = One;
+        public static readonly Point PositiveOne = new Point(1, 1);
         public static readonly Point NegativeOne = new Point(-1, -1);
 
         public static readonly Point Up = new Point(0, 1);
@@ -16,10 +19,10 @@ namespace EpsilonEngine
         public static readonly Point Right = new Point(1, 0);
         public static readonly Point Left = new Point(-1, 0);
 
-        public static readonly Point UpRight = One;
+        public static readonly Point UpRight = new Point(1, 1);
         public static readonly Point UpLeft = new Point(-1, 1);
         public static readonly Point DownRight = new Point(1, -1);
-        public static readonly Point DownLeft = NegativeOne;
+        public static readonly Point DownLeft = new Point(-1, -1);
         #endregion
         #region Public Varialbes
         public int X;
@@ -53,10 +56,6 @@ namespace EpsilonEngine
                 Point a = (Point)obj;
                 return X == a.X && Y == a.Y;
             }
-        }
-        public override int GetHashCode()
-        {
-            return X ^ Y;
         }
         #endregion
         #region Public Operators

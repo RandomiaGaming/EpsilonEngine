@@ -7,11 +7,13 @@ namespace EpsilonEngine
         public readonly Game Game;
         public readonly int Width;
         public readonly int Height;
+        public bool Disposed { get; private set; }
         #endregion
         #region Internal Variables
         internal Microsoft.Xna.Framework.Graphics.Texture2D _xnaTexture;
         internal bool _editorBound;
         internal object _editorBindingLock = new object();
+        internal bool _disposed;
         #endregion
         #region Public Constructors
         public Texture(Game game, int width, int height)
@@ -298,13 +300,21 @@ namespace EpsilonEngine
         #region Public Overrides
         public override string ToString()
         {
+            if (_disposed)
+            {
+                throw new System.Exception("Object has been disposed.");
+            }
             return $"EpsilonEngine.Texture({Width}, {Height})";
         }
         #endregion
         #region Public Methods
         public void SaveAsJPG(string filePath)
         {
-            if(filePath is null)
+            if (_disposed)
+            {
+                throw new System.Exception("Object has been disposed.");
+            }
+            if (filePath is null)
             {
                 throw new System.Exception("filePath cannot be null.");
             }
@@ -344,7 +354,6 @@ namespace EpsilonEngine
             _xnaTexture.GetData<byte>(buffer);
             return new Texture(Game, Width, Height, buffer);
         }
-
         public void Dispose()
         {
             throw new System.NotImplementedException();

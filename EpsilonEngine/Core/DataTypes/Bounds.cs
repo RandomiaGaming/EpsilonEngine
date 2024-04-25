@@ -1,10 +1,13 @@
-//Approved 09/22/2022
+// Approved 2.0
+// Ignore warnings for not overriding GetHashCode.
+#pragma warning disable CS0659
+#pragma warning disable CS0661
 namespace EpsilonEngine
 {
     public struct Bounds
     {
         #region Public Constants
-        public static readonly Bounds Zero;
+        public static readonly Bounds Zero = new Bounds(0.0, 0.0, 0.0, 0.0);
         public static readonly Bounds MaxValue = new Bounds(double.MinValue, double.MinValue, double.MaxValue, double.MaxValue);
         public static readonly Bounds Infinity = new Bounds(double.NegativeInfinity, double.NegativeInfinity, double.PositiveInfinity, double.PositiveInfinity);
         #endregion
@@ -168,10 +171,6 @@ namespace EpsilonEngine
                 Bounds a = (Bounds)obj;
                 return _minX == a._minX && _minY == a._minY && _maxX == a._maxX && _maxY == a._maxY;
             }
-        }
-        public override int GetHashCode()
-        {
-            return unchecked(_minX.GetHashCode() + _minY.GetHashCode() + _maxX.GetHashCode() + _maxY.GetHashCode());
         }
         #endregion
         #region Public Operators

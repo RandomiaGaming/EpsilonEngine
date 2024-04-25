@@ -1,10 +1,14 @@
-//Approved 09/22/2022
+// Approved 2.0
+// Ignore warnings for not overriding GetHashCode.
+#pragma warning disable CS0659
+#pragma warning disable CS0661
 namespace EpsilonEngine
 {
     public struct Rect
     {
         #region Public Constants
-        public static readonly Rect Zero;
+        public static readonly Rect Zero = new Rect(0, 0, 0, 0);
+        public static readonly Rect UnitSquare = new Rect(0, 0, 1, 1);
         public static readonly Rect MaxValue = new Rect(int.MinValue, int.MinValue, int.MaxValue, int.MaxValue);
         #endregion
         #region Public Variables
@@ -143,10 +147,6 @@ namespace EpsilonEngine
                 Rect a = (Rect)obj;
                 return _minX == a._minX && _minY == a._minY && _maxX == a._maxX && _maxY == a._maxY;
             }
-        }
-        public override int GetHashCode()
-        {
-            return unchecked(_minX + _minY + _maxX + _maxY);
         }
         #endregion
         #region Public Operators
