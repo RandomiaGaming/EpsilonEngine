@@ -1,8 +1,0 @@
-﻿Comments must start with a // then a space then a full sentence starting with a capital and ending with a period.
-Comments may not contain spelling or grammar mistakes.
-All files must contain an approval version as a comment in line 1 of the file. Approval comments should look like the following // Approvedd 2.0
-All mutable types must not override the GetHashCode function.
-All types must override the ==, !=, Equals, and ToString operators and functions.
-All files must have their code organized into regions with the syntax #region Private Variables #endregion.
-All code must be as optimized as possible without changing functionality.
-If unsafe code offers a preformace benifit then it must be used. A safe alternative must also be provided.
